@@ -1,34 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# みんなでわりかん。
 
-## Getting Started
+## → 割り勘アプリ
 
-First, run the development server:
+- 旅行時、誰が何を誰の分支払ったか、後々清算しやすいようなアプリを作ります
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## 学びたいこと
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Supabase に触れ、PostgreSQL の仕組みを理解する
+- TypeScript の使い方を学ぶ
+- Figma を用いて設計する
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## 実装したい機能
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- ログイン機能
+- 作成したプロジェクトを記憶
+- プロジェクトの中でさらに割り勘する人を指定し、その中で割り勘する
+- 誰が誰にいくら支払えばいいか一覧で表示する
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## なぜ作ろうと思ったのか
 
-## Learn More
+- 大人数での旅行の際に最後の割り勘作業が複雑であり、分かりやすくできるアプリが欲しいと思った為
+- 身近な人に使って頂き、フィードバックを得られそうだった為
+- Supabase,TypeScript を用いた初めての開発に適切な難易度だと思った為
 
-To learn more about Next.js, take a look at the following resources:
+## 使用予定技術
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- HTML,CSS,React,Next.js,TypeScript,TailwindCSS,CahkraUI,Supabase
