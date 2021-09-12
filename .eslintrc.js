@@ -1,9 +1,9 @@
 module.exports = {
   root: true,
   parser: "@typescript-eslint/parser",
-  parserOptions: { project: "./tsconfig.json" },
+  // parserOptions: { project: "./tsconfig.json" },
   env: { es2021: true, browser: true, jest: true, node: true },
-  plugins: ["simple-import-sort"],
+  plugins: [],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -43,8 +43,6 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
     "import/newline-after-import": "error",
     "import/no-default-export": "error",
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
