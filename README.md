@@ -25,4 +25,4 @@
 
 ## 使用予定技術
 
-- HTML,CSS,React,Next.js,TypeScript,TailwindCSS,CahkraUI,Supabase
+- HTML,CSS,React,Next.js,TypeScript,TailwindCSS,ChakraUI,Supabase
