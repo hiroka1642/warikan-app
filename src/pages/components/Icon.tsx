@@ -1,4 +1,8 @@
-export const ListIcon = (props) => {
+type Props = {
+  color?: string;
+};
+
+export const ListIcon: React.FC<Props> = (props) => {
   return (
     <svg
       width="24"
@@ -62,7 +66,7 @@ export const ListIcon = (props) => {
   );
 };
 
-export const NewList = (props) => {
+export const NewList: React.FC<Props> = (props) => {
   return (
     <svg
       width="24"
@@ -108,7 +112,7 @@ export const NewList = (props) => {
   );
 };
 
-export const LogoutIcon = (props) => {
+export const LogoutIcon: React.FC<Props> = (props) => {
   return (
     <svg
       width="24"

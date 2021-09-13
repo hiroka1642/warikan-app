@@ -1,14 +1,14 @@
 // After: _app.tsx
 import "tailwindcss/tailwind.css";
 import { ChakraProvider } from "@chakra-ui/react";
-import { AppProps } from "next/app";
+import type { AppProps } from "next/app";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = (props: AppProps) => {
   return (
-      <ChakraProvider>
-        <Component {...pageProps} />
-      </ChakraProvider>
+    <ChakraProvider>
+      <props.Component {...props.pageProps} />
+    </ChakraProvider>
   );
-}
+};
 
 export default MyApp;

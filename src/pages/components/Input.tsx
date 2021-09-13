@@ -1,6 +1,10 @@
 import { Input } from "@chakra-ui/react";
 
-export const InputComponent = (props) => {
+type Props = {
+  children: string;
+};
+
+export const InputComponent: React.VFC<Props> = (props) => {
   return (
     <Input
       isInvalid
