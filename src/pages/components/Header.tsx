@@ -1,18 +1,23 @@
-import { EditIcon } from "@chakra-ui/icons";
-import { Link } from "@chakra-ui/react";
+import { ListIcon, LogoutIcon, NewList } from "./Icon";
 import { LinkComponent } from "./Link";
 import { LogoutComponent } from "./LogoutLink";
 
 export const Header = () => {
   return (
     <>
-      <header className="py-12 flex-row flex justify-between bg-pink-300 relative">
+      <header className="py-12 flex-row flex justify-between text-blue-800 bg-opacity-60 relative">
         <div className="flex flex-row gap-20 px-20 w-max">
-          <LinkComponent icon={<EditIcon />}>チーム一覧</LinkComponent>
-          <LinkComponent icon={<EditIcon />}>新規チーム作成</LinkComponent>
+          <LinkComponent icon={<ListIcon color={"rgba(30, 64, 175)"} />}>
+            チーム一覧
+          </LinkComponent>
+          <LinkComponent icon={<NewList color={"rgba(30, 64, 175)"} />}>
+            新規チーム作成
+          </LinkComponent>
         </div>
         <div className="px-40">
-          <LogoutComponent icon={<EditIcon />}>ログアウト</LogoutComponent>
+          <LogoutComponent icon={<LogoutIcon color={"rgba(30, 64, 175)"} />}>
+            ログアウト
+          </LogoutComponent>
         </div>
       </header>
     </>
