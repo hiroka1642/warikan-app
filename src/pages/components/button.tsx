@@ -4,14 +4,19 @@ type Props = {
   href?: string;
   onClick?: VoidFunction;
   children?: string;
+  color?: string;
 };
 
 export const ButtonComponent: React.VFC<Props> = (props: Props) => {
   return (
-    <LinkOverlay href={props.href}>
-      <Button colorScheme="teal" size="md" onClick={props.onClick}>
-        {props.children}
+    <div>
+      <Button
+        colorScheme={props.color || "teal"}
+        size="md"
+        onClick={props.onClick}
+      >
+        <LinkOverlay href={props.href}>{props.children}</LinkOverlay>
       </Button>
-    </LinkOverlay>
+    </div>
   );
 };
