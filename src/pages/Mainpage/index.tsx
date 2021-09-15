@@ -11,7 +11,6 @@ const MainPage = () => {
     document.body.style.backgroundBlendMode = "lighten";
   }, []);
 
-  console.log("ログインできました");
   return (
     <>
       <Header />

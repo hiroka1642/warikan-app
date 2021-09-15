@@ -1,4 +1,3 @@
-import { Button, Input, Link } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { ButtonComponent } from "./components/button";
 import { InputComponent } from "./components/Input";
@@ -10,7 +9,7 @@ export default function Home() {
   }, []);
 
   const handleLogin = () => {
-    console.log("aaaa");
+    // console.log("aaaa");
   };
   return (
     <>
