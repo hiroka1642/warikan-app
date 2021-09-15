@@ -1,4 +1,4 @@
-import {  Select} from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
 import { useState } from "react";
 import { ButtonComponent } from "./button";
 import { InputComponent } from "./Input";
@@ -12,6 +12,10 @@ export const NewProject = () => {
   const [value, setInputvalue]: any = useState("");
   const [selectedValue, setSelectedValue] = useState("");
 
+  const handleInputvalueChange = (e: any) => {
+    setSelectedValue(e.target.value);
+  };
+
   return (
     <>
       <div className="p-24 text-center ">
@@ -23,7 +27,7 @@ export const NewProject = () => {
           <Select
             placeholder="人数を選択してください"
             value={selectedValue}
-            onChange={(e) => setSelectedValue(e.target.value)}
+            onChange={handleInputvalueChange}
           >
             <option value="1">1</option>
             <option value="2">2</option>
