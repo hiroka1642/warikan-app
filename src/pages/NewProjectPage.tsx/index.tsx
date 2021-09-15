@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Header } from "../components/Header";
-import { NewProject } from "../components/NewProject";
+import { Header } from "../../components/Header";
+import { NewProject } from "../../components/NewProject";
 
 const NewProjectPage = () => {
   useEffect(() => {

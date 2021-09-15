@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { ButtonComponent } from "./components/button";
-import { InputComponent } from "./components/Input";
+import { ButtonComponent } from "../components/button";
+import { InputComponent } from "../components/Input";
 
 export default function Home() {
   useEffect(() => {
