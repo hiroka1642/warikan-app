@@ -1,26 +1,29 @@
-import { useEffect } from "react";
-import { ButtonComponent } from "../components/button";
-import { InputComponent } from "../components/Input";
+import type { ReactNode } from "react";
+import { Auth } from "@supabase/ui";
+import { client } from "src/libs/supabase";
+import { Top } from "src/components/Top";
+import { NewProjectPage } from "../components/NewProjectPage";
+
+type Props = {
+  children: ReactNode;
+};
+
+const Container = (props: Props) => {
+  const { user } = Auth.useUser();
+  if (user) {
+    return <NewProjectPage />;
+  }
+  return <>{props.children}</>;
+};
 
 export default function Home() {
-  useEffect(() => {
-    document.body.style.backgroundImage = "url(.//webBackgroundImage.jpg)";
-    document.body.style.backgroundSize = "cover";
-  }, []);
-
-  const handleLogin = () => {
-    // console.log("aaaa");
-  };
   return (
     <>
-      <h1 className="text-6xl text-center py-44">みんなでわりかん。</h1>
-      <div className="w-96 text-center flex justify-center flex-col gap-10 items-center mx-auto ">
-        <InputComponent>ニックネーム</InputComponent>
-        <InputComponent>パスワード</InputComponent>
-        <ButtonComponent onClick={handleLogin} href={"./Mainpage"}>
-          ログイン
-        </ButtonComponent>
-      </div>
+      <Auth.UserContextProvider supabaseClient={client}>
+        <Container>
+          <Top />
+        </Container>
+      </Auth.UserContextProvider>
     </>
   );
 }
