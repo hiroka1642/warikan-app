@@ -13,7 +13,7 @@ type Props = {
 
 export const Projects = (props: Props) => {
   const [isProject, setOnProject] = useState<boolean>(false);
-  const [project, setProject] = useState<string>("");
+  const [project, setProject] = useState<string[]>([]);
 
   const handleProject = useCallback(() => {
     props.setNewProject(true);
@@ -30,22 +30,43 @@ export const Projects = (props: Props) => {
       if (Project_name) {
         const items = [];
         for (let i = 0; i < Project_name.length; i++) {
-          items.push(Project_name[i].propject_name);
+          items.push({
+            name: Project_name[i].propject_name,
+            member: Project_name[i].member,
+            id: Project_name[i].project_id,
+          });
         }
 
         props.setList([...items]);
       }
     }
-  }, [props]);
+  }, []);
 
   useEffect(() => {
     ProjectList();
-  }, [ProjectList]);
+  }, [project]);
 
-  const handleClick = (li: any) => {
-    setProject(li.target.value);
-    setOnProject(true);
+  const handleClick = async (li: any) => {
+    //プロジェクトアイディーに等しいproject_nameを取り出す
+    const { data: Project_name, error } = await client
+      .from("Project_name")
+      .select("*")
+      .eq("project_id", li.target.value);
+
+    if (error) {
+      alert(error);
+    } else {
+      if (Project_name) {
+        setProject([
+          Project_name[0].propject_name,
+          Project_name[0].member,
+          Project_name[0].project_id,
+        ]);
+        setOnProject(true);
+      }
+    }
   };
+
 
   return (
     <>
@@ -69,10 +90,10 @@ export const Projects = (props: Props) => {
                     h={14}
                     textAlign="left"
                     paddingLeft={3}
-                    value={li}
+                    value={li.id}
                     onClick={handleClick}
                   >
-                    {li}
+                    {li.name}
                   </Box>
                 </li>
               );
