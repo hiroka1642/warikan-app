@@ -26,3 +26,11 @@
 ## 使用予定技術
 
 - HTML,CSS,React,Next.js,TypeScript,TailwindCSS,ChakraUI,Supabase
+
+
+##　学んだこと
+
+2021/9/27 
+・supabaseのAPIを利用したテーブルからのデータの取り出し。
+・↑また、条件に応じたデータの取り出し
+・ChakraUIを用いたモーダルウィンドウの実装
