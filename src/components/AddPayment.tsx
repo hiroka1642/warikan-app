@@ -1,4 +1,3 @@
-import { Props } from "framer-motion/types/types";
 import { InputComponent } from "./Input";
 
 type Props = {
