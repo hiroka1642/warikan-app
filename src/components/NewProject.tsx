@@ -32,9 +32,7 @@ export const NewProject = (props: Props) => {
     } else {
       if (data) {
         props.setNewProject(false);
-        props.setList((list: string[]) => {
-          [...list, value];
-        });
+        // props.setList(data);
       }
     }
   }, [value, selectedValue, props]);
@@ -43,7 +41,7 @@ export const NewProject = (props: Props) => {
     <>
       <div className="p-24 text-center">
         <h2 className="text-2xl mb-14">新規プロジェクト作成</h2>
-        <div className="w-96 m-auto flex justify-between flex-col gap-y-8">
+        <div className=" max-w-xl m-auto flex justify-between flex-col gap-y-8">
           <InputComponent value={value} setInputvalue={setInputvalue}>
             プロジェクト名
           </InputComponent>
