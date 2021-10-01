@@ -1,6 +1,11 @@
+import { Props } from "framer-motion/types/types";
 import { InputComponent } from "./Input";
 
-export const AddPayment = (props) => {
+type Props = {
+  props: any;
+};
+
+export const AddPayment = (props: Props) => {
   const member = [...Array(props.project[1])].map((_, i) => i);
   //自分のidは配列から外したい
   // props.setSettleMember([1, 2, 3]);
