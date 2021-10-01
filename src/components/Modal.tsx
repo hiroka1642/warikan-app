@@ -19,6 +19,9 @@ export const ModalComponent = (props) => {
   const [add, setAdd] = useState(false);
   const [value, setInputvalue] = useState("");
   const [moneyvalue, setMoneyValue] = useState(undefined);
+
+  const [settlemember, setSettleMember] = useState([]);
+
   const handleAdd = useCallback(() => {
     setAdd(true);
   }, []);
@@ -28,6 +31,7 @@ export const ModalComponent = (props) => {
       alert("Input title.");
       return;
     }
+
     const { data: List_paid, error: List_paid_error } = await client
       .from("List_paid")
       .insert([
@@ -48,17 +52,24 @@ export const ModalComponent = (props) => {
       // }
     }
 
+    //何人で割るかによって金額を変える
+    const settlement = [];
+
+    settlemember.map((id) => {
+      settlement.push({
+        id: id,
+        money: `${Math.ceil(moneyvalue / settlemember.length)}`,
+        payfor: props.id,
+        projectId: props.project[2],
+        what: value,
+      });
+    });
+
+    console.log(settlement);
+
     const { data: Settlement_list, error: Settlement_list_error } = await client
       .from("Settlement_list")
-      .insert([
-        {
-          id: 2,
-          money: moneyvalue,
-          payfor: props.id,
-          projectId: props.project[2],
-          what: value,
-        },
-      ]);
+      .insert(settlement);
     if (Settlement_list_error) {
       alert(Settlement_list_error);
     } else {
@@ -70,7 +81,12 @@ export const ModalComponent = (props) => {
         setMoneyValue(undefined);
       }
     }
-  }, [props, value, moneyvalue]);
+  }, [props, value, moneyvalue, settlemember]);
+
+  const handleSettleMember = (li) => {
+    setSettleMember([...settlemember, li]);
+    console.log(settlemember);
+  };
 
   return (
     <>
@@ -89,6 +105,10 @@ export const ModalComponent = (props) => {
                   setInputvalue={setInputvalue}
                   moneyvalue={moneyvalue}
                   setMoneyValue={setMoneyValue}
+                  project={props.project}
+                  setSettleMember={setSettleMember}
+                  settlemember={settlemember}
+                  handleSettleMember={handleSettleMember}
                 />
               </ModalBody>
               <ModalFooter>

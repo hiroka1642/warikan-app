@@ -44,7 +44,7 @@ export const Projects = (props: Props) => {
 
   useEffect(() => {
     ProjectList();
-  }, [project]);
+  }, [project, isProject]);
 
   const handleClick = async (li: any) => {
     //プロジェクトアイディーに等しいproject_nameを取り出す
@@ -67,15 +67,18 @@ export const Projects = (props: Props) => {
     }
   };
 
+  const setonProject = () => {
+    setOnProject(false);
+  };
 
   return (
     <>
       {isProject ? (
-        <OnProject project={project} />
+        <OnProject project={project} setOnProject={setonProject} />
       ) : (
         <div className="p-24 text-center ">
           <h2 className="text-2xl">チーム一覧</h2>
-          <ul className="w-96 mx-auto my-10  ">
+          <ul className=" mx-auto max-w-xl my-10  ">
             {props.list?.map((li: any, key: any) => {
               return (
                 <li className="text-xl my-4" key={key}>
