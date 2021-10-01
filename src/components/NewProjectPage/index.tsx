@@ -6,7 +6,7 @@ import { NewProject } from "../NewProject";
 
 export const NewProjectPage = () => {
   const [newproject, setNewProject]: any = useState<boolean>(false);
-  const [list, setList] = useState<string[]>([]);
+  const [list, setList] = useState<any[]>([]);
 
   useEffect(() => {
     document.body.style.backgroundImage =
