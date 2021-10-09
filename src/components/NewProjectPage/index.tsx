@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Projects } from "src/components/Projects";
+import { Projects } from "src/components/NewProjectPage/Projects";
 import { Header } from "../Header";
-import { NewProject } from "../NewProject";
+import { NewProject } from "./NewProject";
 
 export const NewProjectPage = () => {
   const [newproject, setNewProject]: any = useState<boolean>(false);
@@ -17,7 +17,7 @@ export const NewProjectPage = () => {
   }, []);
   return (
     <>
-      <Header />
+      <Header setNewProject={setNewProject} />
       {newproject ? (
         <NewProject setNewProject={setNewProject} setList={setList} />
       ) : (

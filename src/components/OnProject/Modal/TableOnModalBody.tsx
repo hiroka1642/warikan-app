@@ -9,11 +9,11 @@ type Props = {
 //idごとの支払い履歴を表示する
 
 export const TableOnModalBody = (props: Props) => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<any>([]);
   //プロジェクトアイディーと、IDから支払ったリストを取得
 
   const GetList = useCallback(async () => {
-    let { data, error } = await client
+    const { data, error } = await client
       .from("List_paid")
       .select("paid,money")
       .eq("project_id", props.project[2])
@@ -24,25 +24,21 @@ export const TableOnModalBody = (props: Props) => {
     } else {
       if (data) {
         setList(data);
-        // console.log(list);
-
-        //   console.log(list[0].paid);
-        // console.log(data);
       }
     }
-  }, [list]);
+  }, [props.id, props.project]);
 
   useEffect(() => {
     GetList();
-  }, [list]);
+  }, [GetList, list]);
 
   return (
     <>
       <table className="text-xl w-64">
         <tbody>
-          {list.map((li) => {
+          {list.map((li: any, key: any) => {
             return (
-              <tr>
+              <tr key={key}>
                 <td>{li.paid}</td>
                 <td>{li.money}</td>
               </tr>

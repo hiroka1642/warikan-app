@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
-import { ButtonComponent } from "./button";
-import { OnProject } from "./OnProject";
+import { ButtonComponent } from "../Atom/button";
+import { OnProject } from "../OnProject";
 
 type Props = {
   setNewProject: any;
@@ -40,11 +40,11 @@ export const Projects = (props: Props) => {
         props.setList([...items]);
       }
     }
-  }, []);
+  }, [props]);
 
   useEffect(() => {
     ProjectList();
-  }, [project, isProject]);
+  }, [project, isProject, ProjectList]);
 
   const handleClick = async (li: any) => {
     //プロジェクトアイディーに等しいproject_nameを取り出す
@@ -61,20 +61,22 @@ export const Projects = (props: Props) => {
           Project_name[0].propject_name,
           Project_name[0].member,
           Project_name[0].project_id,
+          Project_name[0].Username,
         ]);
+
         setOnProject(true);
       }
     }
   };
 
-  const setonProject = () => {
+  const setOnproject = () => {
     setOnProject(false);
   };
 
   return (
     <>
       {isProject ? (
-        <OnProject project={project} setOnProject={setonProject} />
+        <OnProject project={project} setOnproject={setOnproject} />
       ) : (
         <div className="p-24 text-center ">
           <h2 className="text-2xl">チーム一覧</h2>
@@ -86,7 +88,7 @@ export const Projects = (props: Props) => {
                     as="button"
                     borderRadius="md"
                     border="2px"
-                    borderColor="green"
+                    borderColor="skyblue"
                     bg="white"
                     color="gray"
                     w="full"

@@ -1,8 +1,8 @@
 import { Select } from "@chakra-ui/react";
 import { useCallback } from "react";
 import { useState } from "react";
-import { ButtonComponent } from "./button";
-import { InputComponent } from "./Input";
+import { ButtonComponent } from "../Atom/button";
+import { InputComponent } from "../Atom/Input";
 import { client } from "src/libs/supabase";
 
 type Props = {
@@ -19,20 +19,36 @@ export const NewProject = (props: Props) => {
   };
 
   const handleProject = useCallback(async () => {
+    const username = [];
+    for (let i = 0; i < Number(selectedValue); i++) {
+      username.push(null);
+    }
+    //プロジェクト作成
     if (value == "") {
       alert("Input title.");
       return;
     }
-    const { data, error } = await client
+    if (selectedValue == "") {
+      alert("select member.");
+      return;
+    }
+    const { data: projectdata, error: projecterror } = await client
       .from("Project_name")
       // eslint-disable-next-line @typescript-eslint/naming-convention
-      .insert([{ propject_name: value, member: selectedValue }]);
-    if (error) {
-      alert(error);
+      .insert([
+        {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          propject_name: value,
+          member: selectedValue,
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          Username: username,
+        },
+      ]);
+    if (projecterror) {
+      alert(projecterror);
     } else {
-      if (data) {
+      if (projectdata) {
         props.setNewProject(false);
-        // props.setList(data);
       }
     }
   }, [value, selectedValue, props]);
@@ -61,6 +77,7 @@ export const NewProject = (props: Props) => {
             <option value="9">9</option>
             <option value="10">10</option>
           </Select>
+
           <ButtonComponent color="blue" onClick={handleProject}>
             作成
           </ButtonComponent>

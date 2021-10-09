@@ -10,13 +10,7 @@ export const Top = () => {
 
   return (
     <>
-      <h1 className="text-6xl text-center pt-40 sm:w-96 ">みんなでわりかん。</h1>
-      {/* <div className="w-96 text-center flex justify-center flex-col gap-10 items-center mx-auto "> */}
-      {/* <InputComponent>ニックネーム</InputComponent>
-            <InputComponent>パスワード</InputComponent>
-            <ButtonComponent onClick={handleLogin} href={"./Mainpage"}>
-              ログイン
-            </ButtonComponent> */}
+      <h1 className="text-6xl text-center pt-40 ">みんなでわりかん。</h1>
       <div className="flex justify-center pt-24">
         <div className="sm:w-96">
           <Auth

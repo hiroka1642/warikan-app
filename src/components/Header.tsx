@@ -1,24 +1,35 @@
-import { ListIcon, LogoutIcon, NewList } from "./Icon";
-import { LinkComponent } from "./Link";
-import { LogoutComponent } from "./LogoutLink";
+import { ListIcon, LogoutIcon, NewList } from "./Atom/Icon";
+import { LogoutComponent } from "./Atom/LogoutLink";
 
-export const Header = () => {
+type Props = {
+  setNewProject(which: boolean): void;
+};
+
+export const Header = (props: Props) => {
+  const handleNewProject = () => {
+    props.setNewProject(true);
+  };
+
+  const handleProjectList = () => {
+    props.setNewProject(false);
+  };
+
   return (
     <>
-      <header className=" flex-row flex justify-between bg-white text-blue-800 bg-opacity-30 relative">
+      <header className=" flex-row flex justify-between bg-white text-blue-800 bg-opacity-30 relative p-12">
         <div className="flex flex-row gap-6 ml-4  w-max">
-          <LinkComponent icon={<ListIcon color={"rgba(30, 64, 175)"} />}>
+          <button className="flex" onClick={handleNewProject}>
+            <ListIcon color={"rgba(30, 64, 175)"} />
             チーム一覧
-          </LinkComponent>
-          <LinkComponent icon={<NewList color={"rgba(30, 64, 175)"} />}>
+          </button>
+          <button className="flex" onClick={handleProjectList}>
+            <NewList color={"rgba(30, 64, 175)"} />
             新規チーム作成
-          </LinkComponent>
+          </button>
         </div>
-        <div className="p-10">
-          <LogoutComponent icon={<LogoutIcon color={"rgba(30, 64, 175)"} />}>
-            ログアウト
-          </LogoutComponent>
-        </div>
+        <LogoutComponent icon={<LogoutIcon color={"rgba(30, 64, 175)"} />}>
+          ログアウト
+        </LogoutComponent>
       </header>
     </>
   );
