@@ -10,8 +10,8 @@ export const Top = () => {
 
   return (
     <>
-      <h1 className="text-6xl text-center pt-40 ">みんなでわりかん。</h1>
-      <div className="flex justify-center pt-24">
+      <h1 className="text-6xl text-center m-20">みんなでわりかん。</h1>
+      <div className="flex justify-center">
         <div className="sm:w-96">
           <Auth
             supabaseClient={client}
