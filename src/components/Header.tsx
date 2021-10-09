@@ -7,11 +7,11 @@ type Props = {
 
 export const Header = (props: Props) => {
   const handleNewProject = () => {
-    props.setNewProject(true);
+    props.setNewProject(false);
   };
 
   const handleProjectList = () => {
-    props.setNewProject(false);
+    props.setNewProject(true);
   };
 
   return (
