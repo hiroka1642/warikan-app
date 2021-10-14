@@ -57,7 +57,7 @@ export const UserNameModal = (props: Props) => {
         }
       }
     }
-  }, [value, props]);
+  }, [value, props, onClose]);
 
   const handleOnOpen = () => {
     onOpen();
