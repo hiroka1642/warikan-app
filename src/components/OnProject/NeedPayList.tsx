@@ -37,7 +37,8 @@ export const NeedPayList = (props: Props) => {
       .from("Settlement_list")
       .select("*")
       .eq("projectId", props.project[2])
-      .eq("id", props.id);
+      .eq("id", props.id)
+      .neq("payfor", props.id);
     if (settlementerror) {
       alert(settlementerror);
     } else {
