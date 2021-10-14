@@ -28,7 +28,7 @@
 - HTML,CSS,React,Next.js,TypeScript,TailwindCSS,ChakraUI,Supabase
 
 
-##　学んだこと
+## 学んだこと
 
 2021/9/27 
 ・supabaseのAPIを利用したテーブルからのデータの取り出し。
@@ -40,7 +40,7 @@
 ・updateを用いて、rowの書き換え
 ・構成の変更
 
-##やるべきこと
+## やるべきこと
 
 ・background-imageのレスポンシブ対応
 ・ハンバーガーメニューの作成
