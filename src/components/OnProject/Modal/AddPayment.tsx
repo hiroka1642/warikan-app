@@ -1,14 +1,14 @@
+import type{ Dispatch, SetStateAction } from "react";
 import { InputComponent } from "../../Atom/Input";
 
 type Props = {
-  project: any;
-  value: any;
-  setInputvalue: any;
-  moneyvalue: any;
-  setMoneyValue: any;
+  project: string[];
+  value: string;
+  setInputvalue: Dispatch<SetStateAction<string>>;
+  moneyvalue: number;
+  setMoneyValue: Dispatch<SetStateAction<number>>;
   handleSettleMember(li: number): void;
-  nameid: any;
-  
+  nameid: Element[];
 };
 
 export const AddPayment = (props: Props) => {

@@ -1,14 +1,16 @@
 import { Box } from "@chakra-ui/react";
+import type { Dispatch, SetStateAction } from "react";
 import { useEffect, useState } from "react";
+
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
 import { ButtonComponent } from "../Atom/button";
 import { OnProject } from "../OnProject";
 
 type Props = {
-  setNewProject: any;
-  setList: any;
-  list: any;
+  setNewProject: Dispatch<SetStateAction<boolean>>;
+  setList: Dispatch<SetStateAction<string[]>>;
+  list: string[];
 };
 
 export const Projects = (props: Props) => {
@@ -28,7 +30,7 @@ export const Projects = (props: Props) => {
       alert(error);
     } else {
       if (Project_name) {
-        const items = [];
+        const items: any = [];
         for (let i = 0; i < Project_name.length; i++) {
           items.push({
             name: Project_name[i].propject_name,

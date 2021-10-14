@@ -3,7 +3,7 @@ import { Button, LinkOverlay } from "@chakra-ui/react";
 type Props = {
   href?: string;
   onClick?: VoidFunction;
-  children?: string;
+  children: string;
   color?: string;
 };
 

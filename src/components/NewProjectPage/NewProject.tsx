@@ -1,13 +1,14 @@
 import { Select } from "@chakra-ui/react";
 import { useCallback } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { ButtonComponent } from "../Atom/button";
 import { InputComponent } from "../Atom/Input";
 import { client } from "src/libs/supabase";
 
 type Props = {
-  setNewProject: any;
-  setList: any;
+  setNewProject: Dispatch<SetStateAction<boolean>>;
+  setList: Dispatch<SetStateAction<string[]>>;
 };
 
 export const NewProject = (props: Props) => {
@@ -48,7 +49,9 @@ export const NewProject = (props: Props) => {
       alert(projecterror);
     } else {
       if (projectdata) {
-        props.setNewProject(false);
+        props.setNewProject(() => {
+          return false;
+        });
       }
     }
   }, [value, selectedValue, props]);

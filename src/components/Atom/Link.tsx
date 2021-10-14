@@ -1,7 +1,7 @@
 import { LinkOverlay } from "@chakra-ui/react";
 
 type Props = {
-  icon: any;
+  icon: string;
   children: string;
 };
 

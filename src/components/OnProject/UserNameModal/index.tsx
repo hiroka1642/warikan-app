@@ -10,15 +10,16 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { InputComponent } from "../../Atom/Input";
 
 type Props = {
-  project: any;
-  id: any;
-  setNameId: any;
-  children: any;
-  nameid: any;
+  project: string[];
+  id: number;
+  setNameId: Dispatch<SetStateAction<number>>;
+  children: JSX.Element;
+  nameid: Element[];
 };
 
 export const UserNameModal = (props: Props) => {

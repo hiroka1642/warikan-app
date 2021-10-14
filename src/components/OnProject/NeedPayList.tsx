@@ -1,17 +1,18 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useCallback, useEffect, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { ModalComponent } from "./Modal";
 import { SettlementListItem } from "./SettlementListItem";
 import { UserNameModal } from "../OnProject/UserNameModal";
 
 type Props = {
-  project: any;
+  project: string[];
   id: number;
-  nameid: any;
-  setCount: any;
-  setNameId: any;
-  count: any;
+  nameid: Element[];
+  setCount: Dispatch<SetStateAction<number>>;
+  setNameId: Dispatch<SetStateAction<number>>;
+  count: number;
 };
 
 export const NeedPayList = (props: Props) => {

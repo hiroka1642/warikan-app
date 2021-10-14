@@ -1,8 +1,9 @@
+import type { ReactElement } from "react";
 import { client } from "src/libs/supabase";
 
 type Props = {
   children: string;
-  icon: any;
+  icon: ReactElement;
 };
 
 const handleLogout = () => {

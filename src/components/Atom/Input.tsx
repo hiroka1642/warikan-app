@@ -1,10 +1,10 @@
 import { Input } from "@chakra-ui/react";
+import type { Dispatch, SetStateAction } from "react";
 
 type Props = {
-  children?: string;
-  value?: any;
-  onChange?: VoidFunction;
-  setInputvalue?: any;
+  children: any;
+  value: any;
+  setInputvalue: Dispatch<SetStateAction<any>>;
 };
 
 export const InputComponent: React.VFC<Props> = (props) => {

@@ -1,11 +1,12 @@
+import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import { client } from "src/libs/supabase";
 import { ButtonComponent } from "../Atom/button";
 import { NeedPayList } from "../OnProject/NeedPayList";
 
 type Props = {
-  project: any;
-  setOnproject(): void;
+  project: any[];
+  setOnproject: Dispatch<SetStateAction<boolean>>;
 };
 
 export const OnProject = (props: Props) => {
@@ -37,11 +38,11 @@ export const OnProject = (props: Props) => {
     if (project_name_error || List_paid_error || Settlement_list_error) {
       alert("エラーが発生しました");
     } else {
-      props.setOnproject();
+      props.setOnproject(false);
     }
   };
   const handleSetOnproject = () => {
-    props.setOnproject();
+    props.setOnproject(false);
   };
 
   return (

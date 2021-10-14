@@ -1,8 +1,9 @@
+import type { Dispatch, SetStateAction } from "react";
 import { ListIcon, LogoutIcon, NewList } from "./Atom/Icon";
 import { LogoutComponent } from "./Atom/LogoutLink";
 
 type Props = {
-  setNewProject(which: boolean): void;
+  setNewProject: Dispatch<SetStateAction<boolean>>;
 };
 
 export const Header = (props: Props) => {

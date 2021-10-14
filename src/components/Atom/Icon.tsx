@@ -1,5 +1,5 @@
 type Props = {
-  color?: string;
+  color: string;
 };
 
 export const ListIcon: React.FC<Props> = (props) => {

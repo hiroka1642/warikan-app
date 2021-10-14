@@ -10,18 +10,19 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { AddPayment } from "./AddPayment";
 import { TableOnModalBody } from "./TableOnModalBody";
 
 type Props = {
-  setAdd: any;
-  id: any;
-  project: any;
-  setCount: any;
-  children: any;
-  nameid: any;
-  hasAdd: any;
+  setAdd: Dispatch<SetStateAction<boolean>>;
+  id: number;
+  project: string[];
+  setCount: Dispatch<SetStateAction<number>>;
+  children: string;
+  nameid: Element[];
+  hasAdd: boolean;
 };
 
 export const ModalComponent = (props: Props) => {

@@ -1,6 +1,6 @@
 type Props = {
-  list: any;
-  nameid: any;
+  list: string[];
+  nameid: Element[];
 };
 
 export const SettlementListItem = (props: Props) => {
