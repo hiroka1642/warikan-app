@@ -5,8 +5,8 @@ import { Header } from "../Header";
 import { NewProject } from "./NewProject";
 
 export const NewProjectPage = () => {
-  const [newproject, setNewProject]: any = useState<boolean>(false);
-  const [list, setList] = useState<any[]>([]);
+  const [hasNewProject, setNewProject] = useState<boolean>(false);
+  const [list, setList] = useState<string[]>([]);
 
   useEffect(() => {
     document.body.style.backgroundImage =
@@ -18,7 +18,7 @@ export const NewProjectPage = () => {
   return (
     <>
       <Header setNewProject={setNewProject} />
-      {newproject ? (
+      {hasNewProject ? (
         <NewProject setNewProject={setNewProject} setList={setList} />
       ) : (
         <Projects setNewProject={setNewProject} list={list} setList={setList} />
