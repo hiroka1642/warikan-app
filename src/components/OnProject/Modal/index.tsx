@@ -34,7 +34,7 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
 
   const [checkedItems, setCheckedItems] = useState(
     [...Array(props.project[1])].map(() => {
-      return false;
+      return true;
     })
   );
 
@@ -103,7 +103,7 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
         }
       }
     }
-  }, [props, value, moneyvalue, checkedItems]);
+  }, [value, moneyvalue, props, checkedItems, setInputvalue, setMoneyValue]);
 
   const handleOnOpen = () => {
     onOpen();
