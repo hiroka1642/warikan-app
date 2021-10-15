@@ -61,7 +61,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
         }
       }
     }
-  }, [value, props, onClose]);
+  }, [value, props, setInputvalue, onClose]);
 
   const handleOnOpen = () => {
     onOpen();
