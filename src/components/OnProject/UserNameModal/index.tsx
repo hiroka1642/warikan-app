@@ -9,10 +9,11 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { InputComponent } from "../../Atom/Input";
+import { useSafeState, useUnmountRef } from "src/components/useUnmountRef";
 
 type Props = {
   project: string[];
@@ -23,8 +24,10 @@ type Props = {
 };
 
 export const UserNameModal: React.VFC<Props> = (props) => {
+  const unmountRef = useUnmountRef();
+
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [value, setInputvalue] = useState("");
+  const [value, setInputvalue] = useSafeState(unmountRef, "");
 
   const handleCloseAdd = useCallback(async () => {
     if (value == "") {

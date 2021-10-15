@@ -1,4 +1,5 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect } from "react";
+import { useSafeState, useUnmountRef } from "src/components/useUnmountRef";
 import { client } from "src/libs/supabase";
 
 type Props = {
@@ -10,7 +11,9 @@ type Props = {
 
 // eslint-disable-next-line react/display-name
 export const TableOnModalBody: React.VFC<Props> = memo((props) => {
-  const [list, setList] = useState<any>([]);
+  const unmountRef = useUnmountRef();
+
+  const [list, setList] = useSafeState(unmountRef, []);
   //プロジェクトアイディーと、IDから支払ったリストを取得
 
   const GetList = useCallback(async () => {
@@ -27,7 +30,7 @@ export const TableOnModalBody: React.VFC<Props> = memo((props) => {
         setList(data);
       }
     }
-  }, [props.id, props.project]);
+  }, [props.id, props.project, setList]);
 
   useEffect(() => {
     GetList();
