@@ -1,4 +1,5 @@
 import { Input } from "@chakra-ui/react";
+import { memo } from "react";
 import type { Dispatch, SetStateAction } from "react";
 
 type Props = {
@@ -7,7 +8,8 @@ type Props = {
   setInputvalue: Dispatch<SetStateAction<any>>;
 };
 
-export const InputComponent: React.VFC<Props> = (props) => {
+// eslint-disable-next-line react/display-name
+export const InputComponent: React.VFC<Props> = memo((props) => {
   const handleInputvalueChange = (e: any) => {
     props.setInputvalue(e.target.value);
   };
@@ -22,4 +24,4 @@ export const InputComponent: React.VFC<Props> = (props) => {
       onChange={handleInputvalueChange}
     />
   );
-};
+});

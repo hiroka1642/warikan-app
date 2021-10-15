@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { client } from "src/libs/supabase";
 
 type Props = {
@@ -8,7 +8,8 @@ type Props = {
 
 //idごとの支払い履歴を表示する
 
-export const TableOnModalBody = (props: Props) => {
+// eslint-disable-next-line react/display-name
+export const TableOnModalBody: React.VFC<Props> = memo((props) => {
   const [list, setList] = useState<any>([]);
   //プロジェクトアイディーと、IDから支払ったリストを取得
 
@@ -48,4 +49,4 @@ export const TableOnModalBody = (props: Props) => {
       </table>
     </>
   );
-};
+});

@@ -11,7 +11,7 @@ type Props = {
   setList: Dispatch<SetStateAction<string[]>>;
 };
 
-export const NewProject = (props: Props) => {
+export const NewProject: React.VFC<Props> = (props) => {
   const [value, setInputvalue] = useState<string>("");
   const [selectedValue, setSelectedValue] = useState<string>("");
 

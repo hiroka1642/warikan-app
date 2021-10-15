@@ -15,7 +15,7 @@ type Props = {
   count: number;
 };
 
-export const NeedPayList = (props: Props) => {
+export const NeedPayList: React.VFC<Props> = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [Sum, setSum] = useState(0);
   const [hasAdd, setAdd] = useState(false);

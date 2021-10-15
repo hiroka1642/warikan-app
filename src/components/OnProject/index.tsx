@@ -9,7 +9,7 @@ type Props = {
   setOnproject: Dispatch<SetStateAction<boolean>>;
 };
 
-export const OnProject = (props: Props) => {
+export const OnProject: React.VFC<Props> = (props) => {
   const membername = [...Array(props.project[1])].map((_, i) => {
     return i;
   });
@@ -50,12 +50,12 @@ export const OnProject = (props: Props) => {
       <p className="text-4xl text-center py-12">{props.project[0]}</p>
 
       <ul className=" m-auto">
-        {membername.map((i) => {
+        {membername.map((i, key) => {
           return (
             <NeedPayList
               project={props.project}
               id={i}
-              key={i}
+              key={key}
               nameid={nameid}
               setNameId={setNameId}
               setCount={setCount}

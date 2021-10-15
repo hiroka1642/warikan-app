@@ -6,7 +6,7 @@ type Props = {
   setNewProject: Dispatch<SetStateAction<boolean>>;
 };
 
-export const Header = (props: Props) => {
+export const Header: React.VFC<Props> = (props) => {
   const handleNewProject = () => {
     props.setNewProject(false);
   };

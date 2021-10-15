@@ -13,7 +13,7 @@ type Props = {
   list: string[];
 };
 
-export const Projects = (props: Props) => {
+export const Projects: React.VFC<Props> = (props) => {
   const [isProject, setOnProject] = useState<boolean>(false);
   const [project, setProject] = useState<string[]>([]);
 

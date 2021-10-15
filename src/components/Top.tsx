@@ -2,7 +2,7 @@ import { Auth } from "@supabase/ui";
 import { useEffect } from "react";
 import { client } from "src/libs/supabase";
 
-export const Top = () => {
+export const Top :React.VFC= () => {
   useEffect(() => {
     document.body.style.backgroundImage = "url(.//webBackgroundImage.jpg)";
     document.body.style.backgroundSize = "cover";

@@ -22,7 +22,7 @@ type Props = {
   nameid: Element[];
 };
 
-export const UserNameModal = (props: Props) => {
+export const UserNameModal: React.VFC<Props> = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [value, setInputvalue] = useState("");
 

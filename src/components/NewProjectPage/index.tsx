@@ -4,7 +4,7 @@ import { Projects } from "src/components/NewProjectPage/Projects";
 import { Header } from "../Header";
 import { NewProject } from "./NewProject";
 
-export const NewProjectPage = () => {
+export const NewProjectPage: React.VFC = () => {
   const [hasNewProject, setNewProject] = useState<boolean>(false);
   const [list, setList] = useState<string[]>([]);
 
