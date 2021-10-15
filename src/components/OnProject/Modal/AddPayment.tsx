@@ -1,4 +1,6 @@
-import type{ Dispatch, SetStateAction } from "react";
+import { Checkbox } from "@chakra-ui/react";
+import { useCallback, memo, useMemo } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { InputComponent } from "../../Atom/Input";
 
 type Props = {
@@ -7,14 +9,34 @@ type Props = {
   setInputvalue: Dispatch<SetStateAction<string>>;
   moneyvalue: number;
   setMoneyValue: Dispatch<SetStateAction<number>>;
-  handleSettleMember(li: number): void;
+  checkedItems: boolean[];
+  setCheckedItems: Dispatch<SetStateAction<boolean[]>>;
   nameid: Element[];
 };
 
-export const AddPayment = (props: Props) => {
-  const member = [...Array(props.project[1])].map((_, i) => {
-    return i;
-  });
+// eslint-disable-next-line react/display-name
+export const AddPayment: React.VFC<Props> = memo((props) => {
+
+  const arr = useMemo(() => {
+    return [...props.checkedItems];
+  }, [props.checkedItems]);
+
+  //member=[0,1,2,3,4,5...]
+  const member = useMemo(() => {
+    return [...Array(props.project[1])].map((_, i) => {
+      return i;
+    });
+  }, [props]);
+
+  const handleChange = useCallback(
+    (e: any, li: any) => {
+      arr.splice(li, 1, e.target.checked);
+      props.setCheckedItems(() => {
+        return [...arr];
+      });
+    },
+    [arr, props]
+  );
 
   return (
     <>
@@ -27,22 +49,25 @@ export const AddPayment = (props: Props) => {
       >
         金額
       </InputComponent>
-
-      <ul className="flex flex-col p-3">
-        {member.map((li) => {
+      <div className="flex flex-col p-3">
+        {member.map((li, key) => {
           return (
-            <li key={li}>
-              <button
-                // eslint-disable-next-line arrow-body-style
-                onClick={() => props.handleSettleMember(li)}
-                className="text-xl hover:text-green-800 p-1 font-bold"
-              >
+            <Checkbox
+              key={key}
+              value={li}
+              isChecked={props.checkedItems[li]}
+              // eslint-disable-next-line react/jsx-handler-names
+              onChange={(e) => {
+                return handleChange(e, li);
+              }}
+            >
+              <p className="text-xl hover:text-green-800 p-1 font-bold">
                 {props.nameid[li] || li}
-              </button>
-            </li>
+              </p>
+            </Checkbox>
           );
         })}
-      </ul>
+      </div>
     </>
   );
-};
+});

@@ -9,7 +9,7 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
-import { useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { AddPayment } from "./AddPayment";
@@ -25,13 +25,20 @@ type Props = {
   hasAdd: boolean;
 };
 
-export const ModalComponent = (props: Props) => {
+// eslint-disable-next-line react/display-name
+export const ModalComponent: React.VFC<Props> = memo((props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   // const [add, setAdd] = useState(false);
   const [value, setInputvalue] = useState("");
-  const [moneyvalue, setMoneyValue] = useState(0);
+  const [moneyvalue, setMoneyValue] = useState<number>(0);
 
-  const [settlemember, setSettleMember] = useState<any>([]);
+  const [checkedItems, setCheckedItems] = useState(
+    [...Array(props.project[1])].map(() => {
+      return false;
+    })
+  );
+
+  // const [settlemember, setSettleMember] = useState<any>([]);
 
   const handleAdd = useCallback(() => {
     props.setAdd(true);
@@ -62,14 +69,22 @@ export const ModalComponent = (props: Props) => {
       //何人で割るかによって金額を変える
       const settlement: any[] = [];
 
-      settlemember.map((id: number) => {
-        settlement.push({
-          id: id,
-          money: `${Math.ceil(moneyvalue / settlemember.length)}`,
-          payfor: props.id,
-          projectId: props.project[2],
-          what: value,
-        });
+      const newItems = checkedItems.filter((n) => {
+        return n === true;
+      });
+
+      checkedItems.map((i, id: number) => {
+        if (i === false) {
+          return;
+        } else {
+          settlement.push({
+            id: id,
+            money: `${Math.ceil(moneyvalue / newItems.length)}`,
+            payfor: props.id,
+            projectId: props.project[2],
+            what: value,
+          });
+        }
       });
 
       const { data: Settlement_list, error: Settlement_list_error } =
@@ -81,21 +96,14 @@ export const ModalComponent = (props: Props) => {
           props.setAdd(false);
           setInputvalue("");
           setMoneyValue(0);
-          setSettleMember([]);
+          setCheckedItems([]);
           props.setCount((i: number) => {
             return i + 1;
           });
         }
       }
     }
-  }, [props, value, moneyvalue, settlemember]);
-
-  const handleSettleMember = useCallback(
-    (li) => {
-      setSettleMember([...settlemember, li]);
-    },
-    [settlemember]
-  );
+  }, [props, value, moneyvalue, checkedItems]);
 
   const handleOnOpen = () => {
     onOpen();
@@ -124,8 +132,8 @@ export const ModalComponent = (props: Props) => {
                   moneyvalue={moneyvalue}
                   setMoneyValue={setMoneyValue}
                   project={props.project}
-                  // eslint-disable-next-line react/jsx-handler-names
-                  handleSettleMember={handleSettleMember}
+                  checkedItems={checkedItems}
+                  setCheckedItems={setCheckedItems}
                   nameid={props.nameid}
                 />
               </ModalBody>
@@ -157,4 +165,4 @@ export const ModalComponent = (props: Props) => {
       </Modal>
     </>
   );
-};
+});
