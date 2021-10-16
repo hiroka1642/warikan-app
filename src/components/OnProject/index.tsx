@@ -6,7 +6,7 @@ import { NeedPayList } from "../OnProject/NeedPayList";
 
 type Props = {
   project: any[];
-  setOnproject: Dispatch<SetStateAction<boolean>>;
+  setOnProject: Dispatch<SetStateAction<boolean>>;
 };
 
 export const OnProject: React.VFC<Props> = (props) => {
@@ -38,11 +38,11 @@ export const OnProject: React.VFC<Props> = (props) => {
     if (project_name_error || List_paid_error || Settlement_list_error) {
       alert("エラーが発生しました");
     } else {
-      props.setOnproject(false);
+      props.setOnProject(false);
     }
   };
   const handleSetOnproject = () => {
-    props.setOnproject(false);
+    props.setOnProject(false);
   };
 
   return (

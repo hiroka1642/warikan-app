@@ -25,13 +25,12 @@ export const Top: React.VFC = () => {
       >
         <div className="h-screen">
           <div className="flex justify-center flex-col ">
-              <h1 className="text-4xl text-center py-32 sm:text-6xl">みんなでわりかん。</h1>
+            <h1 className="text-4xl text-center py-32 sm:text-6xl">
+              みんなでわりかん。
+            </h1>
             <div>
               <div className=" max-w-md m-auto p-8">
-                <Auth
-                  supabaseClient={client}
-                  socialColors={true}
-                />
+                <Auth supabaseClient={client} socialColors={true} />
               </div>
             </div>
           </div>

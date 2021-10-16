@@ -78,7 +78,7 @@ export const Projects: React.VFC<Props> = (props) => {
       {isOnProject ? (
         <OnProject project={project} setOnProject={setOnProject} />
       ) : (
-        <div className="p-24 text-center ">
+        <div className="py-60 px-10 text-center ">
           <h2 className="text-2xl">チーム一覧</h2>
           <ul className=" mx-auto max-w-xl my-10  ">
             {props.list?.map((li: any, key: any) => {

@@ -61,7 +61,7 @@ export const NewProject: React.VFC<Props> = (props) => {
 
   return (
     <>
-      <div className="p-24 text-center">
+      <div className="py-60 px-10 text-center">
         <h2 className="text-2xl mb-14">新規プロジェクト作成</h2>
         <div className=" max-w-xl m-auto flex justify-between flex-col gap-y-8">
           <InputComponent value={value} setInputvalue={setInputvalue}>
