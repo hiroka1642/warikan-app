@@ -20,39 +20,42 @@ export const NewProject: React.VFC<Props> = (props) => {
   };
 
   const handleProject = useCallback(async () => {
+    //[null,null,null....]
     const username = [];
     for (let i = 0; i < Number(selectedValue); i++) {
       username.push(null);
     }
-    //プロジェクト作成
-    if (value == "") {
-      alert("Input title.");
-      return;
-    }
-    if (selectedValue == "") {
-      alert("select member.");
-      return;
-    }
-    const { data: projectdata, error: projecterror } = await client
-      .from("Project_name")
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      .insert([
-        {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          propject_name: value,
-          member: selectedValue,
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          Username: username,
-        },
-      ]);
-    if (projecterror) {
-      alert(projecterror);
-    } else {
+
+    try {
+      //プロジェクト作成
+      if (value == "") {
+        throw "project name is primary";
+      }
+      if (selectedValue == "") {
+        throw "Hom many people?";
+      }
+      const { data: projectdata, error: projecterror } = await client
+        .from("Project_name")
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        .insert([
+          {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            propject_name: value,
+            member: selectedValue,
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            Username: username,
+          },
+        ]);
       if (projectdata) {
         props.setNewProject(() => {
           return false;
         });
       }
+      if (projecterror) {
+        throw projecterror;
+      }
+    } catch (e) {
+      alert(e);
     }
   }, [value, selectedValue, props]);
 

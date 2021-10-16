@@ -9,11 +9,10 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { InputComponent } from "../../Atom/Input";
-import { useSafeState, useUnmountRef } from "src/components/useUnmountRef";
 
 type Props = {
   project: string[];
@@ -24,25 +23,19 @@ type Props = {
 };
 
 export const UserNameModal: React.VFC<Props> = (props) => {
-  const unmountRef = useUnmountRef();
-
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [value, setInputvalue] = useSafeState(unmountRef, "");
+  const [value, setInputvalue] = useState<string>("");
 
-  const handleCloseAdd = useCallback(async () => {
-    if (value == "") {
-      alert("Input title.");
-      return;
-    }
-
-    const { data: projectdata, error: projecterror } = await client
-      .from("Project_name")
-      .select("Username")
-      .eq("project_id", props.project[2]);
-
-    if (projecterror) {
-      alert(projecterror);
-    } else {
+  const handleChangeName = useCallback(async () => {
+    try {
+      if (value == "") {
+        alert("Input title.");
+        return;
+      }
+      const { data: projectdata, error: projecterror } = await client
+        .from("Project_name")
+        .select("Username")
+        .eq("project_id", props.project[2]);
       if (projectdata) {
         projectdata[0].Username.splice(props.id, 1, value);
 
@@ -52,14 +45,20 @@ export const UserNameModal: React.VFC<Props> = (props) => {
           // eslint-disable-next-line @typescript-eslint/naming-convention
           .update({ Username: projectdata[0].Username })
           .eq("project_id", props.project[2]);
-        if (projectnameerror) {
-          alert(projectnameerror);
-        } else {
+        if (projectname) {
           props.setNameId(projectdata[0].Username);
           setInputvalue("");
           onClose();
         }
+        if (projectnameerror) {
+          throw projectnameerror;
+        }
       }
+      if (projecterror) {
+        throw projecterror;
+      }
+    } catch (e) {
+      alert(e);
     }
   }, [value, props, setInputvalue, onClose]);
 
@@ -83,7 +82,6 @@ export const UserNameModal: React.VFC<Props> = (props) => {
           <ModalCloseButton />
           <ModalBody>
             <InputComponent value={value} setInputvalue={setInputvalue}>
-              {/* {props.project[3][props.id] || props.id} */}
               {props.nameid[props.id] || props.id}
             </InputComponent>
           </ModalBody>
@@ -91,7 +89,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
             <Button colorScheme="blue" mr={3} onClick={handleOnClose}>
               閉じる
             </Button>
-            <Button onClick={handleCloseAdd}>変更する</Button>
+            <Button onClick={handleChangeName}>変更する</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

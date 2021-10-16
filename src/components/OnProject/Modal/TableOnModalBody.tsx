@@ -17,18 +17,20 @@ export const TableOnModalBody: React.VFC<Props> = memo((props) => {
   //プロジェクトアイディーと、IDから支払ったリストを取得
 
   const GetList = useCallback(async () => {
-    const { data, error } = await client
-      .from("List_paid")
-      .select("paid,money")
-      .eq("project_id", props.project[2])
-      .eq("id", props.id);
-
-    if (error) {
-      alert(error);
-    } else {
+    try {
+      const { data, error } = await client
+        .from("List_paid")
+        .select("paid,money")
+        .eq("project_id", props.project[2])
+        .eq("id", props.id);
+      if (error) {
+        throw error;
+      }
       if (data) {
         setList(data);
       }
+    } catch (e) {
+      alert(e);
     }
   }, [props.id, props.project, setList]);
 

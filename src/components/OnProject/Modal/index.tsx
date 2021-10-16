@@ -45,34 +45,30 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
   }, [props]);
 
   const handleCloseAdd = useCallback(async () => {
-    if (value == "") {
-      alert("Input title.");
-      return;
-    }
-    if (moneyvalue == 0) {
-      alert("moneyvalue");
-      return;
-    }
-
-    const { error: List_paid_error } = await client.from("List_paid").insert([
-      {
-        id: props.id,
-        money: moneyvalue,
-        paid: value,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        project_id: props.project[2],
-      },
-    ]);
-    if (List_paid_error) {
-      alert(List_paid_error);
-    } else {
+    try {
+      if (value == "") {
+        throw "Input title.";
+      }
+      if (moneyvalue == 0) {
+        throw "moneyvalue";
+      }
+      const { error: List_paid_error } = await client.from("List_paid").insert([
+        {
+          id: props.id,
+          money: moneyvalue,
+          paid: value,
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          project_id: props.project[2],
+        },
+      ]);
+      if (List_paid_error) {
+        throw List_paid_error;
+      }
       //何人で割るかによって金額を変える
       const settlement: any[] = [];
-
       const newItems = checkedItems.filter((n) => {
         return n === true;
       });
-
       checkedItems.map((i, id: number) => {
         if (i === false) {
           return;
@@ -86,22 +82,22 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
           });
         }
       });
-
       const { data: Settlement_list, error: Settlement_list_error } =
         await client.from("Settlement_list").insert(settlement);
       if (Settlement_list_error) {
-        alert(Settlement_list_error);
-      } else {
-        if (Settlement_list) {
-          props.setAdd(false);
-          setInputvalue("");
-          setMoneyValue(0);
-          setCheckedItems([]);
-          props.setCount((i: number) => {
-            return i + 1;
-          });
-        }
+        throw Settlement_list_error;
       }
+      if (Settlement_list) {
+        props.setAdd(false);
+        setInputvalue("");
+        setMoneyValue(0);
+        setCheckedItems([]);
+        props.setCount((i: number) => {
+          return i + 1;
+        });
+      }
+    } catch (e) {
+      alert(e);
     }
   }, [value, moneyvalue, props, checkedItems, setInputvalue, setMoneyValue]);
 

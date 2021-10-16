@@ -33,38 +33,42 @@ export const NeedPayList: React.VFC<Props> = (props) => {
 
   //リストを取得
   const SettlementList = useCallback(async () => {
-    const { data: settlementdata, error: settlementerror } = await client
-      .from("Settlement_list")
-      .select("*")
-      .eq("projectId", props.project[2])
-      .eq("id", props.id)
-      .neq("payfor", props.id);
-    if (settlementerror) {
-      alert(settlementerror);
-    } else {
-      if (settlementdata) {
-        const { data: projectdata, error: projecterror } = await client
-          .from("Project_name")
-          .select("Username")
-          .eq("project_id", props.project[2]);
-        if (projecterror) {
-          alert("error");
-        } else {
-          if (projectdata) {
-            setList(settlementdata);
+    try {
+      const { data: settlementdata, error: settlementerror } = await client
+        .from("Settlement_list")
+        .select("*")
+        .eq("projectId", props.project[2])
+        .eq("id", props.id)
+        .neq("payfor", props.id);
+      if (settlementerror) {
+        throw settlementerror;
+      } else {
+        if (settlementdata) {
+          const { data: projectdata, error: projecterror } = await client
+            .from("Project_name")
+            .select("Username")
+            .eq("project_id", props.project[2]);
+          if (projecterror) {
+            throw "error";
+          } else {
+            if (projectdata) {
+              setList(settlementdata);
 
-            const sumArray = (array: any) => {
-              let sum = 0;
-              for (let i = 0; i < settlementdata?.length; i++) {
-                sum += array[i].money;
-              }
-              return sum;
-            };
+              const sumArray = (array: any) => {
+                let sum = 0;
+                for (let i = 0; i < settlementdata?.length; i++) {
+                  sum += array[i].money;
+                }
+                return sum;
+              };
 
-            setSum(sumArray(settlementdata));
+              setSum(sumArray(settlementdata));
+            }
           }
         }
       }
+    } catch (e) {
+      alert(e);
     }
   }, [props.id, props.project]);
 

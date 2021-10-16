@@ -14,21 +14,18 @@ type Props = {
 };
 
 export const Projects: React.VFC<Props> = (props) => {
-  const [isProject, setOnProject] = useState<boolean>(false);
+  const [isOnProject, setOnProject] = useState<boolean>(false);
   const [project, setProject] = useState<string[]>([]);
 
-  const handleProject = useCallback(() => {
+  const handleNewProjectPage = useCallback(() => {
     props.setNewProject(true);
   }, [props]);
 
   const ProjectList = useCallback(async () => {
-    const { data: Project_name, error } = await client
-      .from("Project_name")
-      .select("*");
-
-    if (error) {
-      alert(error);
-    } else {
+    try {
+      const { data: Project_name, error } = await client
+        .from("Project_name")
+        .select("*");
       if (Project_name) {
         const items: any = [];
         for (let i = 0; i < Project_name.length; i++) {
@@ -38,26 +35,27 @@ export const Projects: React.VFC<Props> = (props) => {
             id: Project_name[i].project_id,
           });
         }
-
         props.setList([...items]);
       }
+      if (error) {
+        throw error;
+      }
+    } catch (e) {
+      alert(e);
     }
   }, [props]);
 
   useEffect(() => {
     ProjectList();
-  }, [project, isProject, ProjectList]);
+  }, [project, isOnProject, ProjectList]);
 
   const handleClick = async (li: any) => {
-    //プロジェクトアイディーに等しいproject_nameを取り出す
-    const { data: Project_name, error } = await client
-      .from("Project_name")
-      .select("*")
-      .eq("project_id", li.target.value);
-
-    if (error) {
-      alert(error);
-    } else {
+    try {
+      //プロジェクトアイディーに等しいproject_nameを取り出す
+      const { data: Project_name, error } = await client
+        .from("Project_name")
+        .select("*")
+        .eq("project_id", li.target.value);
       if (Project_name) {
         setProject([
           Project_name[0].propject_name,
@@ -65,20 +63,20 @@ export const Projects: React.VFC<Props> = (props) => {
           Project_name[0].project_id,
           Project_name[0].Username,
         ]);
-
         setOnProject(true);
       }
+      if (error) {
+        throw error;
+      }
+    } catch (e) {
+      alert(e);
     }
-  };
-
-  const setOnproject = () => {
-    setOnProject(false);
   };
 
   return (
     <>
-      {isProject ? (
-        <OnProject project={project} setOnproject={setOnproject} />
+      {isOnProject ? (
+        <OnProject project={project} setOnProject={setOnProject} />
       ) : (
         <div className="p-24 text-center ">
           <h2 className="text-2xl">チーム一覧</h2>
@@ -106,7 +104,7 @@ export const Projects: React.VFC<Props> = (props) => {
               );
             })}
           </ul>
-          <ButtonComponent color="red" onClick={handleProject}>
+          <ButtonComponent color="red" onClick={handleNewProjectPage}>
             新規プロジェクト
           </ButtonComponent>
         </div>
