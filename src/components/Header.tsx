@@ -13,10 +13,12 @@ export const Header: React.VFC<Props> = (props) => {
 
   const handleNewProject = () => {
     props.setNewProject(false);
+    setOpenMenu(false);
   };
 
   const handleProjectList = () => {
     props.setNewProject(true);
+    setOpenMenu(false);
   };
 
   const handleMenuClose = () => {
@@ -26,6 +28,8 @@ export const Header: React.VFC<Props> = (props) => {
     setOpenMenu(true);
   };
 
+  //？？ハンバーガーメニューの作りかたはこれでいい？
+  //？？横から飛び出すようなアニメーションをつけたい
   return (
     <>
       {isOpenMenu ? (
