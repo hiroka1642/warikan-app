@@ -47,27 +47,31 @@ export const OnProject: React.VFC<Props> = (props) => {
 
   return (
     <>
-      <p className="text-4xl text-center py-12">{props.project[0]}</p>
+      <div className=" pt-16 sm:pt-40">
+        <p className="text-4xl text-center p-4">{props.project[0]}</p>
 
-      <ul className=" m-auto">
-        {membername.map((i, key) => {
-          return (
-            <NeedPayList
-              project={props.project}
-              id={i}
-              key={key}
-              nameid={nameid}
-              setNameId={setNameId}
-              setCount={setCount}
-              count={count}
-            />
-          );
-        })}
-      </ul>
+        <ul className=" m-auto">
+          {membername.map((i, key) => {
+            return (
+              <NeedPayList
+                project={props.project}
+                id={i}
+                key={key}
+                nameid={nameid}
+                setNameId={setNameId}
+                setCount={setCount}
+                count={count}
+              />
+            );
+          })}
+        </ul>
 
-      <div className="text-center mt-12">
-        <ButtonComponent onClick={handleDelete}>削除</ButtonComponent>
-        <ButtonComponent onClick={handleSetOnproject}>戻る</ButtonComponent>
+        <div className="text-center mt-12 flex justify-center gap-4">
+          <ButtonComponent onClick={handleDelete} color="red">
+            削除
+          </ButtonComponent>
+          <ButtonComponent onClick={handleSetOnproject}>戻る</ButtonComponent>
+        </div>
       </div>
     </>
   );

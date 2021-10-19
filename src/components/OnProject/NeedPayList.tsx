@@ -78,8 +78,8 @@ export const NeedPayList: React.VFC<Props> = (props) => {
 
   return (
     <>
-      <div className="text-right ">
-        <div className="flex justify-center py-1 ">
+      <div className="text-right bg-white bg-opacity-30 max-w-md m-auto">
+        <div className="flex justify-around py-3 items-center">
           <div className="flex">
             {/* <div className="text-2xl text-left w-32">
               {props.project[3][props.id] || props.id}
@@ -90,7 +90,7 @@ export const NeedPayList: React.VFC<Props> = (props) => {
               nameid={props.nameid}
               setNameId={props.setNameId}
             >
-              <p className="w-32">
+              <p className="w-24">
                 {/* {props.project[3][props.id] || props.id} */}
                 {props.nameid[props.id] || props.id}
               </p>
@@ -106,16 +106,19 @@ export const NeedPayList: React.VFC<Props> = (props) => {
               支払
             </ModalComponent>
           </div>
-          <div className="text-2xl w-32">{Sum}</div>
-          {isOpen ? (
-            <ChevronUpIcon className="text-3xl" onClick={handleChangeF} />
-          ) : (
-            <ChevronDownIcon className="text-3xl" onClick={handleChangeT} />
-          )}
+          <div className="text-2xl w-32 ">{Sum}</div>
+          <div className="">
+            {isOpen ? (
+              <ChevronUpIcon className="text-3xl " onClick={handleChangeF} />
+            ) : (
+              <ChevronDownIcon className="text-3xl " onClick={handleChangeT} />
+            )}
+          </div>
         </div>
         {isOpen ? (
           <SettlementListItem list={list} nameid={props.nameid} />
         ) : null}
+        <div className=" border-solid border-gray-600 border-b-2 w-4/5 m-auto"></div>
       </div>
     </>
   );

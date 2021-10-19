@@ -30,7 +30,7 @@ export const Header: React.VFC<Props> = (props) => {
     <>
       {isOpenMenu ? (
         <div>
-          <header className=" sm:flex-row flex flex-col justify-between bg-white sm:text-blue-800 bg-opacity-30  sm:p-12 w-36 h-full sm:h-auto sm:w-screen fixed top-0 ">
+          <header className="sm:flex-row flex flex-col justify-between z-10 bg-white sm:text-blue-800 bg-opacity-60 sm:bg-opacity-30  sm:p-12 w-36 h-full sm:h-auto sm:w-screen fixed top-0 ">
             <div className="flex sm:flex-row flex-col sm:gap-6 sm:ml-2  sm:w-max">
               <button className="text-left p-1 sm:invisible">
                 <CloseIcon
@@ -40,21 +40,21 @@ export const Header: React.VFC<Props> = (props) => {
                 />
               </button>
               <button
-                className="flex h-20 sm:h-auto"
+                className="flex h-20 sm:h-auto items-center"
                 onClick={handleNewProject}
               >
                 <ListIcon color={"rgba(30, 64, 175)"} />
                 チーム一覧
               </button>
               <button
-                className="flex h-20 sm:h-auto"
+                className="flex h-20 sm:h-auto items-center"
                 onClick={handleProjectList}
               >
                 <NewList color={"rgba(30, 64, 175)"} />
                 新規チーム作成
               </button>
             </div>
-            <div className="h-24 sm:h-auto">
+            <div className=" flex h-24 sm:h-auto items-center">
               <LogoutComponent
                 icon={<LogoutIcon color={"rgba(30, 64, 175)"} />}
               >
@@ -64,7 +64,7 @@ export const Header: React.VFC<Props> = (props) => {
           </header>
         </div>
       ) : (
-        <div>
+        <div className=" ">
           <button className="sm:invisible top-0 fixed" onClick={handleMenuOpem}>
             <HamburgerIcon width="45px" height="45px" />
           </button>
@@ -74,16 +74,22 @@ export const Header: React.VFC<Props> = (props) => {
                 text-blue-800 bg-opacity-30  p-12  h-auto w-screen fixed top-0"
             >
               <div className="flex flex-row  gap-6 ml-2  w-max">
-                <button className="flex h-auto" onClick={handleNewProject}>
+                <button
+                  className="flex h-auto items-center"
+                  onClick={handleNewProject}
+                >
                   <ListIcon color={"rgba(30, 64, 175)"} />
                   チーム一覧
                 </button>
-                <button className="flex h-auto" onClick={handleProjectList}>
+                <button
+                  className="flex h-auto items-center"
+                  onClick={handleProjectList}
+                >
                   <NewList color={"rgba(30, 64, 175)"} />
                   新規チーム作成
                 </button>
               </div>
-              <div className="h-auto">
+              <div className="h-auto items-center">
                 <LogoutComponent
                   icon={<LogoutIcon color={"rgba(30, 64, 175)"} />}
                 >

@@ -12,8 +12,8 @@ const handleLogout = () => {
 
 export const LogoutComponent: React.VFC<Props> = (props) => {
   return (
-    <div className="w-28">
-      <button className="flex gap-1" onClick={handleLogout}>
+    <div className="w-28 ">
+      <button className="flex gap-1 " onClick={handleLogout}>
         {props.children}
         {props.icon}
       </button>
