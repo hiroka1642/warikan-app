@@ -44,27 +44,17 @@ export const NeedPayList: React.VFC<Props> = (props) => {
         throw settlementerror;
       } else {
         if (settlementdata) {
-          const { data: projectdata, error: projecterror } = await client
-            .from("Project_name")
-            .select("Username")
-            .eq("project_id", props.project[2]);
-          if (projecterror) {
-            throw "error";
-          } else {
-            if (projectdata) {
-              setList(settlementdata);
+          setList(settlementdata);
 
-              const sumArray = (array: any) => {
-                let sum = 0;
-                for (let i = 0; i < settlementdata?.length; i++) {
-                  sum += array[i].money;
-                }
-                return sum;
-              };
-
-              setSum(sumArray(settlementdata));
+          const sumArray = (array: any) => {
+            let sum = 0;
+            for (let i = 0; i < settlementdata?.length; i++) {
+              sum += array[i].money;
             }
-          }
+            return sum;
+          };
+
+          setSum(sumArray(settlementdata));
         }
       }
     } catch (e) {
@@ -118,7 +108,7 @@ export const NeedPayList: React.VFC<Props> = (props) => {
         {isOpen ? (
           <SettlementListItem list={list} nameid={props.nameid} />
         ) : null}
-        <div className=" border-solid border-gray-600 border-b-2 w-4/5 m-auto"></div>
+        <div className=" border-solid border-gray-600 border-b-2 w-4/5 m-auto "></div>
       </div>
     </>
   );
