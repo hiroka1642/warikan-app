@@ -68,22 +68,16 @@ export const NeedPayList: React.VFC<Props> = (props) => {
 
   return (
     <>
-      <div className="text-right bg-white bg-opacity-30 max-w-md m-auto">
-        <div className="flex justify-around py-3 items-center">
-          <div className="flex">
-            {/* <div className="text-2xl text-left w-32">
-              {props.project[3][props.id] || props.id}
-            </div> */}
+      <div className="m-auto border-dashed border-b-2 sm:w-1/2">
+        <div className="flex justify-between py-3 items-center">
+          <div className="text-right">
             <UserNameModal
               project={props.project}
               id={props.id}
               nameid={props.nameid}
               setNameId={props.setNameId}
             >
-              <p className="w-24">
-                {/* {props.project[3][props.id] || props.id} */}
-                {props.nameid[props.id] || props.id}
-              </p>
+              <p className="w-24">{props.nameid[props.id] || props.id}</p>
             </UserNameModal>
             <ModalComponent
               project={props.project}
@@ -96,19 +90,19 @@ export const NeedPayList: React.VFC<Props> = (props) => {
               支払
             </ModalComponent>
           </div>
-          <div className="text-2xl w-32 ">{Sum}</div>
-          <div className="">
-            {isOpen ? (
-              <ChevronUpIcon className="text-3xl " onClick={handleChangeF} />
+
+          <div className=" flex text-3xl text-right mr-10">
+            <div>{Sum}</div>
+            {isOpen && list[0] ? (
+              <ChevronUpIcon onClick={handleChangeF} />
             ) : (
-              <ChevronDownIcon className="text-3xl " onClick={handleChangeT} />
+              <ChevronDownIcon onClick={handleChangeT} />
             )}
           </div>
         </div>
-        {isOpen ? (
+        {isOpen && list[0] ? (
           <SettlementListItem list={list} nameid={props.nameid} />
         ) : null}
-        <div className=" border-solid border-gray-600 border-b-2 w-4/5 m-auto "></div>
       </div>
     </>
   );

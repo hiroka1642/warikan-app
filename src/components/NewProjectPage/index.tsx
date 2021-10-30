@@ -16,6 +16,7 @@ export const NewProjectPage: React.VFC = () => {
         backgroundColor="rgba(255,255,255,0.3)"
         backgroundBlendMode="lighten"
       >
+        {/* ？？h-100%ではダメなのか */}
         <div className="h-screen">
           <Header setNewProject={setNewProject} />
           {hasNewProject ? (

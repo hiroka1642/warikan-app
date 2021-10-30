@@ -34,7 +34,7 @@ export const Header: React.VFC<Props> = (props) => {
     <>
       {isOpenMenu ? (
         <div>
-          <header className="sm:flex-row flex flex-col justify-between z-10 bg-white sm:text-blue-800 bg-opacity-60 sm:bg-opacity-30  sm:p-12 w-36 h-full sm:h-auto sm:w-screen fixed top-0 ">
+          <header className=" sm:flex-row flex flex-col justify-between z-10 bg-white sm:text-blue-800 bg-opacity-60 sm:bg-opacity-30  sm:p-12 w-36 h-full sm:h-auto sm:w-screen fixed top-0 ">
             <div className="flex sm:flex-row flex-col sm:gap-6 sm:ml-2  sm:w-max">
               <button className="text-left p-1 sm:invisible">
                 <CloseIcon

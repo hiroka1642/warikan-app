@@ -50,7 +50,7 @@ export const OnProject: React.VFC<Props> = (props) => {
       <div className=" pt-16 sm:pt-40">
         <p className="text-4xl text-center p-4">{props.project[0]}</p>
 
-        <ul className=" m-auto">
+        <ul className=" m-auto bg-white bg-opacity-30 ">
           {membername.map((i, key) => {
             return (
               <NeedPayList
