@@ -1,25 +1,10 @@
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { useState } from "react";
-import type { Dispatch, SetStateAction } from "react";
 import { ListIcon, LogoutIcon, NewList } from "./Atom/Icon";
 import { LogoutComponent } from "./Atom/LogoutLink";
 
-type Props = {
-  setNewProject: Dispatch<SetStateAction<boolean>>;
-};
-
-export const Header: React.VFC<Props> = (props) => {
+export const Header: React.VFC = () => {
   const [isOpenMenu, setOpenMenu] = useState<boolean>(false);
-
-  const handleNewProject = () => {
-    props.setNewProject(false);
-    setOpenMenu(false);
-  };
-
-  const handleProjectList = () => {
-    props.setNewProject(true);
-    setOpenMenu(false);
-  };
 
   const handleMenuClose = () => {
     setOpenMenu(false);
@@ -43,17 +28,11 @@ export const Header: React.VFC<Props> = (props) => {
                   onClick={handleMenuClose}
                 />
               </button>
-              <button
-                className="flex h-20 sm:h-auto items-center"
-                onClick={handleNewProject}
-              >
+              <button className="flex h-20 sm:h-auto items-center">
                 <ListIcon color={"rgba(30, 64, 175)"} />
                 チーム一覧
               </button>
-              <button
-                className="flex h-20 sm:h-auto items-center"
-                onClick={handleProjectList}
-              >
+              <button className="flex h-20 sm:h-auto items-center">
                 <NewList color={"rgba(30, 64, 175)"} />
                 新規チーム作成
               </button>
@@ -68,27 +47,22 @@ export const Header: React.VFC<Props> = (props) => {
           </header>
         </div>
       ) : (
-        <div className=" ">
+        <div>
           <button className="sm:invisible top-0 fixed" onClick={handleMenuOpem}>
             <HamburgerIcon width="45px" height="45px" />
           </button>
+
           <div className=" sm:visible invisible ">
             <header
               className=" sm:flex-row flex  justify-between bg-white
                 text-blue-800 bg-opacity-30  p-12  h-auto w-screen fixed top-0"
             >
               <div className="flex flex-row  gap-6 ml-2  w-max">
-                <button
-                  className="flex h-auto items-center"
-                  onClick={handleNewProject}
-                >
+                <button className="flex h-auto items-center">
                   <ListIcon color={"rgba(30, 64, 175)"} />
                   チーム一覧
                 </button>
-                <button
-                  className="flex h-auto items-center"
-                  onClick={handleProjectList}
-                >
+                <button className="flex h-auto items-center">
                   <NewList color={"rgba(30, 64, 175)"} />
                   新規チーム作成
                 </button>

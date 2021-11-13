@@ -9,14 +9,12 @@ type Props = {
 
 export const ButtonComponent: React.VFC<Props> = (props: Props) => {
   return (
-    <div>
-      <Button
-        colorScheme={props.color || "teal"}
-        size="md"
-        onClick={props.onClick}
-      >
-        <LinkOverlay href={props.href}>{props.children}</LinkOverlay>
-      </Button>
-    </div>
+    <Button
+      colorScheme={props.color || "teal"}
+      size="md"
+      onClick={props.onClick}
+    >
+      <LinkOverlay href={props.href}>{props.children}</LinkOverlay>
+    </Button>
   );
 };

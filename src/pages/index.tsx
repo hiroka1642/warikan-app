@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 import { Auth } from "@supabase/ui";
-import { client } from "src/libs/supabase";
-import { Top } from "src/components/Top";
-import { NewProjectPage } from "../components/NewProjectPage";
+import { Rogin } from "src/components/Rogin";
+import { useRouter } from "next/dist/client/router";
 
 type Props = {
   children: ReactNode;
@@ -10,8 +9,10 @@ type Props = {
 
 const Container = (props: Props) => {
   const { user } = Auth.useUser();
+  const router = useRouter();
   if (user) {
-    return <NewProjectPage />;
+    // return <ProjectPage />;
+    router.push("/ProjectsPage");
   }
   return <>{props.children}</>;
 };
@@ -19,11 +20,9 @@ const Container = (props: Props) => {
 export default function Home() {
   return (
     <>
-      <Auth.UserContextProvider supabaseClient={client}>
-        <Container>
-          <Top />
-        </Container>
-      </Auth.UserContextProvider>
+      <Container>
+        <Rogin />
+      </Container>
     </>
   );
 }

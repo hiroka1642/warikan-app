@@ -4,7 +4,7 @@ import { client } from "src/libs/supabase";
 import { extendTheme } from "@chakra-ui/react";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
 
-export const Top: React.VFC = () => {
+export const Rogin: React.VFC = () => {
   const breakpoints = createBreakpoints({
     sm: "320px",
     md: "600px",
@@ -23,15 +23,13 @@ export const Top: React.VFC = () => {
         }}
         backgroundSize="cover"
       >
-        <div className="h-screen">
-          <div className="flex justify-center flex-col ">
-            <h1 className="text-4xl text-center py-32 sm:text-6xl">
-              みんなでわりかん。
-            </h1>
-            <div>
-              <div className=" max-w-md m-auto p-8">
-                <Auth supabaseClient={client} socialColors={true} />
-              </div>
+        <div className="flex justify-center flex-col h-screen">
+          <h1 className="text-4xl text-center py-32 sm:text-6xl">
+            みんなでわりかん。
+          </h1>
+          <div>
+            <div className=" max-w-md m-auto p-8">
+              <Auth supabaseClient={client} socialColors={true} />
             </div>
           </div>
         </div>

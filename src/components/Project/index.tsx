@@ -9,11 +9,15 @@ type Props = {
   setOnProject: Dispatch<SetStateAction<boolean>>;
 };
 
-export const OnProject: React.VFC<Props> = (props) => {
+export const Project: React.VFC<Props> = (props) => {
+
+ 
+
   const membername = [...Array(props.project[1])].map((_, i) => {
     return i;
   });
-  const [nameid, setNameId] = useState(props.project[3]);
+
+  const [nameid, setNameId] = useState<string>(props.project[3]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
 

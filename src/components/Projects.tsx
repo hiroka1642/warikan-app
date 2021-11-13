@@ -1,14 +1,14 @@
-import { Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/layout";
+import { useRouter } from "next/dist/client/router";
 import type { Dispatch, SetStateAction } from "react";
 import { useEffect, useState } from "react";
 
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
-import { ButtonComponent } from "../Atom/button";
-import { OnProject } from "../OnProject";
+import { ButtonComponent } from "./Atom/button";
+import { Project } from "./Project";
 
 type Props = {
-  setNewProject: Dispatch<SetStateAction<boolean>>;
   setList: Dispatch<SetStateAction<string[]>>;
   list: string[];
 };
@@ -16,11 +16,13 @@ type Props = {
 export const Projects: React.VFC<Props> = (props) => {
   const [isOnProject, setOnProject] = useState<boolean>(false);
   const [project, setProject] = useState<string[]>([]);
+  const router = useRouter();
 
   const handleNewProjectPage = useCallback(() => {
-    props.setNewProject(true);
-  }, [props]);
+    router.push("/NewProject");
+  }, []);
 
+  //リストを取得する
   const ProjectList = useCallback(async () => {
     try {
       const { data: Project_name, error } = await client
@@ -47,7 +49,7 @@ export const Projects: React.VFC<Props> = (props) => {
 
   useEffect(() => {
     ProjectList();
-  }, [project, isOnProject, ProjectList]);
+  }, [project, ProjectList]);
 
   const handleClick = async (li: any) => {
     try {
@@ -64,6 +66,7 @@ export const Projects: React.VFC<Props> = (props) => {
           Project_name[0].Username,
         ]);
         setOnProject(true);
+
       }
       if (error) {
         throw error;
@@ -76,7 +79,7 @@ export const Projects: React.VFC<Props> = (props) => {
   return (
     <>
       {isOnProject ? (
-        <OnProject project={project} setOnProject={setOnProject} />
+        <Project project={project} setOnProject={setOnProject} />
       ) : (
         <div className=" text-center m-auto  px-3 pt-12 sm:pt-52 ">
           <h2 className="text-2xl">チーム一覧</h2>

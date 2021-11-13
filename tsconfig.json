@@ -22,6 +22,6 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    "src/components/NewProjectPage"
+    "src/pages/ProjectsPage"
   ]
 }

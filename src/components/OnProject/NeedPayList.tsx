@@ -5,13 +5,14 @@ import { client } from "src/libs/supabase";
 import { ModalComponent } from "./Modal";
 import { SettlementListItem } from "./SettlementListItem";
 import { UserNameModal } from "../OnProject/UserNameModal";
+// import { useRouter } from "next/dist/client/router";
 
 type Props = {
   project: string[];
   id: number;
-  nameid: Element[];
+  nameid: string;
   setCount: Dispatch<SetStateAction<number>>;
-  setNameId: Dispatch<SetStateAction<number>>;
+  setNameId: Dispatch<SetStateAction<string>>;
   count: number;
 };
 
@@ -19,6 +20,7 @@ export const NeedPayList: React.VFC<Props> = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [Sum, setSum] = useState(0);
   const [hasAdd, setAdd] = useState(false);
+  // const router = useRouter();
 
   const handleChangeT = () => {
     setOpen(true);
@@ -53,7 +55,6 @@ export const NeedPayList: React.VFC<Props> = (props) => {
             }
             return sum;
           };
-
           setSum(sumArray(settlementdata));
         }
       }
@@ -77,7 +78,7 @@ export const NeedPayList: React.VFC<Props> = (props) => {
               nameid={props.nameid}
               setNameId={props.setNameId}
             >
-              <p className="w-24">{props.nameid[props.id] || props.id}</p>
+              <p className="w-24">{props.project[3] || props.id}</p>
             </UserNameModal>
             <ModalComponent
               project={props.project}

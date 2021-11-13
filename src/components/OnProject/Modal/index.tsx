@@ -21,7 +21,7 @@ type Props = {
   project: string[];
   setCount: Dispatch<SetStateAction<number>>;
   children: string;
-  nameid: Element[];
+  nameid: string;
   hasAdd: boolean;
 };
 

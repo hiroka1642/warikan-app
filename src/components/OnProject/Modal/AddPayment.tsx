@@ -11,12 +11,11 @@ type Props = {
   setMoneyValue: Dispatch<SetStateAction<number>>;
   checkedItems: boolean[];
   setCheckedItems: Dispatch<SetStateAction<boolean[]>>;
-  nameid: Element[];
+  nameid: string;
 };
 
 // eslint-disable-next-line react/display-name
 export const AddPayment: React.VFC<Props> = memo((props) => {
-
   const arr = useMemo(() => {
     return [...props.checkedItems];
   }, [props.checkedItems]);

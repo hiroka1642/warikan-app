@@ -1,6 +1,6 @@
 type Props = {
   list: string[];
-  nameid: Element[];
+  nameid: string;
 };
 
 export const SettlementListItem: React.VFC<Props> = (props) => {

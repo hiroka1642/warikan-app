@@ -17,9 +17,9 @@ import { InputComponent } from "../../Atom/Input";
 type Props = {
   project: string[];
   id: number;
-  setNameId: Dispatch<SetStateAction<number>>;
+  setNameId: Dispatch<SetStateAction<string>>;
   children: JSX.Element;
-  nameid: Element[];
+  nameid: string;
 };
 
 export const UserNameModal: React.VFC<Props> = (props) => {

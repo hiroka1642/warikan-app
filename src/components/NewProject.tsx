@@ -2,8 +2,8 @@ import { Select } from "@chakra-ui/react";
 import { useCallback } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
-import { ButtonComponent } from "../Atom/button";
-import { InputComponent } from "../Atom/Input";
+import { ButtonComponent } from "./Atom/button";
+import { InputComponent } from "./Atom/Input";
 import { client } from "src/libs/supabase";
 
 type Props = {
