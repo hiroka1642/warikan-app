@@ -78,7 +78,7 @@ export const NeedPayList: React.VFC<Props> = (props) => {
               nameid={props.nameid}
               setNameId={props.setNameId}
             >
-              <p className="w-24">{props.project[3] || props.id}</p>
+              <p className="w-24">{props.nameid[props.id] || props.id}</p>
             </UserNameModal>
             <ModalComponent
               project={props.project}
