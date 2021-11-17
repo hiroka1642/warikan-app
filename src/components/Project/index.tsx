@@ -3,7 +3,7 @@ import { useState } from "react";
 import { client } from "src/libs/supabase";
 import { ButtonComponent } from "../Atom/button";
 import { NeedPayList } from "../OnProject/NeedPayList";
-import type { ProjectTypes } from "../Types";
+import type { ProjectTypes } from "../../types";
 
 type Props = {
   project: ProjectTypes;

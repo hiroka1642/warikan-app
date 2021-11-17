@@ -13,7 +13,7 @@ import { useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { InputComponent } from "../../Atom/Input";
-import type { ProjectTypes } from "src/components/Types";
+import type { ProjectTypes } from "src/types";
 
 type Props = {
   project: ProjectTypes;

@@ -14,7 +14,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { AddPayment } from "./AddPayment";
 import { TableOnModalBody } from "./TableOnModalBody";
-import type { ProjectTypes } from "src/components/Types";
+import type { ProjectTypes } from "src/types";
 
 type Props = {
   setAdd: Dispatch<SetStateAction<boolean>>;

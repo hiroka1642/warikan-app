@@ -5,7 +5,7 @@ import { client } from "src/libs/supabase";
 import { ModalComponent } from "./Modal";
 import { SettlementListItem } from "./SettlementListItem";
 import { UserNameModal } from "../OnProject/UserNameModal";
-import type { ProjectTypes } from "../Types";
+import type { ProjectTypes } from "../../types";
 
 type Props = {
   project: ProjectTypes;

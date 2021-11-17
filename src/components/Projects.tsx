@@ -7,7 +7,7 @@ import { useCallback } from "react";
 import { client } from "src/libs/supabase";
 import { ButtonComponent } from "./Atom/button";
 import { Project } from "./Project";
-import type { ProjectTypes } from "./Types";
+import type { ProjectTypes } from "../types";
 
 type Props = {
   setList: Dispatch<SetStateAction<string[]>>;

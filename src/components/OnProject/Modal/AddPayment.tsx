@@ -2,7 +2,7 @@ import { Checkbox } from "@chakra-ui/react";
 import { useCallback, memo, useMemo } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { InputComponent } from "../../Atom/Input";
-import type { ProjectTypes } from "src/components/Types";
+import type { ProjectTypes } from "src/types";
 
 type Props = {
   project: ProjectTypes;
