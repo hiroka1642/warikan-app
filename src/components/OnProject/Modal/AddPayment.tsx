@@ -22,7 +22,7 @@ export const AddPayment: React.VFC<Props> = memo((props) => {
 
   //member=[0,1,2,3,4,5...]
   const member = useMemo(() => {
-    return [...Array(props.project[1])].map((_, i) => {
+    return [...Array(props.project.NumberOfPeople)].map((_, i) => {
       return i;
     });
   }, [props]);

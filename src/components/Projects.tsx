@@ -59,14 +59,13 @@ export const Projects: React.VFC<Props> = (props) => {
         .select("*")
         .eq("project_id", li.target.value);
       if (Project_name) {
-        setProject([
-          Project_name[0].propject_name,
-          Project_name[0].member,
-          Project_name[0].project_id,
-          Project_name[0].Username,
-        ]);
+        setProject({
+          projectName: Project_name[0].propject_name,
+          NumberOfPeople: Project_name[0].member,
+          projectId: Project_name[0].project_id,
+          userNameList: Project_name[0].Username,
+        });
         setOnProject(true);
-
       }
       if (error) {
         throw error;

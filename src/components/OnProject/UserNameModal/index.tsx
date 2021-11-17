@@ -35,7 +35,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
       const { data: projectdata, error: projecterror } = await client
         .from("Project_name")
         .select("Username")
-        .eq("project_id", props.project[2]);
+        .eq("project_id", props.project.projectId);
       if (projectdata) {
         projectdata[0].Username.splice(props.id, 1, value);
 
@@ -44,7 +44,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
           .from("Project_name")
           // eslint-disable-next-line @typescript-eslint/naming-convention
           .update({ Username: projectdata[0].Username })
-          .eq("project_id", props.project[2]);
+          .eq("project_id", props.project.projectId);
         if (projectname) {
           props.setNameId(projectdata[0].Username);
           setInputvalue("");

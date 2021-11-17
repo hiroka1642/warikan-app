@@ -33,7 +33,7 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
   const [moneyvalue, setMoneyValue] = useState<number>(0);
 
   const [checkedItems, setCheckedItems] = useState(
-    [...Array(props.project[1])].map(() => {
+    [...Array(props.project.NumberOfPeople)].map(() => {
       return true;
     })
   );
@@ -58,7 +58,7 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
           money: moneyvalue,
           paid: value,
           // eslint-disable-next-line @typescript-eslint/naming-convention
-          project_id: props.project[2],
+          project_id: props.project.projectId,
         },
       ]);
       if (List_paid_error) {
@@ -77,7 +77,7 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
             id: id,
             money: `${Math.ceil(moneyvalue / newItems.length)}`,
             payfor: props.id,
-            projectId: props.project[2],
+            projectId: props.project.projectId,
             what: value,
           });
         }

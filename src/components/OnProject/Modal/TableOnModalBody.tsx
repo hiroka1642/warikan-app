@@ -18,7 +18,7 @@ export const TableOnModalBody: React.VFC<Props> = memo((props) => {
       const { data, error } = await client
         .from("List_paid")
         .select("paid,money")
-        .eq("project_id", props.project[2])
+        .eq("project_id", props.project.projectId)
         .eq("id", props.id);
       if (error) {
         throw error;

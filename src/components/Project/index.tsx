@@ -10,14 +10,11 @@ type Props = {
 };
 
 export const Project: React.VFC<Props> = (props) => {
-
- 
-
-  const membername = [...Array(props.project[1])].map((_, i) => {
+  const membername = [...Array(props.project.NumberOfPeople)].map((_, i) => {
     return i;
   });
 
-  const [nameid, setNameId] = useState<string>(props.project[3]);
+  const [nameid, setNameId] = useState<string>(props.project.userNameList);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
 
@@ -27,17 +24,17 @@ export const Project: React.VFC<Props> = (props) => {
     const { error: project_name_error } = await client
       .from("Project_name")
       .delete()
-      .eq("project_id", props.project[2]);
+      .eq("project_id", props.project.projectId);
 
     const { error: List_paid_error } = await client
       .from("List_paid")
       .delete()
-      .eq("project_id", props.project[2]);
+      .eq("project_id", props.project.projectId);
 
     const { error: Settlement_list_error } = await client
       .from("Settlement_list")
       .delete()
-      .eq("projectId", props.project[2]);
+      .eq("projectId", props.project.projectId);
 
     if (project_name_error || List_paid_error || Settlement_list_error) {
       alert("エラーが発生しました");
@@ -52,7 +49,7 @@ export const Project: React.VFC<Props> = (props) => {
   return (
     <>
       <div className=" pt-16 sm:pt-40">
-        <p className="text-4xl text-center p-4">{props.project[0]}</p>
+        <p className="text-4xl text-center p-4">{props.project.projectName}</p>
 
         <ul className=" m-auto bg-white bg-opacity-30 ">
           {membername.map((i, key) => {

@@ -39,7 +39,7 @@ export const NeedPayList: React.VFC<Props> = (props) => {
       const { data: settlementdata, error: settlementerror } = await client
         .from("Settlement_list")
         .select("*")
-        .eq("projectId", props.project[2])
+        .eq("projectId", props.project.projectId)
         .eq("id", props.id)
         .neq("payfor", props.id);
       if (settlementerror) {
