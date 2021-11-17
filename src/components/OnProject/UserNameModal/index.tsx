@@ -13,13 +13,14 @@ import { useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { InputComponent } from "../../Atom/Input";
+import type { ProjectTypes } from "src/components/Types";
 
 type Props = {
-  project: string[];
+  project: ProjectTypes;
   id: number;
-  setNameId: Dispatch<SetStateAction<string>>;
+  setNameId: Dispatch<SetStateAction<string[]>>;
   children: JSX.Element;
-  nameid: string;
+  nameid: string[];
 };
 
 export const UserNameModal: React.VFC<Props> = (props) => {

@@ -3,18 +3,19 @@ import { useState } from "react";
 import { client } from "src/libs/supabase";
 import { ButtonComponent } from "../Atom/button";
 import { NeedPayList } from "../OnProject/NeedPayList";
+import type { ProjectTypes } from "../Types";
 
 type Props = {
-  project: any[];
+  project: ProjectTypes;
   setOnProject: Dispatch<SetStateAction<boolean>>;
 };
 
 export const Project: React.VFC<Props> = (props) => {
-  const membername = [...Array(props.project.NumberOfPeople)].map((_, i) => {
+  const membername = [...Array(props.project.numberOfPeople)].map((_, i) => {
     return i;
   });
 
-  const [nameid, setNameId] = useState<string>(props.project.userNameList);
+  const [nameid, setNameId] = useState<string[]>(props.project.userNameList);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
 

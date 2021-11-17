@@ -7,6 +7,7 @@ import { useCallback } from "react";
 import { client } from "src/libs/supabase";
 import { ButtonComponent } from "./Atom/button";
 import { Project } from "./Project";
+import type { ProjectTypes } from "./Types";
 
 type Props = {
   setList: Dispatch<SetStateAction<string[]>>;
@@ -15,7 +16,12 @@ type Props = {
 
 export const Projects: React.VFC<Props> = (props) => {
   const [isOnProject, setOnProject] = useState<boolean>(false);
-  const [project, setProject] = useState<string[]>([]);
+  const [project, setProject] = useState<ProjectTypes>({
+    projectName: "",
+    numberOfPeople: 0,
+    projectId: 0,
+    userNameList: [],
+  });
   const router = useRouter();
 
   const handleNewProjectPage = useCallback(() => {
@@ -61,7 +67,7 @@ export const Projects: React.VFC<Props> = (props) => {
       if (Project_name) {
         setProject({
           projectName: Project_name[0].propject_name,
-          NumberOfPeople: Project_name[0].member,
+          numberOfPeople: Project_name[0].member,
           projectId: Project_name[0].project_id,
           userNameList: Project_name[0].Username,
         });

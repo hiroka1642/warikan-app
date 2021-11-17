@@ -2,16 +2,17 @@ import { Checkbox } from "@chakra-ui/react";
 import { useCallback, memo, useMemo } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { InputComponent } from "../../Atom/Input";
+import type { ProjectTypes } from "src/components/Types";
 
 type Props = {
-  project: string[];
+  project: ProjectTypes;
   value: string;
   setInputvalue: Dispatch<SetStateAction<string>>;
   moneyvalue: number;
   setMoneyValue: Dispatch<SetStateAction<number>>;
   checkedItems: boolean[];
   setCheckedItems: Dispatch<SetStateAction<boolean[]>>;
-  nameid: string;
+  nameid: string[];
 };
 
 // eslint-disable-next-line react/display-name
@@ -22,7 +23,7 @@ export const AddPayment: React.VFC<Props> = memo((props) => {
 
   //member=[0,1,2,3,4,5...]
   const member = useMemo(() => {
-    return [...Array(props.project.NumberOfPeople)].map((_, i) => {
+    return [...Array(props.project.numberOfPeople)].map((_, i) => {
       return i;
     });
   }, [props]);

@@ -14,14 +14,15 @@ import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { AddPayment } from "./AddPayment";
 import { TableOnModalBody } from "./TableOnModalBody";
+import type { ProjectTypes } from "src/components/Types";
 
 type Props = {
   setAdd: Dispatch<SetStateAction<boolean>>;
   id: number;
-  project: string[];
+  project: ProjectTypes;
   setCount: Dispatch<SetStateAction<number>>;
   children: string;
-  nameid: string;
+  nameid: string[];
   hasAdd: boolean;
 };
 
@@ -33,7 +34,7 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
   const [moneyvalue, setMoneyValue] = useState<number>(0);
 
   const [checkedItems, setCheckedItems] = useState(
-    [...Array(props.project.NumberOfPeople)].map(() => {
+    [...Array(props.project.numberOfPeople)].map(() => {
       return true;
     })
   );

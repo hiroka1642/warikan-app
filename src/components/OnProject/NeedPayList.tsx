@@ -5,14 +5,14 @@ import { client } from "src/libs/supabase";
 import { ModalComponent } from "./Modal";
 import { SettlementListItem } from "./SettlementListItem";
 import { UserNameModal } from "../OnProject/UserNameModal";
-// import { useRouter } from "next/dist/client/router";
+import type { ProjectTypes } from "../Types";
 
 type Props = {
-  project: string[];
+  project: ProjectTypes;
   id: number;
-  nameid: string;
+  nameid: string[];
   setCount: Dispatch<SetStateAction<number>>;
-  setNameId: Dispatch<SetStateAction<string>>;
+  setNameId: Dispatch<SetStateAction<string[]>>;
   count: number;
 };
 
