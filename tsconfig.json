@@ -22,6 +22,6 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
-    "src/pages/ProjectsPage"
+    "src/pages/ProjectList.page"
   ]
 }
