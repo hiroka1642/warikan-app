@@ -2,9 +2,9 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useCallback, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
-import { ModalComponent } from "./Modal";
+import { ModalComponent } from "./PaymentModal";
 import { SettlementListItem } from "./SettlementListItem";
-import { UserNameModal } from "../OnProject/UserNameModal";
+import { UserNameModal } from "./UserNameModal";
 import type { ProjectTypes } from "../../types";
 
 type Props = {

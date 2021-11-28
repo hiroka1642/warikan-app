@@ -12,7 +12,7 @@ const Container = (props: Props) => {
   const router = useRouter();
   if (user) {
     // return <ProjectPage />;
-    router.push("/ProjectsPage");
+    router.push("/ProjectList.page");
   }
   return <>{props.children}</>;
 };
