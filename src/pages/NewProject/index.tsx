@@ -8,7 +8,6 @@ import { Header } from "src/components/Header";
 import { Box } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 
-
 const NewProject: React.VFC = () => {
   const router = useRouter();
   const [value, setInputvalue] = useState<string>("");
@@ -46,7 +45,10 @@ const NewProject: React.VFC = () => {
           },
         ]);
       if (projectdata) {
-        router.push("/ProjectPage");
+        router.push({
+          pathname: "/Project.page", //URL
+          query: { input: projectdata[0].project_id }, //検索クエリ
+        });
       }
       if (projecterror) {
         throw projecterror;
@@ -65,7 +67,7 @@ const NewProject: React.VFC = () => {
         backgroundBlendMode="lighten"
       >
         <Header />
-        <div className="py-60 px-10 text-center">
+        <div className="py-60 px-10 text-center h-screen ">
           <h2 className="text-2xl mb-14">新規プロジェクト作成</h2>
           <div className=" max-w-xl m-auto flex justify-between flex-col gap-y-8">
             <InputComponent value={value} setInputvalue={setInputvalue}>

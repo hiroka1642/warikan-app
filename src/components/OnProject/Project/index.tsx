@@ -1,10 +1,11 @@
 import { useRouter } from "next/dist/client/router";
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
-import { ButtonComponent } from "../../../components/Atom/button";
+import { ButtonComponent } from "../../Atom/button";
 import type { ProjectTypes } from "../../../types";
 import { useEffect, useState } from "react";
-import { NeedPayList } from "src/components/OnProject/PaymentForEachUser";
+import { NeedPayList } from "src/components/OnProject/PaymentList";
+import { Box } from "@chakra-ui/layout";
 
 export const Project: React.VFC = () => {
   const router = useRouter();
@@ -14,6 +15,7 @@ export const Project: React.VFC = () => {
     projectId: 0,
     userNameList: [],
   });
+  const [nameid, setNameId] = useState<string[]>([]);
 
   //idから、プロジェクト情報を読み込む
   const ProjectList = useCallback(async () => {
@@ -30,7 +32,7 @@ export const Project: React.VFC = () => {
           projectId: Project_name[0].project_id,
           userNameList: Project_name[0].Username,
         });
-        // setOnProject(true);
+        setNameId(Project_name[0].Username);
       }
       if (error) {
         throw error;
@@ -38,17 +40,16 @@ export const Project: React.VFC = () => {
     } catch (e) {
       alert(e);
     }
-  }, []);
+  }, [router.query.input]);
 
   useEffect(() => {
     ProjectList();
-  }, []);
+  }, [ProjectList]);
 
   const membername = [...Array(project.numberOfPeople)].map((_, i) => {
     return i;
   });
 
-  const [nameid, setNameId] = useState<string[]>(project.userNameList);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
 
@@ -82,32 +83,39 @@ export const Project: React.VFC = () => {
 
   return (
     <>
-      <div className=" pt-16 sm:pt-40">
-        <p className="text-4xl text-center p-4">{project.projectName}</p>
+      <Box
+        backgroundImage="url(.//AfterLoginBackgroundImage.jpg)"
+        backgroundSize="cover"
+        backgroundColor="rgba(255,255,255,0.3)"
+        backgroundBlendMode="lighten"
+      >
+        <div className=" pt-16 sm:pt-40 h-screen">
+          <p className="text-4xl text-center p-4">{project.projectName}</p>
 
-        <ul className=" m-auto bg-white bg-opacity-30 ">
-          {membername.map((i, key) => {
-            return (
-              <NeedPayList
-                project={project}
-                id={i}
-                key={key}
-                nameid={nameid}
-                setNameId={setNameId}
-                setCount={setCount}
-                count={count}
-              />
-            );
-          })}
-        </ul>
+          <ul className=" m-auto bg-white bg-opacity-30 ">
+            {membername.map((i, key) => {
+              return (
+                <NeedPayList
+                  project={project}
+                  id={i}
+                  key={key}
+                  nameid={nameid}
+                  setNameId={setNameId}
+                  setCount={setCount}
+                  count={count}
+                />
+              );
+            })}
+          </ul>
 
-        <div className="text-center mt-12 flex justify-center gap-4">
-          <ButtonComponent onClick={handleDelete} color="red">
-            削除
-          </ButtonComponent>
-          <ButtonComponent onClick={handleSetOnproject}>戻る</ButtonComponent>
+          <div className="text-center mt-12 flex justify-center gap-4">
+            <ButtonComponent onClick={handleDelete} color="red">
+              削除
+            </ButtonComponent>
+            <ButtonComponent onClick={handleSetOnproject}>戻る</ButtonComponent>
+          </div>
         </div>
-      </div>
+      </Box>
     </>
   );
 };

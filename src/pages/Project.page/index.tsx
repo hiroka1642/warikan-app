@@ -1,5 +1,5 @@
 import { Header } from "src/components/Header";
-import { Project } from "./Project";
+import { Project } from "../../components/OnProject/Project";
 
 const OnProjectPage = () => {
   return (

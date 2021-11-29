@@ -1,16 +1,22 @@
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 import { ListIcon, LogoutIcon, NewList } from "./Atom/Icon";
 import { LogoutComponent } from "./Atom/LogoutLink";
 
 export const Header: React.VFC = () => {
   const [isOpenMenu, setOpenMenu] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleMenuClose = () => {
     setOpenMenu(false);
   };
   const handleMenuOpem = () => {
     setOpenMenu(true);
+  };
+
+  const handleRouter = (url: string) => {
+    router.push(url);
   };
 
   //？？ハンバーガーメニューの作りかたはこれでいい？
@@ -28,11 +34,19 @@ export const Header: React.VFC = () => {
                   onClick={handleMenuClose}
                 />
               </button>
-              <button className="flex h-20 sm:h-auto items-center">
+              <button
+                className="flex h-20 sm:h-auto items-center"
+                // eslint-disable-next-line arrow-body-style
+                onClick={() => handleRouter("/NewProject")}
+              >
                 <ListIcon color={"rgba(30, 64, 175)"} />
                 チーム一覧
               </button>
-              <button className="flex h-20 sm:h-auto items-center">
+              <button
+                className="flex h-20 sm:h-auto items-center"
+                // eslint-disable-next-line arrow-body-style
+                onClick={() => handleRouter("/Project.page")}
+              >
                 <NewList color={"rgba(30, 64, 175)"} />
                 新規チーム作成
               </button>
@@ -58,11 +72,19 @@ export const Header: React.VFC = () => {
                 text-blue-800 bg-opacity-30  p-12  h-auto w-screen fixed top-0"
             >
               <div className="flex flex-row  gap-6 ml-2  w-max">
-                <button className="flex h-auto items-center">
+                <button
+                  className="flex h-auto items-center"
+                  // eslint-disable-next-line arrow-body-style
+                  onClick={() => handleRouter("/ProjectList.page")}
+                >
                   <ListIcon color={"rgba(30, 64, 175)"} />
                   チーム一覧
                 </button>
-                <button className="flex h-auto items-center">
+                <button
+                  className="flex h-auto items-center"
+                  // eslint-disable-next-line arrow-body-style
+                  onClick={() => handleRouter("/NewProject")}
+                >
                   <NewList color={"rgba(30, 64, 175)"} />
                   新規チーム作成
                 </button>

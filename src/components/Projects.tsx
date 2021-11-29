@@ -5,7 +5,7 @@ import { useEffect} from "react";
 
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
-import { ButtonComponent } from "../../components/Atom/button";
+import { ButtonComponent } from "./Atom/button";
 
 type Props = {
   setList: Dispatch<SetStateAction<string[]>>;
@@ -13,18 +13,11 @@ type Props = {
 };
 
 export const Projects: React.VFC<Props> = (props) => {
-  // const [project, setProject] = useState<ProjectTypes>({
-  //   projectName: "",
-  //   numberOfPeople: 0,
-  //   projectId: 0,
-  //   userNameList: [],
-  // });
   const router = useRouter();
-
   const handleNewProjectPage = useCallback(() => {
     router.push("/NewProject");
-  }, []);
-
+  }, [router]);
+  
   //リストを取得する
   const ProjectList = useCallback(async () => {
     try {
