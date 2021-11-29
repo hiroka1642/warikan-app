@@ -4,7 +4,7 @@ import { client } from "src/libs/supabase";
 import { ButtonComponent } from "../../Atom/button";
 import type { ProjectTypes } from "../../../types";
 import { useEffect, useState } from "react";
-import { NeedPayList } from "src/components/OnProject/PaymentList";
+import { NeedPayList } from "src/components/OnProject/Project/PaymentList";
 import { Box } from "@chakra-ui/layout";
 
 export const Project: React.VFC = () => {

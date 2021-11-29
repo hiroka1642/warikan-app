@@ -2,10 +2,10 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useCallback, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
-import { ModalComponent } from "./PaymentModal";
+import { ModalComponent } from "../PaymentModal";
 // import { SettlementListItem } from "./SettlementListItem";
-import { UserNameModal } from "./UserNameModal";
-import type { ProjectTypes } from "../../types";
+import { UserNameModal } from "../UserNameModal";
+import type { ProjectTypes } from "../../../types";
 import { PaymentForEachUser } from "./PaymentForEachUser";
 
 type Props = {
@@ -21,6 +21,7 @@ export const NeedPayList: React.VFC<Props> = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [Sum, setSum] = useState(0);
   const [hasAdd, setAdd] = useState(false);
+  const [list, setList] = useState<any>([]);
 
   const handleChangeT = () => {
     setOpen(true);
@@ -29,9 +30,6 @@ export const NeedPayList: React.VFC<Props> = (props) => {
   const handleChangeF = () => {
     setOpen(false);
   };
-
-  const [list, setList] = useState<any>([]);
-  //支払い金額の取得
 
   //リストを取得
   const SettlementList = useCallback(async () => {
@@ -104,7 +102,6 @@ export const NeedPayList: React.VFC<Props> = (props) => {
         {isOpen && list[0] ? (
           <>
             <PaymentForEachUser list={list} nameid={props.nameid} />
-            {/* <SettlementListItem list={list} nameid={props.nameid} /> */}
           </>
         ) : null}
       </div>

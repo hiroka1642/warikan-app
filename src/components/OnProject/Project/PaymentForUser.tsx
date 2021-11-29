@@ -23,7 +23,6 @@ export const PaymentForUser = (props: Props) => {
         <td className="px-3">{props.sum}円</td>
       </tr>
       {isOpen === true ? (
-        // eslint-disable-next-line react/jsx-handler-names
         <SettlementListItem list={props.userList} handleOpen={onhandleOpen} />
       ) : null}
     </>

@@ -39,7 +39,6 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
     })
   );
 
-  // const [settlemember, setSettleMember] = useState<any>([]);
 
   const handleAdd = useCallback(() => {
     props.setAdd(true);
@@ -92,7 +91,11 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
         props.setAdd(false);
         setInputvalue("");
         setMoneyValue(0);
-        setCheckedItems([]);
+        setCheckedItems(
+          [...Array(props.project.numberOfPeople)].map(() => {
+            return true;
+          })
+        );
         props.setCount((i: number) => {
           return i + 1;
         });
@@ -107,6 +110,11 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
   };
   const handleOnClose = () => {
     onClose();
+    setCheckedItems(
+      [...Array(props.project.numberOfPeople)].map(() => {
+        return true;
+      })
+    );
   };
 
   return (
