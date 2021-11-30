@@ -24,11 +24,11 @@ export const Rogin: React.VFC = () => {
         backgroundSize="cover"
       >
         <div className="flex justify-center flex-col h-screen">
-          <h1 className="text-4xl text-center py-32 sm:text-6xl">
+          <h1 className="text-4xl text-center py-20 sm:text-6xl">
             みんなでわりかん。
           </h1>
           <div>
-            <div className=" max-w-md m-auto p-8">
+            <div className=" max-w-md m-auto">
               <Auth supabaseClient={client} socialColors={true} />
             </div>
           </div>

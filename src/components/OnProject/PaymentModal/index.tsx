@@ -39,7 +39,6 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
     })
   );
 
-
   const handleAdd = useCallback(() => {
     props.setAdd(true);
   }, [props]);
@@ -52,17 +51,16 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
       if (moneyvalue == 0) {
         throw "moneyvalue";
       }
-      const { error: List_paid_error } = await client.from("List_paid").insert([
+      const { error: PaymentList_error } = await client.from("PaymentList").insert([
         {
           id: props.id,
           money: moneyvalue,
-          paid: value,
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          project_id: props.project.projectId,
+          what: value,
+          projectId: props.project.projectId,
         },
       ]);
-      if (List_paid_error) {
-        throw List_paid_error;
+      if (PaymentList_error) {
+        throw PaymentList_error;
       }
       //何人で割るかによって金額を変える
       const settlement: any[] = [];
@@ -76,18 +74,18 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
           settlement.push({
             id: id,
             money: `${Math.ceil(moneyvalue / newItems.length)}`,
-            payfor: props.id,
+            payer: props.id,
             projectId: props.project.projectId,
             what: value,
           });
         }
       });
-      const { data: Settlement_list, error: Settlement_list_error } =
-        await client.from("Settlement_list").insert(settlement);
-      if (Settlement_list_error) {
-        throw Settlement_list_error;
+      const { data: SettlementList, error: SettlementList_error } =
+        await client.from("SettlementList").insert(settlement);
+      if (SettlementList_error) {
+        throw SettlementList_error;
       }
-      if (Settlement_list) {
+      if (SettlementList) {
         props.setAdd(false);
         setInputvalue("");
         setMoneyValue(0);

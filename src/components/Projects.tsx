@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/layout";
 import { useRouter } from "next/dist/client/router";
 import type { Dispatch, SetStateAction } from "react";
-import { useEffect} from "react";
+import { useEffect } from "react";
 
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
@@ -17,20 +17,20 @@ export const Projects: React.VFC<Props> = (props) => {
   const handleNewProjectPage = useCallback(() => {
     router.push("/NewProject");
   }, [router]);
-  
+
   //リストを取得する
   const ProjectList = useCallback(async () => {
     try {
-      const { data: Project_name, error } = await client
-        .from("Project_name")
+      const { data: Projects, error } = await client
+        .from("Projects")
         .select("*");
-      if (Project_name) {
+      if (Projects) {
         const items: any = [];
-        for (let i = 0; i < Project_name.length; i++) {
+        for (let i = 0; i < Projects.length; i++) {
           items.push({
-            name: Project_name[i].propject_name,
-            member: Project_name[i].member,
-            id: Project_name[i].project_id,
+            name: Projects[i].projectName,
+            member: Projects[i].member,
+            id: Projects[i].projectId,
           });
         }
         props.setList([...items]);

@@ -13,7 +13,7 @@ export const PaymentForEachUser: React.VFC<Props> = (props) => {
           <tbody>
             {props.nameid.map((li: any, key) => {
               const UserList = props.list.filter((item) => {
-                return item.payfor === key;
+                return item.payer === key;
               });
               const number = key;
 

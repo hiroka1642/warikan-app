@@ -33,21 +33,18 @@ const NewProject: React.VFC = () => {
         throw "Hom many people?";
       }
       const { data: projectdata, error: projecterror } = await client
-        .from("Project_name")
-        // eslint-disable-next-line @typescript-eslint/naming-convention
+        .from("Projects")
         .insert([
           {
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            propject_name: value,
+            projectName: value,
             member: selectedValue,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            Username: username,
+            userName: username,
           },
         ]);
       if (projectdata) {
         router.push({
           pathname: "/Project.page", //URL
-          query: { input: projectdata[0].project_id }, //検索クエリ
+          query: { input: projectdata[0].projectId }, //検索クエリ
         });
       }
       if (projecterror) {

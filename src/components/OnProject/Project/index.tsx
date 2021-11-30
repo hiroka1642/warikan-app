@@ -21,18 +21,18 @@ export const Project: React.VFC = () => {
   const ProjectList = useCallback(async () => {
     try {
       //プロジェクトアイディーに等しいproject_nameを取り出す
-      const { data: Project_name, error } = await client
-        .from("Project_name")
+      const { data: Projects, error } = await client
+        .from("Projects")
         .select("*")
-        .eq("project_id", router.query.input);
-      if (Project_name) {
+        .eq("projectId", router.query.input);
+      if (Projects) {
         setProject({
-          projectName: Project_name[0].propject_name,
-          numberOfPeople: Project_name[0].member,
-          projectId: Project_name[0].project_id,
-          userNameList: Project_name[0].Username,
+          projectName: Projects[0].projectName,
+          numberOfPeople: Projects[0].member,
+          projectId: Projects[0].projectId,
+          userNameList: Projects[0].userName,
         });
-        setNameId(Project_name[0].Username);
+        setNameId(Projects[0].userName);
       }
       if (error) {
         throw error;
@@ -57,21 +57,21 @@ export const Project: React.VFC = () => {
 
   const handleDelete = async () => {
     const { error: project_name_error } = await client
-      .from("Project_name")
-      .delete()
-      .eq("project_id", project.projectId);
-
-    const { error: List_paid_error } = await client
-      .from("List_paid")
-      .delete()
-      .eq("project_id", project.projectId);
-
-    const { error: Settlement_list_error } = await client
-      .from("Settlement_list")
+      .from("Projects")
       .delete()
       .eq("projectId", project.projectId);
 
-    if (project_name_error || List_paid_error || Settlement_list_error) {
+    const { error: PaymentList_error } = await client
+      .from("PaymentList")
+      .delete()
+      .eq("projectId", project.projectId);
+
+    const { error: SettlementList_error } = await client
+      .from("SettlementList")
+      .delete()
+      .eq("projectId", project.projectId);
+
+    if (project_name_error || PaymentList_error || SettlementList_error) {
       alert("エラーが発生しました");
     } else {
       router.push("/ProjectList.page");

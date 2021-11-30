@@ -34,20 +34,17 @@ export const UserNameModal: React.VFC<Props> = (props) => {
         return;
       }
       const { data: projectdata, error: projecterror } = await client
-        .from("Project_name")
-        .select("Username")
-        .eq("project_id", props.project.projectId);
+        .from("Projects")
+        .select("userName")
+        .eq("projectId", props.project.projectId);
       if (projectdata) {
-        projectdata[0].Username.splice(props.id, 1, value);
-
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        projectdata[0].userName.splice(props.id, 1, value);
         const { data: projectname, error: projectnameerror } = await client
-          .from("Project_name")
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          .update({ Username: projectdata[0].Username })
-          .eq("project_id", props.project.projectId);
+          .from("Projects")
+          .update({ userName: projectdata[0].userName })
+          .eq("projectId", props.project.projectId);
         if (projectname) {
-          props.setNameId(projectdata[0].Username);
+          props.setNameId(projectdata[0].userName);
           setInputvalue("");
           onClose();
         }

@@ -16,9 +16,9 @@ export const TableOnModalBody: React.VFC<Props> = memo((props) => {
   const GetList = useCallback(async () => {
     try {
       const { data, error } = await client
-        .from("List_paid")
+        .from("PaymentList")
         .select("paid,money")
-        .eq("project_id", props.project.projectId)
+        .eq("projectId", props.project.projectId)
         .eq("id", props.id);
       if (error) {
         throw error;
@@ -42,7 +42,7 @@ export const TableOnModalBody: React.VFC<Props> = memo((props) => {
           {list.map((li: any, key: any) => {
             return (
               <tr key={key}>
-                <td>{li.paid}</td>
+                <td>{li.what}</td>
                 <td>{li.money}</td>
               </tr>
             );
