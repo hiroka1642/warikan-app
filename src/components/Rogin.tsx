@@ -29,7 +29,7 @@ export const Rogin: React.VFC = () => {
           </h1>
           <div>
             <div className=" max-w-md m-auto">
-              <Auth supabaseClient={client} socialColors={true} />
+              <Auth supabaseClient={client} providers={["google"]} />
             </div>
           </div>
         </div>
