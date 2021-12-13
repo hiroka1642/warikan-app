@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useState } from "react";
-import { client } from "src/libs/supabase";
+import { client } from "../../../libs/supabase";
 
 type Props = {
   id: number;
@@ -17,7 +17,7 @@ export const TableOnModalBody: React.VFC<Props> = memo((props) => {
     try {
       const { data, error } = await client
         .from("PaymentList")
-        .select("paid,money")
+        .select("what,money")
         .eq("projectId", props.project.projectId)
         .eq("id", props.id);
       if (error) {
