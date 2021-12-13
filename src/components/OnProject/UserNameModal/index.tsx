@@ -11,9 +11,9 @@ import {
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { client } from "src/libs/supabase";
 import { InputComponent } from "../../Atom/Input";
-import type { ProjectTypes } from "src/types";
+import type { ProjectTypes } from "../../../types";
+import { client } from "../../../libs/supabase";
 
 type Props = {
   project: ProjectTypes;

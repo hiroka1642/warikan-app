@@ -1,11 +1,11 @@
 import { useRouter } from "next/dist/client/router";
 import { useCallback } from "react";
-import { client } from "src/libs/supabase";
 import { ButtonComponent } from "../../Atom/button";
 import type { ProjectTypes } from "../../../types";
 import { useEffect, useState } from "react";
-import { NeedPayList } from "src/components/OnProject/Project/PaymentList";
+import { NeedPayList } from "./PaymentList";
 import { Box } from "@chakra-ui/layout";
+import { client } from "../../../libs/supabase";
 
 export const Project: React.VFC = () => {
   const router = useRouter();
