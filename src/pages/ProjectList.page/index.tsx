@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
-import { Projects } from "src/components/Projects";
+import { Projects } from "src/components/ProjectList";
 import { Header } from "../../components/Header";
 
 const ProjectPage: React.VFC = () => {

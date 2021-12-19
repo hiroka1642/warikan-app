@@ -1,8 +1,8 @@
-import { Button, LinkOverlay } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
+import type { MouseEventHandler } from "react";
 
 type Props = {
-  href?: string;
-  onClick?: VoidFunction;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
   children: string;
   color?: string;
 };
@@ -15,7 +15,15 @@ export const ButtonComponent: React.VFC<Props> = (props: Props) => {
       onClick={props.onClick}
       shadow="xl"
     >
-      <LinkOverlay href={props.href}>{props.children}</LinkOverlay>
+      {props.children}
+    </Button>
+  );
+};
+
+export const ListButtonComponent: React.VFC<Props> = (props: Props) => {
+  return (
+    <Button color={props.color} onClick={props.onClick} padding="25px" width="full">
+      {props.children}
     </Button>
   );
 };
