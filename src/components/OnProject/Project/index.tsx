@@ -16,6 +16,7 @@ export const Project: React.VFC = () => {
     userNameList: [],
   });
   const [nameid, setNameId] = useState<string[]>([]);
+  const [hasAdd, setAdd] = useState(false);
 
   //idから、プロジェクト情報を読み込む
   const ProjectList = useCallback(async () => {
@@ -51,7 +52,7 @@ export const Project: React.VFC = () => {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   //IDをもとに名前を作成
 
@@ -101,8 +102,10 @@ export const Project: React.VFC = () => {
                   key={key}
                   nameid={nameid}
                   setNameId={setNameId}
-                  setCount={setCount}
-                  count={count}
+                  hasAdd={hasAdd}
+                  setAdd={setAdd}
+                  // setCount={setCount}
+                  // count={count}
                 />
               );
             })}
@@ -112,7 +115,9 @@ export const Project: React.VFC = () => {
             <ButtonComponent onClick={handleDelete} color="red">
               削除
             </ButtonComponent>
-            <ButtonComponent onClick={handleSetOnproject}>戻る</ButtonComponent>
+            <ButtonComponent onClick={handleSetOnproject} color="blue">
+              戻る
+            </ButtonComponent>
           </div>
         </div>
       </Box>

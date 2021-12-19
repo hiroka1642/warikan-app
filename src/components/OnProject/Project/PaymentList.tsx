@@ -11,15 +11,14 @@ type Props = {
   project: ProjectTypes;
   id: number;
   nameid: string[];
-  setCount: Dispatch<SetStateAction<number>>;
+  hasAdd: boolean;
+  setAdd: Dispatch<SetStateAction<boolean>>;
   setNameId: Dispatch<SetStateAction<string[]>>;
-  count: number;
 };
 
 export const NeedPayList: React.VFC<Props> = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [Sum, setSum] = useState(0);
-  const [hasAdd, setAdd] = useState(false);
   const [list, setList] = useState<any>([]);
 
   const handleChangeT = () => {
@@ -62,7 +61,7 @@ export const NeedPayList: React.VFC<Props> = (props) => {
 
   useEffect(() => {
     SettlementList();
-  }, [props, isOpen, Sum, hasAdd, SettlementList]);
+  }, [props, isOpen, Sum, props.hasAdd, SettlementList]);
 
   return (
     <>
@@ -75,15 +74,20 @@ export const NeedPayList: React.VFC<Props> = (props) => {
               nameid={props.nameid}
               setNameId={props.setNameId}
             >
-              <p className="w-24">{props.nameid[props.id] || props.id}</p>
+              <p className="w-24">
+                {
+                  props.nameid[props.id]
+                  // || props.id
+                }
+              </p>
             </UserNameModal>
             <ModalComponent
               project={props.project}
               id={props.id}
               nameid={props.nameid}
-              setAdd={setAdd}
-              hasAdd={hasAdd}
-              setCount={props.setCount}
+              setAdd={props.setAdd}
+              hasAdd={props.hasAdd}
+              // setCount={props.setCount}
             >
               支払
             </ModalComponent>

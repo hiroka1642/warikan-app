@@ -20,7 +20,6 @@ type Props = {
   setAdd: Dispatch<SetStateAction<boolean>>;
   id: number;
   project: ProjectTypes;
-  setCount: Dispatch<SetStateAction<number>>;
   children: string;
   nameid: string[];
   hasAdd: boolean;
@@ -51,14 +50,16 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
       if (moneyvalue == 0) {
         throw "moneyvalue";
       }
-      const { error: PaymentList_error } = await client.from("PaymentList").insert([
-        {
-          id: props.id,
-          money: moneyvalue,
-          what: value,
-          projectId: props.project.projectId,
-        },
-      ]);
+      const { error: PaymentList_error } = await client
+        .from("PaymentList")
+        .insert([
+          {
+            id: props.id,
+            money: moneyvalue,
+            what: value,
+            projectId: props.project.projectId,
+          },
+        ]);
       if (PaymentList_error) {
         throw PaymentList_error;
       }
@@ -80,8 +81,9 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
           });
         }
       });
-      const { data: SettlementList, error: SettlementList_error } =
-        await client.from("SettlementList").insert(settlement);
+      const { data: SettlementList, error: SettlementList_error } = await client
+        .from("SettlementList")
+        .insert(settlement);
       if (SettlementList_error) {
         throw SettlementList_error;
       }
@@ -94,9 +96,9 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
             return true;
           })
         );
-        props.setCount((i: number) => {
-          return i + 1;
-        });
+        // props.setCount((i: number) => {
+        //   return i + 1;
+        // });
       }
     } catch (e) {
       alert(e);
