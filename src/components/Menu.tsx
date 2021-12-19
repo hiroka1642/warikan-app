@@ -38,7 +38,7 @@ export const Menu = () => {
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
           <DrawerBody>
-            <div className="flex flex-col justify-between h-fu">
+            <div className="flex flex-col justify-between h-full">
               <div className="flex flex-col ">
                 <button
                   className="flex h-20 items-center"
