@@ -16,10 +16,11 @@ export const InputComponent: React.VFC<Props> = memo((props) => {
 
   return (
     <Input
-      isInvalid
       placeholder={props.children}
-      focusBorderColor="green.400"
-      errorBorderColor="green.200"
+      focusBorderColor="blue.300"
+      borderColor="blue.200"
+      errorBorderColor="red.200"
+      backgroundColor="white"
       value={props.value}
       onChange={handleInputvalueChange}
     />

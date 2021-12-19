@@ -13,6 +13,7 @@ export const ButtonComponent: React.VFC<Props> = (props: Props) => {
       colorScheme={props.color || "teal"}
       size="md"
       onClick={props.onClick}
+      shadow="xl"
     >
       <LinkOverlay href={props.href}>{props.children}</LinkOverlay>
     </Button>

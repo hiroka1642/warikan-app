@@ -29,14 +29,17 @@ export const Menu = () => {
 
   return (
     <>
-      <button className="sm:invisible top-0 fixed" onClick={handleOnOpen}>
-        <HamburgerIcon width="45px" height="45px" />
+      <button
+        className="sm:invisible top-0 fixed p-1 text-gray-700"
+        onClick={handleOnOpen}
+      >
+        <HamburgerIcon width="35px" height="35px" />
       </button>
 
       <Drawer placement="left" onClose={handleOnClose} isOpen={isOpen}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">メニュー</DrawerHeader>
           <DrawerBody>
             <div className="flex flex-col justify-between h-full">
               <div className="flex flex-col ">
