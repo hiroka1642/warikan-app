@@ -1,4 +1,3 @@
-import { Select } from "@chakra-ui/react";
 import { useCallback } from "react";
 import { useState } from "react";
 import { client } from "src/libs/supabase";
@@ -7,13 +6,16 @@ import { ButtonComponent } from "src/components/Atom/button";
 import { Header } from "src/components/Header";
 import { Box } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
+import { SelectComponent } from "src/components/Atom/Select";
 
 const NewProject: React.VFC = () => {
   const router = useRouter();
   const [value, setInputvalue] = useState<string>("");
-  const [selectedValue, setSelectedValue] = useState<string>("");
+  const [selectedValue, setSelectedValue] = useState<number | undefined>(
+    undefined
+  );
 
-  const handleInputvalueChange = (e: any) => {
+  const onhandleInputvalueChange = (e: any) => {
     setSelectedValue(e.target.value);
   };
 
@@ -27,10 +29,10 @@ const NewProject: React.VFC = () => {
     try {
       //プロジェクト作成
       if (value == "") {
-        throw "project name is primary";
+        throw "プロジェクト名が空白です";
       }
-      if (selectedValue == "") {
-        throw "Hom many people?";
+      if (selectedValue == null) {
+        throw "人数を入力してください";
       }
       const { data: projectdata, error: projecterror } = await client
         .from("Projects")
@@ -65,28 +67,17 @@ const NewProject: React.VFC = () => {
       >
         <Header />
         <div className="py-60 px-10 text-center h-screen ">
-          <h2 className="text-2xl mb-14">新規プロジェクト作成</h2>
+          <h2 className="text-2xl mb-14 ">新規プロジェクト作成</h2>
           <div className=" max-w-xl m-auto flex justify-between flex-col gap-y-8">
             <InputComponent value={value} setInputvalue={setInputvalue}>
               プロジェクト名
             </InputComponent>
-            <Select
-              placeholder="人数を選択してください"
+            <SelectComponent
               value={selectedValue}
-              onChange={handleInputvalueChange}
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </Select>
-
+              placeholder="人数を選択してください"
+              handleInputvalueChange={onhandleInputvalueChange}
+              numberOfPeople={10}
+            />
             <ButtonComponent color="blue" onClick={handleProject}>
               作成
             </ButtonComponent>
