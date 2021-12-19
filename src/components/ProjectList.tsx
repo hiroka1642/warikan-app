@@ -1,11 +1,10 @@
-import { Box } from "@chakra-ui/layout";
 import { useRouter } from "next/dist/client/router";
 import type { Dispatch, SetStateAction } from "react";
 import { useEffect } from "react";
 
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
-import { ButtonComponent } from "./Atom/button";
+import { ButtonComponent, ListButtonComponent } from "./Atom/button";
 
 type Props = {
   setList: Dispatch<SetStateAction<string[]>>;
@@ -47,10 +46,10 @@ export const Projects: React.VFC<Props> = (props) => {
     ProjectList();
   }, [ProjectList]);
 
-  const handleClick = async (li: any) => {
+  const handleClick = async (id: any) => {
     router.push({
       pathname: "/Project.page", //URL
-      query: { input: li.target.value }, //検索クエリ
+      query: { input: id }, //検索クエリ
     });
   };
 
@@ -61,28 +60,21 @@ export const Projects: React.VFC<Props> = (props) => {
         <ul className=" mx-auto max-w-xl my-10  ">
           {props.list?.map((li: any, key: any) => {
             return (
-              <li className="text-xl my-4" key={key}>
-                <Box
-                  as="button"
-                  borderRadius="md"
-                  border="2px"
-                  borderColor="skyblue"
-                  bg="white"
-                  color="gray"
-                  w="full"
-                  h={14}
-                  textAlign="left"
-                  paddingLeft={3}
-                  value={li.id}
-                  onClick={handleClick}
+              <li className="text-xl my-4 w-full" key={key}>
+                <ListButtonComponent
+                  color="gray.600"
+                  // eslint-disable-next-line react/jsx-handler-names
+                  onClick={() => {
+                    return handleClick(li.id);
+                  }}
                 >
                   {li.name}
-                </Box>
+                </ListButtonComponent>
               </li>
             );
           })}
         </ul>
-        <ButtonComponent color="red" onClick={handleNewProjectPage}>
+        <ButtonComponent color="blue" onClick={handleNewProjectPage}>
           新規プロジェクト
         </ButtonComponent>
       </div>
