@@ -20,11 +20,10 @@ const NewProject: React.VFC = () => {
   };
 
   const handleProject = useCallback(async () => {
-    //[null,null,null....]
-    const username = [];
-    for (let i = 0; i < Number(selectedValue); i++) {
-      username.push(null);
-    }
+    //[1,2,3,4..]
+    const username = [...Array(Number(selectedValue))].map((_, i: number) => {
+      return ++i;
+    });
 
     try {
       //プロジェクト作成
@@ -55,7 +54,7 @@ const NewProject: React.VFC = () => {
     } catch (e) {
       alert(e);
     }
-  }, [selectedValue, value, router]);
+  }, [value, selectedValue, router]);
 
   return (
     <>

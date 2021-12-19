@@ -62,7 +62,7 @@ export const AddPayment: React.VFC<Props> = memo((props) => {
               }}
             >
               <p className="text-xl hover:text-green-800 p-1 font-bold">
-                {props.nameid[li] || li}
+                {props.nameid[li]}
               </p>
             </Checkbox>
           );

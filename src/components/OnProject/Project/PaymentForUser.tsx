@@ -19,9 +19,7 @@ export const PaymentForUser = (props: Props) => {
   return (
     <>
       <tr onClick={handleOpen}>
-        <td className="px-3">
-          {props.li === null ? props.number : props.li}へ
-        </td>
+        <td className="px-3">{props.li}へ</td>
         <td className="px-3">{props.sum}円</td>
       </tr>
       {isOpen === true ? (

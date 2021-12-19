@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const SelectComponent = (props: Props) => {
-  const minitues = [...Array(props.numberOfPeople)].map((_, i: number) => {
+  const numbers = [...Array(props.numberOfPeople)].map((_, i: number) => {
     return ++i;
   });
 
@@ -22,7 +22,7 @@ export const SelectComponent = (props: Props) => {
       value={props.value}
       onChange={props.handleInputvalueChange}
     >
-      {minitues.map((number) => {
+      {numbers.map((number) => {
         return (
           <option value={number} key={number}>
             {number}

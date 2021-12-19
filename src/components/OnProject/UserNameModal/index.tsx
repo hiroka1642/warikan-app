@@ -80,7 +80,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
           <ModalCloseButton />
           <ModalBody>
             <InputComponent value={value} setInputvalue={setInputvalue}>
-              {props.nameid[props.id] || props.id}
+              {props.nameid[props.id] }
             </InputComponent>
           </ModalBody>
           <ModalFooter>
