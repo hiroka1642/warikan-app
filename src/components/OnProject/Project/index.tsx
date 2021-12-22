@@ -104,8 +104,6 @@ export const Project: React.VFC = () => {
                   setNameId={setNameId}
                   hasAdd={hasAdd}
                   setAdd={setAdd}
-                  // setCount={setCount}
-                  // count={count}
                 />
               );
             })}
