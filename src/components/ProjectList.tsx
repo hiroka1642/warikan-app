@@ -1,18 +1,15 @@
 import { useRouter } from "next/dist/client/router";
-import type { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
 import { ButtonComponent, ListButtonComponent } from "./Atom/button";
 
-type Props = {
-  setList: Dispatch<SetStateAction<string[]>>;
-  list: string[];
-};
-
-export const Projects: React.VFC<Props> = (props) => {
+export const Projects: React.VFC = () => {
   const router = useRouter();
+  const [list, setList] = useState<string[]>([]);
+
   const handleNewProjectPage = useCallback(() => {
     router.push("/NewProject");
   }, [router]);
@@ -32,7 +29,7 @@ export const Projects: React.VFC<Props> = (props) => {
             id: Projects[i].projectId,
           });
         }
-        props.setList([...items]);
+        setList([...items]);
       }
       if (error) {
         throw error;
@@ -40,7 +37,7 @@ export const Projects: React.VFC<Props> = (props) => {
     } catch (e) {
       alert(e);
     }
-  }, [props]);
+  }, []);
 
   useEffect(() => {
     ProjectList();
@@ -58,7 +55,7 @@ export const Projects: React.VFC<Props> = (props) => {
       <div className=" text-center m-auto  px-3 pt-12 sm:pt-52 ">
         <h2 className="text-2xl">チーム一覧</h2>
         <ul className=" mx-auto max-w-xl my-10  ">
-          {props.list?.map((li: any, key: any) => {
+          {list?.map((li: any, key: any) => {
             return (
               <li className="text-xl my-4 w-full" key={key}>
                 <ListButtonComponent

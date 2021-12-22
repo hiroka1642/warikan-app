@@ -16,7 +16,7 @@ type Props = {
   setNameId: Dispatch<SetStateAction<string[]>>;
 };
 
-export const NeedPayList: React.VFC<Props> = (props) => {
+export const PaymentList: React.VFC<Props> = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [Sum, setSum] = useState(0);
   const [list, setList] = useState<any>([]);

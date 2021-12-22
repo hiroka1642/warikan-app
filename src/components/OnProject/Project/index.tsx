@@ -3,8 +3,7 @@ import { useCallback } from "react";
 import { ButtonComponent } from "../../Atom/button";
 import type { ProjectTypes } from "../../../types";
 import { useEffect, useState } from "react";
-import { NeedPayList } from "./PaymentList";
-import { Box } from "@chakra-ui/layout";
+import { PaymentList } from "./PaymentList";
 import { client } from "../../../libs/supabase";
 
 export const Project: React.VFC = () => {
@@ -84,41 +83,34 @@ export const Project: React.VFC = () => {
 
   return (
     <>
-      <Box
-        backgroundImage="url(.//AfterLoginBackgroundImage.jpg)"
-        backgroundSize="cover"
-        backgroundColor="rgba(255,255,255,0.3)"
-        backgroundBlendMode="lighten"
-      >
-        <div className=" pt-16 sm:pt-40 h-screen">
-          <p className="text-4xl text-center p-4">{project.projectName}</p>
+      <div className=" pt-16 sm:pt-40 ">
+        <p className="text-4xl text-center p-4">{project.projectName}</p>
 
-          <ul className=" m-auto bg-white bg-opacity-30 ">
-            {membername.map((i, key) => {
-              return (
-                <NeedPayList
-                  project={project}
-                  id={i}
-                  key={key}
-                  nameid={nameid}
-                  setNameId={setNameId}
-                  hasAdd={hasAdd}
-                  setAdd={setAdd}
-                />
-              );
-            })}
-          </ul>
+        <ul className=" m-auto bg-white bg-opacity-30 ">
+          {membername.map((i, key) => {
+            return (
+              <PaymentList
+                project={project}
+                id={i}
+                key={key}
+                nameid={nameid}
+                setNameId={setNameId}
+                hasAdd={hasAdd}
+                setAdd={setAdd}
+              />
+            );
+          })}
+        </ul>
 
-          <div className="text-center mt-12 flex justify-center gap-4">
-            <ButtonComponent onClick={handleDelete} color="red">
-              削除
-            </ButtonComponent>
-            <ButtonComponent onClick={handleSetOnproject} color="blue">
-              戻る
-            </ButtonComponent>
-          </div>
+        <div className="text-center mt-12 flex justify-center gap-4">
+          <ButtonComponent onClick={handleDelete} color="red">
+            削除
+          </ButtonComponent>
+          <ButtonComponent onClick={handleSetOnproject} color="blue">
+            戻る
+          </ButtonComponent>
         </div>
-      </Box>
+      </div>
     </>
   );
 };

@@ -1,24 +1,15 @@
-import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { Layout } from "src/components/Atom/Layout";
 import { Projects } from "src/components/ProjectList";
 import { Header } from "../../components/Header";
 
 const ProjectPage: React.VFC = () => {
-  const [list, setList] = useState<string[]>([]);
 
   return (
     <>
-      <Box
-        backgroundImage="url(.//AfterLoginBackgroundImage.jpg)"
-        backgroundSize="cover"
-        backgroundColor="rgba(255,255,255,0.3)"
-        backgroundBlendMode="lighten"
-      >
-        <div className="h-screen">
-          <Header />
-          <Projects list={list} setList={setList} />
-        </div>
-      </Box>
+      <Layout>
+        <Header />
+        <Projects  />
+      </Layout>
     </>
   );
 };

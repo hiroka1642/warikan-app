@@ -4,9 +4,9 @@ import { client } from "src/libs/supabase";
 import { InputComponent } from "src/components/Atom/Input";
 import { ButtonComponent } from "src/components/Atom/button";
 import { Header } from "src/components/Header";
-import { Box } from "@chakra-ui/react";
 import { useRouter } from "next/dist/client/router";
 import { SelectComponent } from "src/components/Atom/Select";
+import { Layout } from "src/components/Atom/Layout";
 
 const NewProject: React.VFC = () => {
   const router = useRouter();
@@ -58,14 +58,9 @@ const NewProject: React.VFC = () => {
 
   return (
     <>
-      <Box
-        backgroundImage="url(.//AfterLoginBackgroundImage.jpg)"
-        backgroundSize="cover"
-        backgroundColor="rgba(255,255,255,0.3)"
-        backgroundBlendMode="lighten"
-      >
+      <Layout>
         <Header />
-        <div className="py-60 px-10 text-center h-screen ">
+        <div className="py-60 px-10 text-center">
           <h2 className="text-2xl mb-14 ">新規プロジェクト作成</h2>
           <div className=" max-w-xl m-auto flex justify-between flex-col gap-y-8">
             <InputComponent value={value} setInputvalue={setInputvalue}>
@@ -82,7 +77,7 @@ const NewProject: React.VFC = () => {
             </ButtonComponent>
           </div>
         </div>
-      </Box>
+      </Layout>
     </>
   );
 };

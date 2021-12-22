@@ -1,11 +1,14 @@
 import { Header } from "src/components/Header";
+import { Layout } from "src/components/Atom/Layout";
 import { Project } from "../../components/OnProject/Project";
 
 const OnProjectPage = () => {
   return (
     <>
-      <Header />
-      <Project />
+      <Layout>
+        <Header />
+        <Project />
+      </Layout>
     </>
   );
 };
