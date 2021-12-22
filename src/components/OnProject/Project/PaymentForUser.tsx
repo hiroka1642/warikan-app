@@ -18,7 +18,10 @@ export const PaymentForUser = (props: Props) => {
 
   return (
     <>
-      <tr onClick={handleOpen}>
+      <tr
+        onClick={handleOpen}
+        className="hover:text-blue-600 font-bold cursor-pointer"
+      >
         <td className="px-3">{props.li}へ</td>
         <td className="px-3">{props.sum}円</td>
       </tr>

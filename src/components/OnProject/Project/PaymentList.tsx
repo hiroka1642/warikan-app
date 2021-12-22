@@ -6,6 +6,7 @@ import { UserNameModal } from "../UserNameModal";
 import type { ProjectTypes } from "../../../types";
 import { PaymentForEachUser } from "./PaymentForEachUser";
 import { client } from "../../../libs/supabase";
+import { Button } from "@chakra-ui/button";
 
 type Props = {
   project: ProjectTypes;
@@ -74,11 +75,7 @@ export const PaymentList: React.VFC<Props> = (props) => {
               nameid={props.nameid}
               setNameId={props.setNameId}
             >
-              <p className="w-24">
-                {
-                  props.nameid[props.id]
-                }
-              </p>
+              <p className="w-24">{props.nameid[props.id]}</p>
             </UserNameModal>
             <ModalComponent
               project={props.project}
@@ -91,16 +88,38 @@ export const PaymentList: React.VFC<Props> = (props) => {
             </ModalComponent>
           </div>
 
-          <div className=" flex text-3xl text-right mr-10">
-            <div>{Sum}</div>
-            {isOpen && list[0] ? (
-              <ChevronUpIcon onClick={handleChangeF} />
-            ) : (
-              <ChevronDownIcon onClick={handleChangeT} />
-            )}
+          <div className=" flex text-3xl text-right mr-10 ">
+            <div >{Sum}</div>
+            <div className="h-5 w-5">
+              {list[0] ? (
+                isOpen ? (
+                  <Button
+                    fontSize="20px"
+                    padding="0"
+                    marginLeft="10px"
+                    borderRadius="50%"
+                    onClick={handleChangeF}
+                    variant="ghost"
+                  >
+                    <ChevronUpIcon />
+                  </Button>
+                ) : (
+                  <Button
+                    fontSize="20px"
+                    padding="0"
+                    marginLeft="10px"
+                    borderRadius="50%"
+                    onClick={handleChangeT}
+                    variant="ghost"
+                  >
+                    <ChevronDownIcon />
+                  </Button>
+                )
+              ) : null}
+            </div>
           </div>
         </div>
-        {isOpen && list[0] ? (
+        {isOpen ? (
           <>
             <PaymentForEachUser list={list} nameid={props.nameid} />
           </>
