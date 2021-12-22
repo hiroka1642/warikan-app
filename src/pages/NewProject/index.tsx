@@ -7,6 +7,7 @@ import { Header } from "src/components/Header";
 import { useRouter } from "next/dist/client/router";
 import { SelectComponent } from "src/components/Atom/Select";
 import { Layout } from "src/components/Atom/Layout";
+import { Auth } from "@supabase/ui";
 
 const NewProject: React.VFC = () => {
   const router = useRouter();
@@ -14,12 +15,16 @@ const NewProject: React.VFC = () => {
   const [selectedValue, setSelectedValue] = useState<number | undefined>(
     undefined
   );
+  const { user } = Auth.useUser();
 
   const onhandleInputvalueChange = (e: any) => {
     setSelectedValue(e.target.value);
   };
 
   const handleProject = useCallback(async () => {
+    if (!user) {
+      return;
+    }
     //[1,2,3,4..]
     const username = [...Array(Number(selectedValue))].map((_, i: number) => {
       return ++i;
@@ -40,6 +45,8 @@ const NewProject: React.VFC = () => {
             projectName: value,
             member: selectedValue,
             userName: username,
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            user_id: user.id,
           },
         ]);
       if (projectdata) {
@@ -54,7 +61,7 @@ const NewProject: React.VFC = () => {
     } catch (e) {
       alert(e);
     }
-  }, [value, selectedValue, router]);
+  }, [user, selectedValue, value, router]);
 
   return (
     <>
