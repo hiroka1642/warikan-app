@@ -46,7 +46,7 @@ export const Menu = () => {
                 <button
                   className="flex h-20 items-center"
                   // eslint-disable-next-line arrow-body-style
-                  onClick={() => handleRouter("/NewProject")}
+                  onClick={() => handleRouter("/ProjectList.page")}
                 >
                   <ListIcon color={"rgba(30, 64, 175)"} />
                   チーム一覧
@@ -54,7 +54,7 @@ export const Menu = () => {
                 <button
                   className="flex h-20 items-center"
                   // eslint-disable-next-line arrow-body-style
-                  onClick={() => handleRouter("/Project.page")}
+                  onClick={() => handleRouter("/NewProject")}
                 >
                   <NewList color={"rgba(30, 64, 175)"} />
                   新規チーム作成
