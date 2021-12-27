@@ -96,9 +96,7 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
             return true;
           })
         );
-        // props.setCount((i: number) => {
-        //   return i + 1;
-        // });
+     
       }
     } catch (e) {
       alert(e);

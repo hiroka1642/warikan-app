@@ -50,8 +50,6 @@ export const Project: React.VFC = () => {
     return i;
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // const [count, setCount] = useState(0);
 
   //IDをもとに名前を作成
 
