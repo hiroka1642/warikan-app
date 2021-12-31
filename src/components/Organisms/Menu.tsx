@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/hooks";
-import { ListIcon, LogoutIcon, NewList } from "./Atom/Icon";
+import { ListIcon, LogoutIcon, NewList } from "../Atom/Icons";
 import { useRouter } from "next/dist/client/router";
 
 import {
@@ -9,8 +9,9 @@ import {
   DrawerHeader,
   DrawerOverlay,
 } from "@chakra-ui/modal";
-import { LogoutComponent } from "./Atom/LogoutLink";
+import { LinkButton } from "../Atom/LinkButton";
 import { HamburgerIcon } from "@chakra-ui/icons";
+import { client } from "src/libs/supabase";
 
 export const Menu = () => {
   const router = useRouter();
@@ -25,6 +26,11 @@ export const Menu = () => {
   };
   const handleRouter = (url: string) => {
     router.push(url);
+  };
+
+  const handleLogout = () => {
+    client.auth.signOut();
+    router.push("/");
   };
 
   return (
@@ -43,30 +49,30 @@ export const Menu = () => {
           <DrawerBody>
             <div className="flex flex-col justify-between h-full">
               <div className="flex flex-col ">
-                <button
-                  className="flex h-20 items-center"
-                  // eslint-disable-next-line arrow-body-style
-                  onClick={() => handleRouter("/ProjectList.page")}
+                <LinkButton
+                  // eslint-disable-next-line react/jsx-handler-names
+                  onClick={() => {
+                    return handleRouter("/ProjectList.page");
+                  }}
                 >
                   <ListIcon color={"rgba(30, 64, 175)"} />
                   チーム一覧
-                </button>
-                <button
-                  className="flex h-20 items-center"
-                  // eslint-disable-next-line arrow-body-style
-                  onClick={() => handleRouter("/NewProject")}
+                </LinkButton>
+
+                <LinkButton
+                  // eslint-disable-next-line react/jsx-handler-names
+                  onClick={() => {
+                    return handleRouter("/ProjectList.page");
+                  }}
                 >
                   <NewList color={"rgba(30, 64, 175)"} />
                   新規チーム作成
-                </button>
+                </LinkButton>
               </div>
-              <div className=" flex h-24 items-center ">
-                <LogoutComponent
-                  icon={<LogoutIcon color={"rgba(30, 64, 175)"} />}
-                >
-                  ログアウト
-                </LogoutComponent>
-              </div>
+              <LinkButton onClick={handleLogout}>
+                <p>ログアウト</p>
+                <LogoutIcon color={"rgba(30, 64, 175)"} />
+              </LinkButton>
             </div>
           </DrawerBody>
         </DrawerContent>

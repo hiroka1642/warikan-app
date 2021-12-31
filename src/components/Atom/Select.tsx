@@ -1,4 +1,3 @@
-import { Select } from "@chakra-ui/select";
 import type { ChangeEventHandler } from "react";
 
 type Props = {
@@ -14,13 +13,10 @@ export const SelectComponent = (props: Props) => {
   });
 
   return (
-    <Select
-      focusBorderColor="blue.300"
-      borderColor="blue.200"
-      backgroundColor="white"
+    <select
       placeholder={props.placeholder}
       value={props.value}
-      onChange={props.handleInputvalueChange}
+      onBlur={props.handleInputvalueChange}
     >
       {numbers.map((number) => {
         return (
@@ -29,6 +25,6 @@ export const SelectComponent = (props: Props) => {
           </option>
         );
       })}
-    </Select>
+    </select>
   );
 };

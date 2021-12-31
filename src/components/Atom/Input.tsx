@@ -1,4 +1,3 @@
-import { Input } from "@chakra-ui/react";
 import { memo } from "react";
 import type { Dispatch, SetStateAction } from "react";
 
@@ -15,14 +14,19 @@ export const InputComponent: React.VFC<Props> = memo((props) => {
   };
 
   return (
-    <Input
-      placeholder={props.children}
-      focusBorderColor="blue.300"
-      borderColor="blue.200"
-      errorBorderColor="red.200"
-      backgroundColor="white"
+    <input
       value={props.value}
+      placeholder={props.children}
       onChange={handleInputvalueChange}
     />
+    // <Input
+    //   placeholder={props.children}
+    //   focusBorderColor="blue.300"
+    //   borderColor="blue.200"
+    //   errorBorderColor="red.200"
+    //   backgroundColor="white"
+    //   value={props.value}
+    //   onChange={handleInputvalueChange}
+    // />
   );
 });

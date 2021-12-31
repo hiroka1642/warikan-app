@@ -11,9 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { InputComponent } from "../../Atom/Input";
-import type { ProjectTypes } from "../../../types";
-import { client } from "../../../libs/supabase";
+import { InputComponent } from "../Atom/Input";
+import type { ProjectTypes } from "../../types";
+import { client } from "../../libs/supabase";
+import { ButtonComponent } from "src/components/Atom/button";
 
 type Props = {
   project: ProjectTypes;
@@ -69,9 +70,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
 
   return (
     <>
-      <Button onClick={handleOnOpen} variant="ghost">
-        {props.children}
-      </Button>
+      <ButtonComponent onClick={handleOnOpen}>{props.nameid[props.id]}</ButtonComponent>
 
       <Modal isOpen={isOpen} onClose={handleOnClose}>
         <ModalOverlay />
@@ -80,10 +79,12 @@ export const UserNameModal: React.VFC<Props> = (props) => {
           <ModalCloseButton />
           <ModalBody>
             <InputComponent value={value} setInputvalue={setInputvalue}>
-              {props.nameid[props.id] }
+              {props.nameid[props.id]}
             </InputComponent>
           </ModalBody>
           <ModalFooter>
+            <ButtonComponent onClick={handleOnOpen}> 閉じる</ButtonComponent>
+
             <Button colorScheme="blue" mr={3} onClick={handleOnClose}>
               閉じる
             </Button>

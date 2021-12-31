@@ -1,6 +1,6 @@
 import { Layout } from "src/components/Atom/Layout";
 import { Projects } from "src/components/ProjectList";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/Templates/Header";
 
 const ProjectPage: React.VFC = () => {
 

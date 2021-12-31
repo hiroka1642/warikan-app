@@ -3,7 +3,7 @@ import { useState } from "react";
 import { client } from "src/libs/supabase";
 import { InputComponent } from "src/components/Atom/Input";
 import { ButtonComponent } from "src/components/Atom/button";
-import { Header } from "src/components/Header";
+import { Header } from "src/components/Templates/Header";
 import { useRouter } from "next/dist/client/router";
 import { SelectComponent } from "src/components/Atom/Select";
 import { Layout } from "src/components/Atom/Layout";
