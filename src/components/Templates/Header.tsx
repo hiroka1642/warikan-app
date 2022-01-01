@@ -23,19 +23,16 @@ export const Header: React.VFC = () => {
       </div>
 
       <div className=" sm:visible invisible ">
-        <header
-          className=" sm:flex-row flex  justify-between bg-white
-              bg-opacity-30  p-12  h-auto w-screen fixed top-0"
-        >
-          <div className="flex flex-row  gap-6 ">
+        <header className=" sm:flex-row flex  justify-between font-normal text-lg bg-indigo-600 text-white px-12 w-screen fixed top-0 ">
+          <div className="flex flex-row ">
             <LinkButton
               // eslint-disable-next-line react/jsx-handler-names
               onClick={() => {
                 return handleRouter("/ProjectList.page");
               }}
             >
-              <ListIcon color={"rgba(30, 64, 175)"} />
-              チーム一覧
+              <ListIcon color={"white"} />
+              <p>チーム一覧</p>
             </LinkButton>
 
             <LinkButton
@@ -44,15 +41,19 @@ export const Header: React.VFC = () => {
                 return handleRouter("/ProjectList.page");
               }}
             >
-              <NewList color={"rgba(30, 64, 175)"} />
-              新規チーム作成
+              <NewList color={"white"} />
+              <p>新規チーム作成</p>
             </LinkButton>
           </div>
-          <div>みんなでわりかん。</div>
+          <div className="flex ">
+            <div className="text-white font-bold text-2xl p-7">
+              みんなでわりかん。
+            </div>
             <LinkButton onClick={handleLogout}>
               <p>ログアウト</p>
-              <LogoutIcon color={"rgba(30, 64, 175)"} />
+              <LogoutIcon color={"white"} />
             </LinkButton>
+          </div>
         </header>
       </div>
     </>
