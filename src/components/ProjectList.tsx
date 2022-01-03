@@ -4,18 +4,14 @@ import { useEffect } from "react";
 
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
-import { ButtonComponent, ListButtonComponent } from "./Atom/button";
+import { ListButtonComponent } from "./Atom/button";
 
-export const Projects: React.VFC = () => {
+export const ProjectList: React.VFC = () => {
   const router = useRouter();
   const [list, setList] = useState<string[]>([]);
 
-  const handleNewProjectPage = useCallback(() => {
-    router.push("/NewProject");
-  }, [router]);
-
   //リストを取得する
-  const ProjectList = useCallback(async () => {
+  const GetProjectList = useCallback(async () => {
     try {
       const { data: Projects, error } = await client
         .from("Projects")
@@ -40,8 +36,8 @@ export const Projects: React.VFC = () => {
   }, []);
 
   useEffect(() => {
-    ProjectList();
-  }, [ProjectList]);
+    GetProjectList();
+  }, [GetProjectList]);
 
   const handleClick = async (id: any) => {
     router.push({
@@ -52,13 +48,12 @@ export const Projects: React.VFC = () => {
 
   return (
     <>
-      <div className="text-center">
-        <ul className="mx-auto max-w-xl my-10">
+      <div>
+        <ul className="mx-auto max-w-2xl w-full my-10">
           {list?.map((li: any, key: any) => {
             return (
-              <li className="text-xl my-4 w-full" key={key}>
+              <li className="m-2" key={key}>
                 <ListButtonComponent
-                  color="gray.600"
                   // eslint-disable-next-line react/jsx-handler-names
                   onClick={() => {
                     return handleClick(li.id);
@@ -70,9 +65,6 @@ export const Projects: React.VFC = () => {
             );
           })}
         </ul>
-        <ButtonComponent color="blue" onClick={handleNewProjectPage}>
-          新規プロジェクト
-        </ButtonComponent>
       </div>
     </>
   );
