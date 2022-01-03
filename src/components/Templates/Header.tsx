@@ -18,44 +18,42 @@ export const Header: React.VFC = () => {
 
   return (
     <>
-      <div className="sm:invisible visible ">
+      <header className="sm:invisible visible  bg-indigo-600 text-white px-3 w-screen fixed top-0">
         <SidePanelBasic />
-      </div>
+      </header>
 
-      <div className=" sm:visible invisible ">
-        <header className="flex  justify-between font-normal text-base bg-indigo-600 text-white px-12 w-screen fixed top-0">
-          <div className="flex items-center">
-            <LinkButton
-              // eslint-disable-next-line react/jsx-handler-names
-              onClick={() => {
-                return handleRouter("/ProjectList.page");
-              }}
-            >
-              <ListIcon color={"white"} />
-              <p>チーム一覧</p>
-            </LinkButton>
+      <header className="sm:visible invisible flex  justify-between  font-normal text-base bg-indigo-600 text-white px-12 w-screen fixed top-0">
+        <div className="flex items-center ">
+          <LinkButton
+            // eslint-disable-next-line react/jsx-handler-names
+            onClick={() => {
+              return handleRouter("/ProjectList.page");
+            }}
+          >
+            <ListIcon color={"white"} />
+            <p>チーム一覧</p>
+          </LinkButton>
 
-            <LinkButton
-              // eslint-disable-next-line react/jsx-handler-names
-              onClick={() => {
-                return handleRouter("/NewProject");
-              }}
-            >
-              <NewList color={"white"} />
-              <p>新規チーム作成</p>
-            </LinkButton>
+          <LinkButton
+            // eslint-disable-next-line react/jsx-handler-names
+            onClick={() => {
+              return handleRouter("/NewProject");
+            }}
+          >
+            <NewList color={"white"} />
+            <p>新規チーム作成</p>
+          </LinkButton>
+        </div>
+        <div className="flex items-center ">
+          <div className="text-white font-bold text-2xl  p-7 whitespace-nowrap">
+            みんなでわりかん。
           </div>
-          <div className="flex items-center">
-            <div className="text-white font-bold text-2xl  p-7 whitespace-nowrap">
-              みんなでわりかん。
-            </div>
-            <LinkButton onClick={handleLogout}>
-              <p>ログアウト</p>
-              <LogoutIcon color={"white"} />
-            </LinkButton>
-          </div>
-        </header>
-      </div>
+          <LinkButton onClick={handleLogout}>
+            <p>ログアウト</p>
+            <LogoutIcon color={"white"} />
+          </LinkButton>
+        </div>
+      </header>
     </>
   );
 };

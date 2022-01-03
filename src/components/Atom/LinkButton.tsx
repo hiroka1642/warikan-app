@@ -8,7 +8,7 @@ type Props = {
 export const LinkButton: React.VFC<Props> = (props) => {
   return (
     <button
-      className="flex gap-1 p-7 items-center hover:bg-indigo-500 h-full"
+      className="flex gap-1 p-7 items-center hover:bg-indigo-500 h-full whitespace-nowrap"
       onClick={props.onClick}
     >
       {props.children}

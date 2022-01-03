@@ -1,7 +1,9 @@
-import { Button, SidePanel, Typography } from "@supabase/ui";
+import { HamburgerIcon } from "@chakra-ui/icons";
+import { SidePanel, Typography } from "@supabase/ui";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 import { client } from "src/libs/supabase";
+import { ButtonComponent } from "../Atom/button";
 import { ListIcon, LogoutIcon, NewList } from "../Atom/Icons";
 import { LinkButton2 } from "../Atom/LinkButton";
 
@@ -23,9 +25,9 @@ export const SidePanelBasic = () => {
 
   return (
     <>
-      <Button type="default" onClick={handleToggle}>
-        みんなでわりかん。
-      </Button>
+      <ButtonComponent onClick={handleToggle} className="text-2xl p-4">
+        <HamburgerIcon />
+      </ButtonComponent>
       <SidePanel
         align="left"
         visible={isVisible}
