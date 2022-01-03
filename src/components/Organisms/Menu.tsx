@@ -1,33 +1,21 @@
-import { useDisclosure } from "@chakra-ui/hooks";
-import { ListIcon, LogoutIcon, NewList } from "../Atom/Icons";
+import { Button, SidePanel, Typography } from "@supabase/ui";
 import { useRouter } from "next/dist/client/router";
-
-import {
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-} from "@chakra-ui/modal";
-import { LinkButton } from "../Atom/LinkButton";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { useState } from "react";
 import { client } from "src/libs/supabase";
+import { ListIcon, LogoutIcon, NewList } from "../Atom/Icons";
+import { LinkButton2 } from "../Atom/LinkButton";
 
-export const Menu = () => {
+export const SidePanelBasic = () => {
+  const [isVisible, setVisible] = useState(false);
   const router = useRouter();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleOnOpen = () => {
-    onOpen();
-  };
-
-  const handleOnClose = () => {
-    onClose();
-  };
   const handleRouter = (url: string) => {
     router.push(url);
   };
 
+  const handleToggle = () => {
+    setVisible(!isVisible);
+  };
   const handleLogout = () => {
     client.auth.signOut();
     router.push("/");
@@ -35,48 +23,50 @@ export const Menu = () => {
 
   return (
     <>
-      <button
-        className="sm:invisible top-0 fixed p-1 text-gray-700"
-        onClick={handleOnOpen}
+      <Button type="default" onClick={handleToggle}>
+        みんなでわりかん。
+      </Button>
+      <SidePanel
+        align="left"
+        visible={isVisible}
+        title="みんなでわりかん。"
+        onCancel={handleToggle}
+        hideFooter
       >
-        <HamburgerIcon width="35px" height="35px" />
-      </button>
-
-      <Drawer placement="left" onClose={handleOnClose} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">メニュー</DrawerHeader>
-          <DrawerBody>
-            <div className="flex flex-col justify-between h-full">
-              <div className="flex flex-col ">
-                <LinkButton
-                  // eslint-disable-next-line react/jsx-handler-names
-                  onClick={() => {
-                    return handleRouter("/ProjectList.page");
-                  }}
-                >
-                  <ListIcon color={"rgba(30, 64, 175)"} />
-                  チーム一覧
-                </LinkButton>
-
-                <LinkButton
-                  // eslint-disable-next-line react/jsx-handler-names
-                  onClick={() => {
-                    return handleRouter("/ProjectList.page");
-                  }}
-                >
-                  <NewList color={"rgba(30, 64, 175)"} />
-                  新規チーム作成
-                </LinkButton>
-              </div>
-              <LinkButton onClick={handleLogout}>
-                <p>ログアウト</p>
-                <LogoutIcon color={"rgba(30, 64, 175)"} />
-              </LinkButton>
+        <Typography.Text className="flex justify-between flex-col h-full  ">
+          <div className="w-full">
+            <div className="h-20">
+              <LinkButton2
+                // eslint-disable-next-line react/jsx-handler-names
+                onClick={() => {
+                  return handleRouter("/ProjectList.page");
+                }}
+              >
+                <ListIcon />
+                <p>グループ一覧</p>
+              </LinkButton2>
             </div>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+            <div className="h-20">
+              <LinkButton2
+                // eslint-disable-next-line react/jsx-handler-names
+                onClick={() => {
+                  return handleRouter("/NewProject");
+                }}
+              >
+                <NewList />
+                <p>新規チーム作成</p>
+              </LinkButton2>
+            </div>
+          </div>
+
+          <div className="h-20 w-full mb-4">
+            <LinkButton2 onClick={handleLogout}>
+              <p>ログアウト</p>
+              <LogoutIcon />
+            </LinkButton2>
+          </div>
+        </Typography.Text>
+      </SidePanel>
     </>
   );
 };

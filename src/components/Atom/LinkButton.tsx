@@ -7,7 +7,21 @@ type Props = {
 
 export const LinkButton: React.VFC<Props> = (props) => {
   return (
-    <button className="flex gap-1 p-7 items-center hover:bg-indigo-500 h-full " onClick={props.onClick}>
+    <button
+      className="flex gap-1 p-7 items-center hover:bg-indigo-500 h-full"
+      onClick={props.onClick}
+    >
+      {props.children}
+    </button>
+  );
+};
+
+export const LinkButton2: React.VFC<Props> = (props) => {
+  return (
+    <button
+      className="flex gap-1 p-7 items-center hover:bg-gray-200 h-full w-full"
+      onClick={props.onClick}
+    >
       {props.children}
     </button>
   );
