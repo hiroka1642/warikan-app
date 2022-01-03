@@ -52,9 +52,8 @@ export const Projects: React.VFC = () => {
 
   return (
     <>
-      <div className=" text-center m-auto  px-3 pt-12 sm:pt-52 ">
-        <h2 className="text-2xl">チーム一覧</h2>
-        <ul className=" mx-auto max-w-xl my-10  ">
+      <div className="text-center">
+        <ul className="mx-auto max-w-xl my-10">
           {list?.map((li: any, key: any) => {
             return (
               <li className="text-xl my-4 w-full" key={key}>

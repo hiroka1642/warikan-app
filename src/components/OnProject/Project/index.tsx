@@ -5,6 +5,7 @@ import type { ProjectTypes } from "../../../types";
 import { useEffect, useState } from "react";
 import { PaymentList } from "./PaymentList";
 import { client } from "../../../libs/supabase";
+import { Title } from "src/components/Atom/Title";
 
 export const Project: React.VFC = () => {
   const router = useRouter();
@@ -50,7 +51,6 @@ export const Project: React.VFC = () => {
     return i;
   });
 
-
   //IDをもとに名前を作成
 
   const handleDelete = async () => {
@@ -81,9 +81,8 @@ export const Project: React.VFC = () => {
 
   return (
     <>
+      <Title>{project.projectName}</Title>
       <div className=" pt-16 sm:pt-40 ">
-        <p className="text-4xl text-center p-4">{project.projectName}</p>
-
         <ul className=" m-auto bg-white bg-opacity-30 ">
           {membername.map((i, key) => {
             return (

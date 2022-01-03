@@ -8,6 +8,7 @@ import { useRouter } from "next/dist/client/router";
 import { SelectComponent } from "src/components/Atom/Select";
 import { Layout } from "src/components/Atom/Layout";
 import { Auth } from "@supabase/ui";
+import { Title } from "src/components/Atom/Title";
 
 const NewProject: React.VFC = () => {
   const router = useRouter();
@@ -65,10 +66,10 @@ const NewProject: React.VFC = () => {
 
   return (
     <>
+      <Header />
       <Layout>
-        <Header />
+        <Title>新規プロジェクト作成</Title>
         <div className="py-60 px-10 text-center">
-          <h2 className="text-2xl mb-14 ">新規プロジェクト作成</h2>
           <div className=" max-w-xl m-auto flex justify-between flex-col gap-y-8">
             <InputComponent value={value} setInputvalue={setInputvalue}>
               プロジェクト名

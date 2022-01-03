@@ -5,8 +5,8 @@ import { Project } from "../../components/OnProject/Project";
 const OnProjectPage = () => {
   return (
     <>
+      <Header />
       <Layout>
-        <Header />
         <Project />
       </Layout>
     </>
