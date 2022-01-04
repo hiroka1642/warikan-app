@@ -1,42 +1,44 @@
 import { useCallback } from "react";
 import { useState } from "react";
 import { client } from "src/libs/supabase";
-import { InputComponent } from "src/components/Atom/Input";
 import { ButtonComponent } from "src/components/Atom/button";
 import { Header } from "src/components/Templates/Header";
 import { useRouter } from "next/dist/client/router";
-import { SelectComponent } from "src/components/Atom/Select";
 import { Layout } from "src/components/Atom/Layout";
 import { Auth } from "@supabase/ui";
 import { Title } from "src/components/Atom/Title";
+import { InputWithLabel } from "src/components/Molecules/InputWithLabel";
+import { SelectBoxWithLabel } from "src/components/Molecules/selectBoxWithLabel";
 
 const NewProject: React.VFC = () => {
+  // [1,2,3,4..]
+  const numberOfPeople = [...Array(20)].map((_, i: number) => {
+    return { id: ++i };
+  });
+  const [selected, setSelected] = useState(numberOfPeople[0]);
   const router = useRouter();
   const [value, setInputvalue] = useState<string>("");
-  const [selectedValue, setSelectedValue] = useState<number | undefined>(
-    undefined
-  );
   const { user } = Auth.useUser();
 
-  const onhandleInputvalueChange = (e: any) => {
-    setSelectedValue(e.target.value);
+  const username = [...Array(Number(selected.id))].map((_, i: number) => {
+    return ++i;
+  });
+
+  const handleSetInputValue = (e: any) => {
+    setInputvalue(e.target.value);
   };
 
   const handleProject = useCallback(async () => {
     if (!user) {
       return;
     }
-    //[1,2,3,4..]
-    const username = [...Array(Number(selectedValue))].map((_, i: number) => {
-      return ++i;
-    });
 
     try {
       //プロジェクト作成
       if (value == "") {
         throw "プロジェクト名が空白です";
       }
-      if (selectedValue == null) {
+      if (selected == null) {
         throw "人数を入力してください";
       }
       const { data: projectdata, error: projecterror } = await client
@@ -44,7 +46,7 @@ const NewProject: React.VFC = () => {
         .insert([
           {
             projectName: value,
-            member: selectedValue,
+            member: selected,
             userName: username,
             // eslint-disable-next-line @typescript-eslint/naming-convention
             user_id: user.id,
@@ -62,29 +64,31 @@ const NewProject: React.VFC = () => {
     } catch (e) {
       alert(e);
     }
-  }, [user, selectedValue, value, router]);
+  }, [user, value, selected, username, router]);
 
   return (
     <>
       <Header />
       <Layout>
-        <Title>新規プロジェクト作成</Title>
-        <div className="py-60 px-10 text-center">
-          <div className=" max-w-xl m-auto flex justify-between flex-col gap-y-8">
-            <InputComponent value={value} setInputvalue={setInputvalue}>
-              プロジェクト名
-            </InputComponent>
-            <SelectComponent
-              value={selectedValue}
-              placeholder="人数を選択してください"
-              handleInputvalueChange={onhandleInputvalueChange}
-              numberOfPeople={10}
-            />
-            <ButtonComponent color="blue" onClick={handleProject}>
-              作成
-            </ButtonComponent>
-          </div>
+        <Title>新規グループ作成</Title>
+        <div className=" max-w-xl m-auto py-24 flex gap-10 flex-col">
+          <InputWithLabel
+            name="グループ名"
+            value={value}
+            onChange={handleSetInputValue}
+            placeholder="グループ名を入力してください"
+          />
+          <SelectBoxWithLabel
+            items={numberOfPeople}
+            // eslint-disable-next-line react/jsx-handler-names
+            onChange={setSelected}
+            value={selected}
+            name="人数"
+          />
         </div>
+        <ButtonComponent onClick={handleProject} className="w-1/3">
+          作成
+        </ButtonComponent>
       </Layout>
     </>
   );
