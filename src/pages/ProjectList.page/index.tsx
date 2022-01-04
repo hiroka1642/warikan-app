@@ -18,8 +18,8 @@ const ProjectPage: React.VFC = () => {
       <Layout>
         <Title>グループ一覧</Title>
         <ProjectList />
-        <ButtonComponent color="blue" onClick={handleNewProjectPage}>
-          新規プロジェクト
+        <ButtonComponent className="w-1/3" onClick={handleNewProjectPage}>
+          新規グループ作成
         </ButtonComponent>
       </Layout>
     </>
