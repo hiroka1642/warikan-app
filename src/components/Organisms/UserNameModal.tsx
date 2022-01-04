@@ -7,14 +7,16 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Button,
 } from "@chakra-ui/react";
 import { useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { InputComponent } from "../Atom/Input";
 import type { ProjectTypes } from "../../types";
 import { client } from "../../libs/supabase";
-import { ButtonComponent } from "src/components/Atom/button";
+import {
+  ButtonComponent,
+  GrayButtonComponent,
+} from "src/components/Atom/button";
 
 type Props = {
   project: ProjectTypes;
@@ -22,6 +24,7 @@ type Props = {
   setNameId: Dispatch<SetStateAction<string[]>>;
   children: JSX.Element;
   nameid: string[];
+  name: string;
 };
 
 export const UserNameModal: React.VFC<Props> = (props) => {
@@ -67,10 +70,13 @@ export const UserNameModal: React.VFC<Props> = (props) => {
   const handleOnClose = () => {
     onClose();
   };
+  const handleChangeInputValue = (e: any) => {
+    setInputvalue(e.target.value);
+  };
 
   return (
     <>
-      <ButtonComponent onClick={handleOnOpen}>{props.nameid[props.id]}</ButtonComponent>
+      <ButtonComponent onClick={handleOnOpen}>{props.name}</ButtonComponent>
 
       <Modal isOpen={isOpen} onClose={handleOnClose}>
         <ModalOverlay />
@@ -78,17 +84,19 @@ export const UserNameModal: React.VFC<Props> = (props) => {
           <ModalHeader>名前変更</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <InputComponent value={value} setInputvalue={setInputvalue}>
-              {props.nameid[props.id]}
-            </InputComponent>
+            <InputComponent
+              value={value}
+              onChange={handleChangeInputValue}
+              placeholder={props.name}
+            />
           </ModalBody>
           <ModalFooter>
-            <ButtonComponent onClick={handleOnOpen}> 閉じる</ButtonComponent>
-
-            <Button colorScheme="blue" mr={3} onClick={handleOnClose}>
+            <GrayButtonComponent onClick={handleOnClose}>
               閉じる
-            </Button>
-            <Button onClick={handleChangeName}>変更する</Button>
+            </GrayButtonComponent>
+            <ButtonComponent onClick={handleChangeName}>
+              変更する
+            </ButtonComponent>
           </ModalFooter>
         </ModalContent>
       </Modal>
