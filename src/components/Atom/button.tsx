@@ -22,7 +22,7 @@ export const GrayButtonComponent: React.VFC<Props> = (props: Props) => {
   return (
     <button
       type="submit"
-      className={`m-1 inline-flex font-bold justify-center py-3 px-4 border border-transparent text-sm  rounded text-gray-600 hover:bg-gray-400 bg-gray-300 transition-colors ${props.className}`}
+      className={`m-1 inline-flex font-bold justify-center py-3 px-4 border border-transparent text-sm  rounded text-gray-800 border-indigo-300 hover:bg-gray-100 bg-white transition-colors ${props.className}`}
       onClick={props.onClick}
     >
       {props.children}

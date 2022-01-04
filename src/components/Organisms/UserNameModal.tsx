@@ -81,7 +81,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
       <Modal isOpen={isOpen} onClose={handleOnClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>名前変更</ModalHeader>
+          <ModalHeader>名前を変更する</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <InputComponent
