@@ -12,6 +12,7 @@ export const ButtonComponent: React.VFC<Props> = (props: Props) => {
     <button
       type="submit"
       className={`inline-flex font-bold justify-center py-3 px-4 border border-transparent text-sm  rounded text-white bg-indigo-500 hover:bg-indigo-700 transition-colors ${props.className}`}
+      onClick={props.onClick}
     >
       {props.children}
     </button>
