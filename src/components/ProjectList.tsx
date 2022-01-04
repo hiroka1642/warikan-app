@@ -40,10 +40,7 @@ export const ProjectList: React.VFC = () => {
   }, [GetProjectList]);
 
   const handleClick = async (id: any) => {
-    router.push({
-      pathname: "/Project.page", //URL
-      query: { input: id }, //検索クエリ
-    });
+    router.push(`/Project.page/${id}`);
   };
 
   return (

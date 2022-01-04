@@ -2,7 +2,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useCallback, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { ModalComponent } from "../PaymentModal";
-import { UserNameModal } from "../../Organisms/ChangeUserNameModal";
+import { UserNameModal } from "../../Organisms/UserNameModal";
 import type { ProjectTypes } from "../../../types";
 import { PaymentForEachUser } from "./PaymentForEachUser";
 import { client } from "../../../libs/supabase";
@@ -10,6 +10,7 @@ import { Button } from "@chakra-ui/button";
 
 type Props = {
   project: ProjectTypes;
+  name: string;
   id: number;
   nameid: string[];
   hasAdd: boolean;
@@ -29,6 +30,8 @@ export const PaymentList: React.VFC<Props> = (props) => {
   const handleChangeF = () => {
     setOpen(false);
   };
+
+  // console.log(list);
 
   //リストを取得
   const SettlementList = useCallback(async () => {
@@ -61,7 +64,9 @@ export const PaymentList: React.VFC<Props> = (props) => {
   }, [props.id, props.project]);
 
   useEffect(() => {
-    SettlementList();
+    if (props.project) {
+      SettlementList();
+    }
   }, [props, isOpen, Sum, props.hasAdd, SettlementList]);
 
   return (
@@ -74,8 +79,9 @@ export const PaymentList: React.VFC<Props> = (props) => {
               id={props.id}
               nameid={props.nameid}
               setNameId={props.setNameId}
+              name={props.name}
             >
-              <p className="w-24">{props.nameid[props.id]}</p>
+              <p className="w-24">{props.name}</p>
             </UserNameModal>
             <ModalComponent
               project={props.project}
@@ -89,7 +95,7 @@ export const PaymentList: React.VFC<Props> = (props) => {
           </div>
 
           <div className=" flex text-3xl text-right mr-10 ">
-            <div >{Sum}</div>
+            <div>{Sum}</div>
             <div className="h-5 w-5">
               {list[0] ? (
                 isOpen ? (
