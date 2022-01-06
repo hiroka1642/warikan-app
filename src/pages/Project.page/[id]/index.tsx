@@ -6,6 +6,7 @@ import { useRouter } from "next/dist/client/router";
 import { useCallback, useEffect, useState } from "react";
 import type { ProjectTypes } from "src/types";
 import { client } from "src/libs/supabase";
+import { AddPaymentModal } from "src/components/OnProject/AddPaymentModalNew";
 
 const OnProjectPage = () => {
   const router = useRouter();
@@ -51,6 +52,9 @@ const OnProjectPage = () => {
       <Header />
       <Layout>
         <Title>{project.projectName}</Title>
+        <AddPaymentModal project={project} id={2} nameid={nameid}>
+          たてかえを追加
+        </AddPaymentModal>
         <Project project={project} nameid={nameid} setNameId={setNameId} />
       </Layout>
     </>

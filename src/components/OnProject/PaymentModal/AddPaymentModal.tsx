@@ -13,7 +13,6 @@ import { memo, useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { client } from "src/libs/supabase";
 import { AddPayment } from "./AddPayment";
-import { TableOnModalBody } from "./TableOnModalBody";
 import type { ProjectTypes } from "src/types";
 
 type Props = {
@@ -23,6 +22,8 @@ type Props = {
   children: string;
   nameid: string[];
   hasAdd: boolean;
+  member: any;
+  setMemberValue: any;
 };
 
 // eslint-disable-next-line react/display-name
@@ -30,17 +31,12 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [value, setInputvalue] = useState("");
   const [moneyvalue, setMoneyValue] = useState<number | null>(null);
-  const [member, setMemberValue] = useState(0);
 
   const [checkedItems, setCheckedItems] = useState(
     [...Array(props.project.numberOfPeople)].map(() => {
       return true;
     })
   );
-
-  const handleAdd = useCallback(() => {
-    props.setAdd(true);
-  }, [props]);
 
   const handleCloseAdd = useCallback(async () => {
     try {
@@ -121,50 +117,31 @@ export const ModalComponent: React.VFC<Props> = memo((props) => {
       <Modal isOpen={isOpen} onClose={handleOnClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
-            {props.nameid[props.id] || props.id}さんの支払い
-          </ModalHeader>
+          <ModalHeader>たてかえ追加</ModalHeader>
           <ModalCloseButton />
-          {props.hasAdd ? (
-            <>
-              <ModalBody>
-                <AddPayment
-                  value={value}
-                  setInputvalue={setInputvalue}
-                  moneyvalue={moneyvalue}
-                  setMoneyValue={setMoneyValue}
-                  project={props.project}
-                  checkedItems={checkedItems}
-                  setCheckedItems={setCheckedItems}
-                  nameid={props.nameid}
-                  member={member}
-                  setMemberValue={setMemberValue}
-                />
-              </ModalBody>
-              <ModalFooter>
-                <Button colorScheme="blue" mr={3} onClick={handleOnClose}>
-                  閉じる
-                </Button>
-                <Button variant="ghost" onClick={handleCloseAdd}>
-                  追加する
-                </Button>
-              </ModalFooter>
-            </>
-          ) : (
-            <>
-              <ModalBody>
-                <TableOnModalBody id={props.id} project={props.project} />
-              </ModalBody>
-              <ModalFooter>
-                <Button colorScheme="blue" mr={3} onClick={handleOnClose}>
-                  閉じる
-                </Button>
-                <Button variant="ghost" onClick={handleAdd}>
-                  追加する
-                </Button>
-              </ModalFooter>
-            </>
-          )}
+
+          <ModalBody>
+            <AddPayment
+              value={value}
+              setInputvalue={setInputvalue}
+              moneyvalue={moneyvalue}
+              setMoneyValue={setMoneyValue}
+              project={props.project}
+              checkedItems={checkedItems}
+              setCheckedItems={setCheckedItems}
+              nameid={props.nameid}
+              member={props.member}
+              setMemberValue={props.setMemberValue}
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={handleOnClose}>
+              閉じる
+            </Button>
+            <Button variant="ghost" onClick={handleCloseAdd}>
+              追加する
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

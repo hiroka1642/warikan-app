@@ -5,17 +5,20 @@ type Props = {
   value: any;
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
   placeholder?: string;
+  type?: string;
+  className?: string;
 };
 
 // eslint-disable-next-line react/display-name
 export const InputComponent: React.VFC<Props> = memo((props) => {
   return (
-    <input
-      type="text"
-      className="  px-3 block focus:ring-blue-500 focus:border-blue-500 text-gray-700 relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg shadow-md cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm"
-      value={props.value}
-      onChange={props.onChange}
-      placeholder={props.placeholder}
-    />
+    <div className={`${props.className}`}>
+      <input
+        type={props.type || "text"}
+        className=" my-1 px-3 block ring-1 border-none outline-none focus:ring-indigo-500 ring-gray-300 text-gray-700 relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg cursor-default  sm:text-sm"
+        onChange={props.onChange}
+        placeholder={props.placeholder}
+      />
+    </div>
   );
 });

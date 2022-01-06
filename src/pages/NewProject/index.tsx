@@ -13,16 +13,18 @@ import { SelectBoxWithLabel } from "src/components/Molecules/selectBoxWithLabel"
 const NewProject: React.VFC = () => {
   // [1,2,3,4..]
   const numberOfPeople = [...Array(20)].map((_, i: number) => {
-    return { id: ++i };
+    return ++i;
   });
   const [selected, setSelected] = useState(numberOfPeople[0]);
   const router = useRouter();
   const [value, setInputvalue] = useState<string>("");
   const { user } = Auth.useUser();
 
-  const username = [...Array(Number(selected.id))].map((_, i: number) => {
+  const username = [...Array(Number(selected))].map((_, i: number) => {
     return ++i;
   });
+
+ 
 
   const handleSetInputValue = (e: any) => {
     setInputvalue(e.target.value);

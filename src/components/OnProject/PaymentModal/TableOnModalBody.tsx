@@ -6,12 +6,9 @@ type Props = {
   project: any;
 };
 
-//idごとの支払い履歴を表示する
-
 // eslint-disable-next-line react/display-name
 export const TableOnModalBody: React.VFC<Props> = memo((props) => {
   const [list, setList] = useState<string[]>([]);
-  //プロジェクトアイディーと、IDから支払ったリストを取得
 
   const GetList = useCallback(async () => {
     try {
