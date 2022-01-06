@@ -11,23 +11,23 @@ import {
 import { useCallback, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { InputComponent } from "../Atom/Input";
-import type { ProjectTypes } from "../../types";
+// import type { ProjectTypes } from "../../types";
 import { client } from "../../libs/supabase";
 import {
   ButtonComponent,
   GrayButtonComponent,
 } from "src/components/Atom/button";
+import { useRouter } from "next/dist/client/router";
 
 type Props = {
-  project: ProjectTypes;
   id: number;
   setNameId: Dispatch<SetStateAction<string[]>>;
-  children: JSX.Element;
   nameid: string[];
   name: string;
 };
 
 export const UserNameModal: React.VFC<Props> = (props) => {
+  const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [value, setInputvalue] = useState<string>("");
 
@@ -40,13 +40,13 @@ export const UserNameModal: React.VFC<Props> = (props) => {
       const { data: projectdata, error: projecterror } = await client
         .from("Projects")
         .select("userName")
-        .eq("projectId", props.project.projectId);
+        .eq("projectId", router.query.id);
       if (projectdata) {
         projectdata[0].userName.splice(props.id, 1, value);
         const { data: projectname, error: projectnameerror } = await client
           .from("Projects")
           .update({ userName: projectdata[0].userName })
-          .eq("projectId", props.project.projectId);
+          .eq("projectId", router.query.id);
         if (projectname) {
           props.setNameId(projectdata[0].userName);
           setInputvalue("");
@@ -62,7 +62,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
     } catch (e) {
       alert(e);
     }
-  }, [value, props, setInputvalue, onClose]);
+  }, [value, router.query.id, props, onClose]);
 
   const handleOnOpen = () => {
     onOpen();
@@ -76,7 +76,9 @@ export const UserNameModal: React.VFC<Props> = (props) => {
 
   return (
     <>
-      <ButtonComponent onClick={handleOnOpen}>{props.name}</ButtonComponent>
+      <GrayButtonComponent onClick={handleOnOpen}>
+        {props.name}
+      </GrayButtonComponent>
 
       <Modal isOpen={isOpen} onClose={handleOnClose}>
         <ModalOverlay />

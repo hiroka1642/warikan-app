@@ -2,7 +2,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useCallback, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { ModalComponent } from "../PaymentModal";
-import { UserNameModal } from "../../Organisms/UserNameModal";
+import { UserNameModal } from "../../Templates/UserNameModal";
 import type { ProjectTypes } from "../../../types";
 import { PaymentForEachUser } from "./PaymentForEachUser";
 import { client } from "../../../libs/supabase";
@@ -30,8 +30,6 @@ export const PaymentList: React.VFC<Props> = (props) => {
   const handleChangeF = () => {
     setOpen(false);
   };
-
-  // console.log(list);
 
   //リストを取得
   const SettlementList = useCallback(async () => {
@@ -75,14 +73,12 @@ export const PaymentList: React.VFC<Props> = (props) => {
         <div className="flex justify-between py-3 items-center">
           <div className="text-right">
             <UserNameModal
-              project={props.project}
               id={props.id}
               nameid={props.nameid}
               setNameId={props.setNameId}
               name={props.name}
-            >
-              <p className="w-24">{props.name}</p>
-            </UserNameModal>
+            />
+
             <ModalComponent
               project={props.project}
               id={props.id}

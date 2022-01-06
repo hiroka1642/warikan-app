@@ -6,7 +6,8 @@ import { useRouter } from "next/dist/client/router";
 import { useCallback, useEffect, useState } from "react";
 import type { ProjectTypes } from "src/types";
 import { client } from "src/libs/supabase";
-import { AddPaymentModal } from "src/components/OnProject/AddPaymentModalNew";
+import { AddPaymentModal } from "src/components/Templates/AddPaymentModal";
+import { GrayButtonComponent } from "src/components/Atom/button";
 
 const OnProjectPage = () => {
   const router = useRouter();
@@ -47,6 +48,10 @@ const OnProjectPage = () => {
     ProjectList();
   }, [ProjectList]);
 
+  const handleEditNamePage = () => {
+    router.push(`/EditName.page/${router.query.id}`);
+  };
+
   return (
     <>
       <Header />
@@ -55,6 +60,10 @@ const OnProjectPage = () => {
         <AddPaymentModal project={project} id={2} nameid={nameid}>
           たてかえを追加
         </AddPaymentModal>
+        <GrayButtonComponent onClick={handleEditNamePage} className="w-full">
+          メンバーを編集する
+        </GrayButtonComponent>
+
         <Project project={project} nameid={nameid} setNameId={setNameId} />
       </Layout>
     </>
