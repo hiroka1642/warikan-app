@@ -12,7 +12,7 @@ import { memo, useCallback, useState } from "react";
 import { client } from "src/libs/supabase";
 import type { ProjectTypes } from "src/types";
 import { ButtonComponent, GrayButtonComponent } from "../Atom/button";
-import { AddPayment } from "./PaymentModal/AddPayment";
+import { AddPayment } from "../OnProject/PaymentModal/AddPayment";
 
 type Props = {
   id: number;
