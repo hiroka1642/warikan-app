@@ -18,6 +18,7 @@ export const ButtonComponent: React.VFC<Props> = (props: Props) => {
     </button>
   );
 };
+
 export const GrayButtonComponent: React.VFC<Props> = (props: Props) => {
   return (
     <button

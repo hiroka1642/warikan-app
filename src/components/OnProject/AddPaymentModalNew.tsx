@@ -7,11 +7,11 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
-  Button,
 } from "@chakra-ui/react";
 import { memo, useCallback, useState } from "react";
 import { client } from "src/libs/supabase";
 import type { ProjectTypes } from "src/types";
+import { ButtonComponent, GrayButtonComponent } from "../Atom/button";
 import { AddPayment } from "./PaymentModal/AddPayment";
 
 type Props = {
@@ -27,7 +27,6 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
   const [value, setInputvalue] = useState("");
   const [moneyvalue, setMoneyValue] = useState<number | null>(null);
   const [member, setMemberValue] = useState("メンバーを選択してください");
-  
 
   const [checkedItems, setCheckedItems] = useState(
     [...Array(props.project.numberOfPeople)].map(() => {
@@ -108,7 +107,12 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
 
   return (
     <>
-      <Button onClick={handleOnOpen}>{props.children}</Button>
+      <ButtonComponent
+        onClick={handleOnOpen}
+        className="w-full rounded-lg mt-6"
+      >
+        {props.children}
+      </ButtonComponent>
 
       <Modal isOpen={isOpen} onClose={handleOnClose}>
         <ModalOverlay />
@@ -131,12 +135,11 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
             />
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={handleOnClose}>
+            <GrayButtonComponent onClick={handleOnClose}>
               閉じる
-            </Button>
-            <Button variant="ghost" onClick={handleCloseAdd}>
-              追加する
-            </Button>
+            </GrayButtonComponent>
+
+            <ButtonComponent onClick={handleCloseAdd}>追加する</ButtonComponent>
           </ModalFooter>
         </ModalContent>
       </Modal>
