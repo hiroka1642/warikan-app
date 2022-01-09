@@ -15,7 +15,6 @@ import { ButtonComponent, GrayButtonComponent } from "../Atom/button";
 import { AddPayment } from "../Organisms/AddPayment";
 
 type Props = {
-  id: number;
   project: ProjectTypes;
   children: string;
   nameid: string[];
@@ -46,7 +45,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
         .from("PaymentList")
         .insert([
           {
-            id: props.id,
+            id: member,
             money: moneyvalue,
             what: value,
             projectId: props.project.projectId,
@@ -67,7 +66,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
           settlement.push({
             id: id,
             money: `${Math.ceil(moneyvalue / newItems.length)}`,
-            payer: props.id,
+            payer: member,
             projectId: props.project.projectId,
             what: value,
           });
@@ -91,7 +90,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
     } catch (e) {
       alert(e);
     }
-  }, [value, moneyvalue, props, checkedItems, setInputvalue, setMoneyValue]);
+  }, [value, moneyvalue, member, props.project.projectId, props.project.numberOfPeople, checkedItems]);
 
   const handleOnOpen = () => {
     onOpen();

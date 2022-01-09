@@ -16,7 +16,7 @@ export const SelectBox = (props: Props) => {
       <Listbox value={props.value} onChange={props.onChange}>
         <div className="relative mt-1 ">
           <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg ring-1 ring-gray-300 focus:ring-indigo-500 cursor-default  sm:text-sm">
-            <span className="block truncate">{props.value}</span>
+            <span className="block truncate">{props.items[props.value]}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <SelectorIcon
                 className="w-5 h-5 text-gray-400"
@@ -43,7 +43,7 @@ export const SelectBox = (props: Props) => {
                       }
                           cursor-default select-none relative py-2 pl-10 pr-4`;
                     }}
-                    value={item}
+                    value={idx}
                   >
                     {({ active }) => {
                       return (

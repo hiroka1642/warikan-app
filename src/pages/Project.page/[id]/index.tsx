@@ -8,6 +8,7 @@ import type { ProjectTypes } from "src/types";
 import { client } from "src/libs/supabase";
 import { AddPaymentModal } from "src/components/Templates/AddPaymentModal";
 import { GrayButtonComponent } from "src/components/Atom/button";
+import { PaymentTabs } from "src/components/Templates/PaymentTabs";
 
 const OnProjectPage = () => {
   const router = useRouter();
@@ -57,12 +58,13 @@ const OnProjectPage = () => {
       <Header />
       <Layout>
         <Title>{project.projectName}</Title>
-        <AddPaymentModal project={project} id={2} nameid={nameid}>
+        <AddPaymentModal project={project} nameid={nameid}>
           たてかえを追加
         </AddPaymentModal>
         <GrayButtonComponent onClick={handleEditNamePage} className="w-full">
           メンバーを編集する
         </GrayButtonComponent>
+        <PaymentTabs project={project} nameid={nameid} />
 
         <Project project={project} nameid={nameid} setNameId={setNameId} />
       </Layout>

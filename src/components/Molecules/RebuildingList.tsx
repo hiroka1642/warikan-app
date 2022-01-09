@@ -1,22 +1,21 @@
 import { memo, useCallback, useEffect, useState } from "react";
-import { client } from "../../../libs/supabase";
+import { client } from "../../libs/supabase";
 
 type Props = {
-  id: number;
   project: any;
+  nameid: string[];
 };
 
 // eslint-disable-next-line react/display-name
-export const TableOnModalBody: React.VFC<Props> = memo((props) => {
+export const RebuildingList: React.VFC<Props> = memo((props) => {
   const [list, setList] = useState<string[]>([]);
 
   const GetList = useCallback(async () => {
     try {
       const { data, error } = await client
         .from("PaymentList")
-        .select("what,money")
-        .eq("projectId", props.project.projectId)
-        .eq("id", props.id);
+        .select("what,money,id")
+        .eq("projectId", props.project.projectId);
       if (error) {
         throw error;
       }
@@ -26,7 +25,7 @@ export const TableOnModalBody: React.VFC<Props> = memo((props) => {
     } catch (e) {
       alert(e);
     }
-  }, [props.id, props.project, setList]);
+  }, [props.project, setList]);
 
   useEffect(() => {
     GetList();
@@ -34,13 +33,14 @@ export const TableOnModalBody: React.VFC<Props> = memo((props) => {
 
   return (
     <>
-      <table className="text-xl w-64">
+      <table className="text-base text-justify w-full">
         <tbody>
           {list.map((li: any, key: any) => {
             return (
               <tr key={key}>
-                <td>{li.what}</td>
-                <td>{li.money}</td>
+                <td>{li.what}代</td>
+                <td>{props.nameid[li.id]}さん</td>
+                <td>{li.money}円</td>
               </tr>
             );
           })}
