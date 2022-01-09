@@ -74,55 +74,58 @@ export const PaymentList = (props: Props) => {
 
   return (
     <>
-      <div className="flex border-b-2 border-dashed">
-        <div className=" whitespace-nowrap w-1/3 text-justify">
-          {props.nameArr[props.id]}
-        </div>
+      {list.length === 0 && giveMelist.length === 0 ? null : (
+        <div className="flex border-b-2 border-dashed">
+          <div className=" whitespace-nowrap w-1/3 text-justify">
+            {props.nameArr[props.id]}
+          </div>
+          <table className="text-base w-full text-justify ">
+            <tbody>
+              {props.nameArr.map((_, key) => {
+                const UserList = list.filter((item: any) => {
+                  return item.payer === key;
+                });
+                const GiveMeUserList = giveMelist.filter((item: any) => {
+                  return item.id === key;
+                });
+                if (UserList.length === 0 && GiveMeUserList.length === 0) {
+                  return;
+                } else {
+                  return (
+                    <>
+                      {UserList?.map((li: any, key: number) => {
+                        return (
+                          <>
+                            <tr key={key} className="text-red-500">
+                              <td>→</td>
+                              <td className="w-1/3">
+                                {props.nameArr[li.payer]}
+                              </td>
+                              <td className="w-1/3">{li.what}代</td>
+                              <td className="w-1/3">{li.money}円</td>
+                            </tr>
+                          </>
+                        );
+                      })}
 
-        <table className="text-base w-full text-justify ">
-          <tbody>
-            {props.nameArr.map((_, key) => {
-              const UserList = list.filter((item: any) => {
-                return item.payer === key;
-              });
-              const GiveMeUserList = giveMelist.filter((item: any) => {
-                return item.id === key;
-              });
-              if (UserList.length === 0 && GiveMeUserList.length === 0) {
-                return;
-              } else {
-                return (
-                  <>
-                    {UserList?.map((li: any, key: number) => {
-                      return (
-                        <>
-                          <tr key={key} className="text-red-500">
-                            <td>→</td>
-                            <td className="w-1/3">{props.nameArr[li.payer]}</td>
+                      {GiveMeUserList?.map((li: any, key: number) => {
+                        return (
+                          <tr key={key} className="text-blue-500">
+                            <td>←</td>
+                            <td className="w-1/3">{props.nameArr[li.id]}</td>
                             <td className="w-1/3">{li.what}代</td>
                             <td className="w-1/3">{li.money}円</td>
                           </tr>
-                        </>
-                      );
-                    })}
-
-                    {GiveMeUserList?.map((li: any, key: number) => {
-                      return (
-                        <tr key={key} className="text-blue-500">
-                          <td>←</td>
-                          <td className="w-1/3">{props.nameArr[li.id]}</td>
-                          <td className="w-1/3">{li.what}代</td>
-                          <td className="w-1/3">{li.money}円</td>
-                        </tr>
-                      );
-                    })}
-                  </>
-                );
-              }
-            })}
-          </tbody>
-        </table>
-      </div>
+                        );
+                      })}
+                    </>
+                  );
+                }
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
   );
 };

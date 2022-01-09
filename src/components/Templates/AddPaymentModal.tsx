@@ -79,13 +79,14 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
         throw SettlementList_error;
       }
       if (SettlementList) {
-        setInputvalue("");
-        setMoneyValue(0);
+        setMoneyValue(null);
+        setMemberValue("メンバーを追加してください");
         setCheckedItems(
           [...Array(props.project.numberOfPeople)].map(() => {
             return true;
           })
         );
+        setInputvalue("");
       }
     } catch (e) {
       alert(e);

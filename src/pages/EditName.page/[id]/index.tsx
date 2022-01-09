@@ -38,7 +38,7 @@ const EditName: React.VFC = () => {
     <>
       <Header />
       <Layout>
-        <Title>メンバーを編集する</Title>
+        <Title isBackButton>メンバーを編集する</Title>
         <div>名前を変更したいメンバーを選択してください</div>
         {memberName?.map((member: string, key) => {
           return (

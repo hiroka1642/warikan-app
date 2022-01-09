@@ -18,6 +18,7 @@ export const InputComponent: React.VFC<Props> = memo((props) => {
         type={props.type || "text"}
         className=" my-1 px-3 block ring-1 border-none outline-none focus:ring-indigo-500 ring-gray-300 text-gray-700 relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg cursor-default  sm:text-sm"
         onChange={props.onChange}
+        value={props.value}
         placeholder={props.placeholder}
       />
     </div>

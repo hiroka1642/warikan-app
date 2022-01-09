@@ -1,16 +1,12 @@
 import { Header } from "src/components/Templates/Header";
 import { Layout } from "src/components/Atom/Layout";
-// import { Project } from "../../../components/OnProject/Project";
 import { Title } from "src/components/Atom/Title";
 import { useRouter } from "next/dist/client/router";
 import { useCallback, useEffect, useState } from "react";
 import type { ProjectTypes } from "src/types";
 import { client } from "src/libs/supabase";
 import { AddPaymentModal } from "src/components/Templates/AddPaymentModal";
-import {
-  ButtonComponent,
-  GrayButtonComponent,
-} from "src/components/Atom/button";
+import { GrayButtonComponent } from "src/components/Atom/button";
 import { PaymentTabs } from "src/components/Templates/PaymentTabs";
 
 const OnProjectPage = () => {
@@ -79,15 +75,11 @@ const OnProjectPage = () => {
     }
   };
 
-  const handleBackPage = () => {
-    router.push("/ProjectList.page");
-  };
-
   return (
     <>
       <Header />
       <Layout>
-        <Title>{project.projectName}</Title>
+        <Title isBackButton>{project.projectName}</Title>
         <AddPaymentModal project={project} nameArr={nameArr}>
           たてかえを追加
         </AddPaymentModal>
@@ -96,11 +88,10 @@ const OnProjectPage = () => {
         </GrayButtonComponent>
         <PaymentTabs project={project} nameArr={nameArr} />
         <div className="text-center mt-12 flex justify-center gap-4">
-          <ButtonComponent onClick={handleDelete}>削除</ButtonComponent>
-          <ButtonComponent onClick={handleBackPage}>戻る</ButtonComponent>
+          <GrayButtonComponent onClick={handleDelete}>
+            グループを削除
+          </GrayButtonComponent>
         </div>
-
-        {/* <Project project={project} nameArr={nameArr} setNameArr={setNameArr} /> */}
       </Layout>
     </>
   );

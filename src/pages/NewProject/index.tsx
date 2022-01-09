@@ -69,7 +69,7 @@ const NewProject: React.VFC = () => {
     <>
       <Header />
       <Layout>
-        <Title>新規グループ作成</Title>
+        <Title isBackButton>新規グループ作成</Title>
         <div className=" max-w-xl m-auto py-24 flex gap-10 flex-col">
           <InputWithLabel
             name="グループ名"
