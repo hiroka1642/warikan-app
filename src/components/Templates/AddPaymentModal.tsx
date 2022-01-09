@@ -17,7 +17,7 @@ import { AddPayment } from "../Organisms/AddPayment";
 type Props = {
   project: ProjectTypes;
   children: string;
-  nameid: string[];
+  nameArr: string[];
 };
 
 // eslint-disable-next-line react/display-name
@@ -90,7 +90,14 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
     } catch (e) {
       alert(e);
     }
-  }, [value, moneyvalue, member, props.project.projectId, props.project.numberOfPeople, checkedItems]);
+  }, [
+    value,
+    moneyvalue,
+    member,
+    props.project.projectId,
+    props.project.numberOfPeople,
+    checkedItems,
+  ]);
 
   const handleOnOpen = () => {
     onOpen();
@@ -130,7 +137,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
               project={props.project}
               checkedItems={checkedItems}
               setCheckedItems={setCheckedItems}
-              nameid={props.nameid}
+              nameArr={props.nameArr}
             />
           </ModalBody>
           <ModalFooter>

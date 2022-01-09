@@ -46,8 +46,8 @@ const EditName: React.VFC = () => {
               <UserNameModal
                 name={member}
                 id={key}
-                nameid={memberName}
-                setNameId={setMemberName}
+                nameArr={memberName}
+                setNameArr={setMemberName}
               />
             </>
           );

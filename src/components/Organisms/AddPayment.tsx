@@ -13,7 +13,7 @@ type Props = {
   setMoneyValue: Dispatch<SetStateAction<number | null>>;
   checkedItems: boolean[];
   setCheckedItems: Dispatch<SetStateAction<boolean[]>>;
-  nameid: string[];
+  nameArr: string[];
   member: any;
   setMemberValue: any;
 };

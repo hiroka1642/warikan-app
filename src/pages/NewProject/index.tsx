@@ -8,10 +8,9 @@ import { Layout } from "src/components/Atom/Layout";
 import { Auth } from "@supabase/ui";
 import { Title } from "src/components/Atom/Title";
 import { InputWithLabel } from "src/components/Molecules/InputWithLabel";
-import { SelectBoxWithLabel } from "src/components/Molecules/selectBoxWithLabel";
+import { SelectBox } from "src/components/Atom/SelectBox";
 
 const NewProject: React.VFC = () => {
-  // [1,2,3,4..]
   const numberOfPeople = [...Array(20)].map((_, i: number) => {
     return ++i;
   });
@@ -23,8 +22,6 @@ const NewProject: React.VFC = () => {
   const username = [...Array(Number(selected))].map((_, i: number) => {
     return ++i;
   });
-
- 
 
   const handleSetInputValue = (e: any) => {
     setInputvalue(e.target.value);
@@ -56,7 +53,7 @@ const NewProject: React.VFC = () => {
         ]);
       if (projectdata) {
         router.push({
-          pathname: "/Project.page", //URL
+          pathname: "/ProjectList.page", //URL
           query: { input: projectdata[0].projectId }, //検索クエリ
         });
       }
@@ -80,13 +77,15 @@ const NewProject: React.VFC = () => {
             onChange={handleSetInputValue}
             placeholder="グループ名を入力してください"
           />
-          <SelectBoxWithLabel
-            items={numberOfPeople}
-            // eslint-disable-next-line react/jsx-handler-names
-            onChange={setSelected}
-            value={selected}
-            name="人数"
-          />
+          <div className="text-sm text-gray-700 block mb-1 font-medium text-justify">
+            <p>人数</p>
+            <SelectBox
+              items={numberOfPeople}
+              // eslint-disable-next-line react/jsx-handler-names
+              onChange={setSelected}
+              value={selected}
+            />
+          </div>
         </div>
         <ButtonComponent onClick={handleProject} className="w-1/3">
           作成

@@ -1,13 +1,16 @@
 import { Header } from "src/components/Templates/Header";
 import { Layout } from "src/components/Atom/Layout";
-import { Project } from "../../../components/OnProject/Project";
+// import { Project } from "../../../components/OnProject/Project";
 import { Title } from "src/components/Atom/Title";
 import { useRouter } from "next/dist/client/router";
 import { useCallback, useEffect, useState } from "react";
 import type { ProjectTypes } from "src/types";
 import { client } from "src/libs/supabase";
 import { AddPaymentModal } from "src/components/Templates/AddPaymentModal";
-import { GrayButtonComponent } from "src/components/Atom/button";
+import {
+  ButtonComponent,
+  GrayButtonComponent,
+} from "src/components/Atom/button";
 import { PaymentTabs } from "src/components/Templates/PaymentTabs";
 
 const OnProjectPage = () => {
@@ -18,7 +21,7 @@ const OnProjectPage = () => {
     projectId: 0,
     userNameList: [],
   });
-  const [nameid, setNameId] = useState<string[]>([]);
+  const [nameArr, setNameArr] = useState<string[]>([]);
 
   //idから、プロジェクト情報を読み込む
   const ProjectList = useCallback(async () => {
@@ -35,7 +38,7 @@ const OnProjectPage = () => {
           projectId: Projects[0].projectId,
           userNameList: Projects[0].userName,
         });
-        setNameId(Projects[0].userName);
+        setNameArr(Projects[0].userName);
       }
       if (error) {
         throw error;
@@ -53,20 +56,51 @@ const OnProjectPage = () => {
     router.push(`/EditName.page/${router.query.id}`);
   };
 
+  const handleDelete = async () => {
+    const { error: project_name_error } = await client
+      .from("Projects")
+      .delete()
+      .eq("projectId", project.projectId);
+
+    const { error: PaymentList_error } = await client
+      .from("PaymentList")
+      .delete()
+      .eq("projectId", project.projectId);
+
+    const { error: SettlementList_error } = await client
+      .from("SettlementList")
+      .delete()
+      .eq("projectId", project.projectId);
+
+    if (project_name_error || PaymentList_error || SettlementList_error) {
+      alert("エラーが発生しました");
+    } else {
+      router.push("/ProjectList.page");
+    }
+  };
+
+  const handleBackPage = () => {
+    router.push("/ProjectList.page");
+  };
+
   return (
     <>
       <Header />
       <Layout>
         <Title>{project.projectName}</Title>
-        <AddPaymentModal project={project} nameid={nameid}>
+        <AddPaymentModal project={project} nameArr={nameArr}>
           たてかえを追加
         </AddPaymentModal>
         <GrayButtonComponent onClick={handleEditNamePage} className="w-full">
           メンバーを編集する
         </GrayButtonComponent>
-        <PaymentTabs project={project} nameid={nameid} />
+        <PaymentTabs project={project} nameArr={nameArr} />
+        <div className="text-center mt-12 flex justify-center gap-4">
+          <ButtonComponent onClick={handleDelete}>削除</ButtonComponent>
+          <ButtonComponent onClick={handleBackPage}>戻る</ButtonComponent>
+        </div>
 
-        <Project project={project} nameid={nameid} setNameId={setNameId} />
+        {/* <Project project={project} nameArr={nameArr} setNameArr={setNameArr} /> */}
       </Layout>
     </>
   );

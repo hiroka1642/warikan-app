@@ -3,8 +3,9 @@ import { client } from "../../libs/supabase";
 
 type Props = {
   project: any;
-  nameid: string[];
+  nameArr: string[];
 };
+
 
 // eslint-disable-next-line react/display-name
 export const RebuildingList: React.VFC<Props> = memo((props) => {
@@ -33,13 +34,13 @@ export const RebuildingList: React.VFC<Props> = memo((props) => {
 
   return (
     <>
-      <table className="text-base text-justify w-full">
+      <table className="text-gray-600 w-3/4 m-auto font-bold ">
         <tbody>
           {list.map((li: any, key: any) => {
             return (
               <tr key={key}>
                 <td>{li.what}代</td>
-                <td>{props.nameid[li.id]}さん</td>
+                <td>{props.nameArr[li.id]}さん</td>
                 <td>{li.money}円</td>
               </tr>
             );

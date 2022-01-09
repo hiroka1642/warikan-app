@@ -21,8 +21,8 @@ import { useRouter } from "next/dist/client/router";
 
 type Props = {
   id: number;
-  setNameId: Dispatch<SetStateAction<string[]>>;
-  nameid: string[];
+  setNameArr: Dispatch<SetStateAction<string[]>>;
+  nameArr: string[];
   name: string;
 };
 
@@ -48,7 +48,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
           .update({ userName: projectdata[0].userName })
           .eq("projectId", router.query.id);
         if (projectname) {
-          props.setNameId(projectdata[0].userName);
+          props.setNameArr(projectdata[0].userName);
           setInputvalue("");
           onClose();
         }
