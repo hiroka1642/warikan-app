@@ -12,7 +12,7 @@ export const Title = (props: Props) => {
   };
   return (
     <>
-      <div className="text-2xl relative text-center w-full flex font-bold text-gray-700 pt-16">
+      <div className="sm:text-2xl relative text-center w-full flex font-bold text-gray-700 pt-16">
         {props.isBackButton ? (
           <button className=" absolute" onClick={handleBackPage}>
             <svg

@@ -3,7 +3,6 @@ import { SidePanel, Typography } from "@supabase/ui";
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 import { client } from "src/libs/supabase";
-import { ButtonComponent } from "../Atom/button";
 import { ListIcon, LogoutIcon, NewList } from "../Atom/Icons";
 import { LinkButton2 } from "../Atom/LinkButton";
 
@@ -25,9 +24,9 @@ export const SidePanelBasic = () => {
 
   return (
     <>
-      <ButtonComponent onClick={handleToggle} className="text-2xl p-4">
+      <button onClick={handleToggle} className="text-3xl p-4">
         <HamburgerIcon />
-      </ButtonComponent>
+      </button>
       <SidePanel
         align="left"
         visible={isVisible}
