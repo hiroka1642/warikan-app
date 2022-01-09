@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { ButtonComponent } from "src/components/Atom/button";
 import { Layout } from "src/components/Atom/Layout";
 import { Title } from "src/components/Atom/Title";
-import { ProjectList } from "src/components/ProjectList";
+import { ProjectList } from "src/components/Organisms/ProjectList";
 import { Header } from "../../components/Templates/Header";
 
 const ProjectPage: React.VFC = () => {

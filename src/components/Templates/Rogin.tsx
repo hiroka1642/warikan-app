@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { Auth } from "@supabase/ui";
-import { client } from "../libs/supabase";
+import { client } from "../../libs/supabase";
 import { extendTheme } from "@chakra-ui/react";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
 

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
-import { ListButtonComponent } from "./Atom/button";
+import { ListButtonComponent } from "../Atom/button";
 
 export const ProjectList: React.VFC = () => {
   const router = useRouter();
