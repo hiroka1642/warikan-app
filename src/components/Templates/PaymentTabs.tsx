@@ -12,14 +12,14 @@ type Props = {
 
 export const PaymentTabs = (props: Props) => {
   return (
-    <div className="w-full max-w-md px-2 py-16 sm:px-0">
+    <div className="w-full px-2 py-4 sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex p-1 space-x-1 bg-blue-900/20 rounded-xl">
+        <Tab.List className="flex p-2 space-x-1 bg-indigo-400 rounded-xl">
           <Tab
             key={1}
             className={({ selected }) => {
               return classNames(
-                "w-full py-2.5 text-sm leading-5 font-medium text-blue-700 rounded-lg",
+                "w-full py-2.5 text-sm leading-5 font-medium text-blue-700 rounded-lg ",
                 "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60",
                 selected
                   ? "bg-white shadow"
