@@ -2,7 +2,7 @@ import { useRouter } from "next/dist/client/router";
 
 type Props = {
   children: string;
-  isBackButton: boolean;
+  isBackButton?: boolean;
 };
 
 export const Title = (props: Props) => {

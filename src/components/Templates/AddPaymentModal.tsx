@@ -8,7 +8,7 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useState,useEffect } from "react";
 import { client } from "src/libs/supabase";
 import type { ProjectTypes } from "src/types";
 import { ButtonComponent, GrayButtonComponent } from "../Atom/button";
@@ -27,11 +27,15 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
   const [moneyvalue, setMoneyValue] = useState<number | null>(null);
   const [member, setMemberValue] = useState("メンバーを選択してください");
 
-  const [checkedItems, setCheckedItems] = useState(
-    [...Array(props.project.numberOfPeople)].map(() => {
-      return true;
-    })
-  );
+  const [checkedItems, setCheckedItems] = useState<boolean[]>([]);
+
+  useEffect(() => {
+    setCheckedItems(
+      [...Array(props.project.numberOfPeople)].map(() => {
+        return true;
+      })
+    );
+  }, [props]);
 
   const handleCloseAdd = useCallback(async () => {
     try {

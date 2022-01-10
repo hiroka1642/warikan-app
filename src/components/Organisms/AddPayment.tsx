@@ -63,7 +63,7 @@ export const AddPayment: React.VFC<Props> = memo((props) => {
               onChange={handleChangeInputValue}
               placeholder="使用先を追加してください"
             />
-            <div className="mx-3">代を</div>
+            <div className="mx-3">の代金を</div>
           </div>
           <div className="flex items-center w-full ">
             <InputNumber

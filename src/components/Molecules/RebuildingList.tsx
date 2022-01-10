@@ -6,7 +6,6 @@ type Props = {
   nameArr: string[];
 };
 
-
 // eslint-disable-next-line react/display-name
 export const RebuildingList: React.VFC<Props> = memo((props) => {
   const [list, setList] = useState<string[]>([]);
@@ -34,14 +33,22 @@ export const RebuildingList: React.VFC<Props> = memo((props) => {
 
   return (
     <>
-      <table className="text-gray-600 w-3/4 m-auto font-bold ">
+      <table className="table-compact  text-gray-600 w-full text-justify m-auto font-bold">
+        <thead className="bg-gray-50 rounded-xl">
+          <tr>
+            <th className="w-1/3">科目</th>
+            <th className="w-1/3">支払い者</th>
+            <th className="w-1/3">金額</th>
+          </tr>
+        </thead>
+
         <tbody>
           {list.map((li: any, key: any) => {
             return (
               <tr key={key}>
-                <td>{li.what}代</td>
-                <td>{props.nameArr[li.id]}さん</td>
-                <td>{li.money}円</td>
+                <td className="w-1/3">{li.what}代</td>
+                <td className="w-1/3">{props.nameArr[li.id]}さん</td>
+                <td className="w-1/3">{li.money}円</td>
               </tr>
             );
           })}

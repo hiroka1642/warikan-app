@@ -3,7 +3,6 @@ import { client } from "src/libs/supabase";
 
 type Props = {
   project: any;
-  // result: any;
   nameArr: any;
   name: string;
   id: number;
@@ -78,16 +77,17 @@ export const Result = (props: Props) => {
           GiveMeUserList?.map((li: any) => {
             return (GiveMeSum += li.money);
           });
+
           if (sum - GiveMeSum > 0) {
             return (
-              <>
-                <tr key={key} className="text-indigo-600 w-full font-bold ">
-                  <td className="w-1/4">{props.nameArr[props.id]}</td>
-                  <td className="w-1/4">→</td>
-                  <td className="w-1/4">{li}</td>
-                  <td className="w-1/4">{sum - GiveMeSum}円</td>
-                </tr>
-              </>
+              <tr key={key}>
+                <td className="min-w-[150px]">{props.nameArr[props.id]}</td>
+                <td className="w-1/3">
+                  <span className="pr-2">→</span>
+                  {li}
+                </td>
+                <td className="w-1/3">{sum - GiveMeSum}円</td>
+              </tr>
             );
           }
         }

@@ -75,54 +75,62 @@ export const PaymentList = (props: Props) => {
   return (
     <>
       {list.length === 0 && giveMelist.length === 0 ? null : (
-        <div className="flex border-b-2 border-dashed">
-          <div className=" whitespace-nowrap w-1/3 text-justify">
+        <div className="mt-4 font-bold">
+          <div className="whitespace-nowrap text-left min-w-[150px] p-2 text-lg bg-gray-50 rounded-xl">
             {props.nameArr[props.id]}
           </div>
-          <table className="text-base w-full text-justify ">
-            <tbody>
-              {props.nameArr.map((_, key) => {
-                const UserList = list.filter((item: any) => {
-                  return item.payer === key;
-                });
-                const GiveMeUserList = giveMelist.filter((item: any) => {
-                  return item.id === key;
-                });
-                if (UserList.length === 0 && GiveMeUserList.length === 0) {
-                  return;
-                } else {
-                  return (
-                    <>
-                      {UserList?.map((li: any, key: number) => {
-                        return (
-                          <>
-                            <tr key={key} className="text-red-500">
-                              <td>→</td>
-                              <td className="w-1/3">
+
+          <table className="table z-0 table-compact w-full">
+            {props.nameArr.map((_, key) => {
+              const UserList = list.filter((item: any) => {
+                return item.payer === key;
+              });
+              const GiveMeUserList = giveMelist.filter((item: any) => {
+                return item.id === key;
+              });
+
+              if (UserList.length === 0 && GiveMeUserList.length === 0) {
+                return;
+              } else {
+                return (
+                  <tbody>
+                    {UserList.length !== 0
+                      ? UserList?.map((li: any) => {
+                          return (
+                            <tr key={li.id} className="text-red-500">
+                              <td className="w-80">
+                                <span className="inline-block px-2">
+                                  →
+                                </span>
                                 {props.nameArr[li.payer]}
                               </td>
-                              <td className="w-1/3">{li.what}代</td>
-                              <td className="w-1/3">{li.money}円</td>
+                              <td className="w-80">{li.what}代</td>
+                              <td className="pr-4 text-right">{li.money}円</td>
                             </tr>
-                          </>
-                        );
-                      })}
+                          );
+                        })
+                      : null}
 
-                      {GiveMeUserList?.map((li: any, key: number) => {
-                        return (
-                          <tr key={key} className="text-blue-500">
-                            <td>←</td>
-                            <td className="w-1/3">{props.nameArr[li.id]}</td>
-                            <td className="w-1/3">{li.what}代</td>
-                            <td className="w-1/3">{li.money}円</td>
-                          </tr>
-                        );
-                      })}
-                    </>
-                  );
-                }
-              })}
-            </tbody>
+                    {GiveMeUserList.length !== 0
+                      ? GiveMeUserList?.map((li: any) => {
+                          return (
+                            <tr key={li.id} className="text-blue-500">
+                              <td className="w-80">
+                                <span className="inline-block px-2">
+                                  ←
+                                </span>
+                                {props.nameArr[li.id]}
+                              </td>
+                              <td className="w-80">{li.what}代</td>
+                              <td className="pr-4 text-right">{li.money}円</td>
+                            </tr>
+                          );
+                        })
+                      : null}
+                  </tbody>
+                );
+              }
+            })}
           </table>
         </div>
       )}

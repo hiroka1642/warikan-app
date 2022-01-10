@@ -80,12 +80,18 @@ const OnProjectPage = () => {
       <Header />
       <Layout>
         <Title isBackButton>{project.projectName}</Title>
-        <AddPaymentModal project={project} nameArr={nameArr}>
+
+        <div className="flex">
+
+        <AddPaymentModal project={project} nameArr={nameArr} >
           たてかえを追加
         </AddPaymentModal>
-        <GrayButtonComponent onClick={handleEditNamePage} className="w-full">
+
+        <GrayButtonComponent onClick={handleEditNamePage}className="w-full rounded-lg mt-6">
           メンバーを編集する
         </GrayButtonComponent>
+        </div>
+
         <PaymentTabs project={project} nameArr={nameArr} />
         <div className="text-center mt-12 flex justify-center gap-4">
           <GrayButtonComponent onClick={handleDelete}>

@@ -18,11 +18,11 @@ export const Header: React.VFC = () => {
 
   return (
     <>
-      <header className="sm:invisible visible  bg-indigo-600 text-white px-3 w-screen fixed top-0">
+      <header className="sm:invisible visible  bg-indigo-600 text-white px-3 w-screen fixed top-0 z-20">
         <SidePanelBasic />
       </header>
 
-      <header className="sm:visible invisible flex  justify-between  font-normal text-base bg-indigo-600 text-white px-12 w-screen fixed top-0">
+      <header className="sm:visible invisible flex  justify-between  font-normal text-base bg-indigo-600 text-white px-12 w-screen fixed top-0 z-20">
         <div className="flex items-center ">
           <LinkButton
             // eslint-disable-next-line react/jsx-handler-names

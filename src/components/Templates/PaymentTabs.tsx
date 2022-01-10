@@ -1,6 +1,7 @@
 import { Tab } from "@headlessui/react";
 import { RebuildingList } from "../Molecules/RebuildingList";
 import { PaymentResult } from "../Organisms/PaymentResult";
+import { PaymentDetail } from "../Organisms/PaymentDetail";
 
 const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(" ");
@@ -31,7 +32,17 @@ export const PaymentTabs = (props: Props) => {
         </ul>
       ),
     },
+    {
+      key: 3,
+      name: "詳細",
+      children: (
+        <ul>
+          <PaymentDetail project={props.project} nameArr={props.nameArr} />
+        </ul>
+      ),
+    },
   ];
+
   return (
     <div className="w-full px-2 py-4 sm:px-0">
       <Tab.Group>
@@ -44,7 +55,7 @@ export const PaymentTabs = (props: Props) => {
                   className={({ selected }) => {
                     return classNames(
                       "w-full py-2.5 text-sm leading-5 font-medium text-blue-700 rounded-lg ",
-                      "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60",
+                      "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-indigo-400 ring-white ring-opacity-60",
                       selected
                         ? "bg-white shadow"
                         : "text-blue-100 hover:bg-white/[0.12] hover:text-white"
@@ -57,17 +68,12 @@ export const PaymentTabs = (props: Props) => {
             );
           })}
         </Tab.List>
+
         <Tab.Panels className="mt-2">
           {tab.map((item) => {
             return (
               <>
-                <Tab.Panel
-                  key={item.key}
-                  className={classNames(
-                    "bg-white rounded-xl p-3",
-                    "focus:outline-none focus:ring-2 ring-offset-2 ring-offset-blue-400 ring-white ring-opacity-60"
-                  )}
-                >
+                <Tab.Panel key={item.key} className="bg-white">
                   {item.children}
                 </Tab.Panel>
               </>
