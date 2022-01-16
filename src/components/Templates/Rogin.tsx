@@ -7,7 +7,7 @@ export const Rogin: React.VFC = () => {
     <>
       <div className="flex flex-row items-center h-screen">
         <div className=" sm:w-2/5 h-full invisible sm:visible"></div>
-        <div className="w-full bg-indigo-600 flex flex-col sm:w-4/5 h-[130%] sm:rounded-l-full">
+        <div className="w-full bg-indigo-500 flex flex-col sm:w-4/5 h-[130%] sm:rounded-l-full">
           <h1 className="text-4xl mt-64 py-20 text-center sm:text-4xl lg:text-6xl z-50  text-white">
             みんなでわりかん。
           </h1>
