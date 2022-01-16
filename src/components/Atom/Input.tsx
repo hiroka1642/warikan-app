@@ -2,7 +2,7 @@ import { memo } from "react";
 import type { ChangeEventHandler } from "react";
 
 type Props = {
-  value: any;
+  value: string | undefined;
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
   placeholder?: string;
   type?: string;

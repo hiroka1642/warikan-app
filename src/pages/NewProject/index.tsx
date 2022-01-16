@@ -14,7 +14,7 @@ const NewProject: React.VFC = () => {
   const numberOfPeople = [...Array(20)].map((_, i: number) => {
     return ++i;
   });
-  const [selected, setSelected] = useState(numberOfPeople[0]);
+  const [selected, setSelected] = useState<number | null>(null);
   const router = useRouter();
   const [value, setInputvalue] = useState<string>("");
   const { user } = Auth.useUser();
@@ -23,7 +23,7 @@ const NewProject: React.VFC = () => {
     return ++i;
   });
 
-  const handleSetInputValue = (e: any) => {
+  const handleSetInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputvalue(e.target.value);
   };
 

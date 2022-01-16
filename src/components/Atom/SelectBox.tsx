@@ -3,21 +3,22 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
 
 type Props = {
-  items: any;
-  onChange: any;
-  value: any;
+  items: string[] | number[];
+  onChange: (value: number | null) => void;
+  value: number | null;
   className?: string;
 };
 
 export const SelectBox = (props: Props) => {
   return (
     <div className={`${props.className}`}>
-      {/* eslint-disable-next-line react/jsx-handler-names */}
       <Listbox value={props.value} onChange={props.onChange}>
         <div className="relative mt-1 ">
           <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg ring-1 ring-gray-300 focus:ring-indigo-500 cursor-default  sm:text-sm">
             <span className="block truncate">
-              {props.items[props.value] || props.value}
+              {props.value !== null
+                ? props.items[props.value] || props.value
+                : "選択してください"}
             </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <SelectorIcon
@@ -33,7 +34,7 @@ export const SelectBox = (props: Props) => {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute w-full z-10 py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {props.items.map((item: any, idx: any) => {
+              {props.items.map((item: string | number, idx: number) => {
                 return (
                   <Listbox.Option
                     key={idx}

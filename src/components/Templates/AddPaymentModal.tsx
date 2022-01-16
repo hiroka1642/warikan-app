@@ -8,9 +8,9 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from "@chakra-ui/react";
-import { memo, useCallback, useState,useEffect } from "react";
+import { memo, useCallback, useState, useEffect } from "react";
 import { client } from "src/libs/supabase";
-import type { ProjectTypes } from "src/types";
+import type { ProjectTypes, SettlementType } from "src/types";
 import { ButtonComponent, GrayButtonComponent } from "../Atom/button";
 import { AddPayment } from "../Organisms/AddPayment";
 
@@ -25,7 +25,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [value, setInputvalue] = useState("");
   const [moneyvalue, setMoneyValue] = useState<number | null>(null);
-  const [member, setMemberValue] = useState("メンバーを選択してください");
+  const [member, setMemberValue] = useState<number | null>(null);
 
   const [checkedItems, setCheckedItems] = useState<boolean[]>([]);
 
@@ -59,7 +59,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
         throw PaymentList_error;
       }
       //何人で割るかによって金額を変える
-      const settlement: any[] = [];
+      const settlement: SettlementType[] = [];
       const newItems = checkedItems.filter((n) => {
         return n === true;
       });
@@ -84,7 +84,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
       }
       if (SettlementList) {
         setMoneyValue(null);
-        setMemberValue("メンバーを追加してください");
+        setMemberValue(null);
         setCheckedItems(
           [...Array(props.project.numberOfPeople)].map(() => {
             return true;
@@ -93,7 +93,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
         setInputvalue("");
       }
     } catch (e) {
-      alert(e);
+      alert("登録できませんでした");
     }
   }, [
     value,

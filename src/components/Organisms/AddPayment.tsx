@@ -14,8 +14,8 @@ type Props = {
   checkedItems: boolean[];
   setCheckedItems: Dispatch<SetStateAction<boolean[]>>;
   nameArr: string[];
-  member: any;
-  setMemberValue: any;
+  member: number | null;
+  setMemberValue: Dispatch<SetStateAction<number | null>>;
 };
 
 // eslint-disable-next-line react/display-name
@@ -25,7 +25,7 @@ export const AddPayment: React.VFC<Props> = memo((props) => {
   }, [props.checkedItems]);
 
   const handleChange = useCallback(
-    (e: any, li: any) => {
+    (e: React.ChangeEvent<HTMLInputElement>, li: number) => {
       arr.splice(li, 1, e.target.checked);
       props.setCheckedItems(() => {
         return [...arr];
@@ -34,12 +34,16 @@ export const AddPayment: React.VFC<Props> = memo((props) => {
     [arr, props]
   );
 
-  const handleChangeInputValue = (e: any) => {
+  const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.setInputvalue(e.target.value);
   };
 
-  const handleChangeMoneyValue = (e: any) => {
-    props.setMoneyValue(e.target.value);
+  const handleChangeMoneyValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    props.setMoneyValue(Number(e.target.value));
+  };
+
+  const handleChangeSelectValue = (value: number | null) => {
+    props.setMemberValue(value);
   };
 
   return (
@@ -51,7 +55,7 @@ export const AddPayment: React.VFC<Props> = memo((props) => {
               className="w-3/4"
               value={props.member}
               // eslint-disable-next-line react/jsx-handler-names
-              onChange={props.setMemberValue}
+              onChange={handleChangeSelectValue}
               items={props.project.userNameList}
             />
             <div className="mx-3">が</div>
@@ -69,7 +73,7 @@ export const AddPayment: React.VFC<Props> = memo((props) => {
             <InputNumber
               className="w-full shadow-none"
               placeholder="金額を入力してください"
-              value={props.moneyvalue}
+              value={props.moneyvalue !== null ? props.moneyvalue : ""}
               onChange={handleChangeMoneyValue}
             />
             <div className="mx-3">円たてかえ</div>

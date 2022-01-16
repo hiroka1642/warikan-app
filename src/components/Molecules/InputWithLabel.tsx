@@ -4,7 +4,7 @@ import { InputComponent } from "../Atom/Input";
 type Props = {
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
   name?: string;
-  value: any;
+  value: string | undefined;
   placeholder?: string;
 };
 

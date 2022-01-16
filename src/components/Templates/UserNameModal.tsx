@@ -70,7 +70,7 @@ export const UserNameModal: React.VFC<Props> = (props) => {
   const handleOnClose = () => {
     onClose();
   };
-  const handleChangeInputValue = (e: any) => {
+  const handleChangeInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputvalue(e.target.value);
   };
 

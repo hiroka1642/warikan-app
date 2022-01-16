@@ -2,13 +2,14 @@ import { Tab } from "@headlessui/react";
 import { RebuildingList } from "../Molecules/RebuildingList";
 import { PaymentResult } from "../Organisms/PaymentResult";
 import { PaymentDetail } from "../Organisms/PaymentDetail";
+import type { ProjectTypes } from "src/types";
 
 const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(" ");
 };
 
 type Props = {
-  project: any;
+  project: ProjectTypes;
   nameArr: string[];
 };
 

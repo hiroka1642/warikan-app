@@ -1,14 +1,16 @@
 import { memo, useCallback, useEffect, useState } from "react";
+import type { PaymentListTypes, ProjectTypes } from "src/types";
 import { client } from "../../libs/supabase";
 
 type Props = {
-  project: any;
+  project: ProjectTypes;
   nameArr: string[];
 };
 
 // eslint-disable-next-line react/display-name
 export const RebuildingList: React.VFC<Props> = memo((props) => {
-  const [list, setList] = useState<string[]>([]);
+  const [list, setList] = useState<PaymentListTypes[]>([]);
+  
 
   const GetList = useCallback(async () => {
     try {
@@ -43,7 +45,7 @@ export const RebuildingList: React.VFC<Props> = memo((props) => {
         </thead>
 
         <tbody>
-          {list.map((li: any, key: any) => {
+          {list.map((li: PaymentListTypes, key: number) => {
             return (
               <tr key={key}>
                 <td className="w-1/3">{li.what}代</td>

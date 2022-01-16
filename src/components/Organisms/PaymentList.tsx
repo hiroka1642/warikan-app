@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import type { ProjectTypes } from "../../types";
+import type { ProjectTypes, SettlementListTypes } from "../../types";
 import { client } from "../../libs/supabase";
 
 type Props = {
@@ -15,8 +15,8 @@ type Props = {
 //1人ずつの支払い
 export const PaymentList = (props: Props) => {
   const [Sum, setSum] = useState(0);
-  const [list, setList] = useState<any>([]);
-  const [giveMelist, setGiveMeList] = useState<any>([]);
+  const [list, setList] = useState<SettlementListTypes[]>([]);
+  const [giveMelist, setGiveMeList] = useState<SettlementListTypes[]>([]);
 
   //自分が払うリストを取得
   const SettlementList = useCallback(async () => {
@@ -33,7 +33,7 @@ export const PaymentList = (props: Props) => {
         if (settlementdata) {
           setList(settlementdata);
 
-          const sumArray = (array: any) => {
+          const sumArray = (array: SettlementListTypes[]) => {
             let sum = 0;
             for (let i = 0; i < settlementdata?.length; i++) {
               sum += array[i].money;
@@ -82,12 +82,14 @@ export const PaymentList = (props: Props) => {
 
           <table className="table z-0 table-compact w-full">
             {props.nameArr.map((_, key) => {
-              const UserList = list.filter((item: any) => {
+              const UserList = list.filter((item: SettlementListTypes) => {
                 return item.payer === key;
               });
-              const GiveMeUserList = giveMelist.filter((item: any) => {
-                return item.id === key;
-              });
+              const GiveMeUserList = giveMelist.filter(
+                (item: SettlementListTypes) => {
+                  return item.id === key;
+                }
+              );
 
               if (UserList.length === 0 && GiveMeUserList.length === 0) {
                 return;
@@ -95,13 +97,11 @@ export const PaymentList = (props: Props) => {
                 return (
                   <tbody>
                     {UserList.length !== 0
-                      ? UserList?.map((li: any) => {
+                      ? UserList?.map((li: SettlementListTypes) => {
                           return (
                             <tr key={li.id} className="text-red-500">
                               <td className="w-80">
-                                <span className="inline-block px-2">
-                                  →
-                                </span>
+                                <span className="inline-block px-2">→</span>
                                 {props.nameArr[li.payer]}
                               </td>
                               <td className="w-80">{li.what}代</td>
@@ -112,13 +112,11 @@ export const PaymentList = (props: Props) => {
                       : null}
 
                     {GiveMeUserList.length !== 0
-                      ? GiveMeUserList?.map((li: any) => {
+                      ? GiveMeUserList?.map((li: SettlementListTypes) => {
                           return (
                             <tr key={li.id} className="text-blue-500">
                               <td className="w-80">
-                                <span className="inline-block px-2">
-                                  ←
-                                </span>
+                                <span className="inline-block px-2">←</span>
                                 {props.nameArr[li.id]}
                               </td>
                               <td className="w-80">{li.what}代</td>

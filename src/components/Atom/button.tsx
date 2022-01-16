@@ -2,7 +2,7 @@ import type { MouseEventHandler } from "react";
 
 type Props = {
   onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
-  children: any;
+  children: string;
   color?: string;
   className?: string;
 };

@@ -1,16 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
 import { client } from "src/libs/supabase";
+import type { ProjectTypes, SettlementListTypes } from "src/types";
 
 type Props = {
-  project: any;
-  nameArr: any;
+  project: ProjectTypes;
+  nameArr: string[];
   name: string;
   id: number;
 };
 
 export const Result = (props: Props) => {
-  const [list, setList] = useState<any>([]);
-  const [giveMelist, setGiveMeList] = useState<any>([]);
+  const [list, setList] = useState<SettlementListTypes[]>([]);
+  const [giveMelist, setGiveMeList] = useState<SettlementListTypes[]>([]);
 
   //自分が払うリストを取得
   const SettlementList = useCallback(async () => {
@@ -59,22 +60,24 @@ export const Result = (props: Props) => {
 
   return (
     <>
-      {props.nameArr.map((li: any, key: number) => {
-        const UserList = list.filter((item: any) => {
+      {props.nameArr.map((li: string, key: number) => {
+        const UserList = list.filter((item: SettlementListTypes) => {
           return item.payer === key;
         });
-        const GiveMeUserList = giveMelist.filter((item: any) => {
-          return item.id === key;
-        });
+        const GiveMeUserList = giveMelist.filter(
+          (item: SettlementListTypes) => {
+            return item.id === key;
+          }
+        );
         if (UserList.length === 0 && GiveMeUserList.length === 0) {
           return;
         } else {
           let sum = 0;
-          UserList?.map((li: any) => {
+          UserList?.map((li: SettlementListTypes) => {
             return (sum += li.money);
           });
           let GiveMeSum = 0;
-          GiveMeUserList?.map((li: any) => {
+          GiveMeUserList?.map((li: SettlementListTypes) => {
             return (GiveMeSum += li.money);
           });
 
