@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { memo, useCallback, useState, useEffect } from "react";
 import { client } from "src/libs/supabase";
-import type { ProjectTypes, SettlementType } from "src/types";
+import type { ProjectTypes, SettlementListTypes } from "src/types";
 import { ButtonComponent, GrayButtonComponent } from "../Atom/button";
 import { AddPayment } from "../Organisms/AddPayment";
 
@@ -59,7 +59,7 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
         throw PaymentList_error;
       }
       //何人で割るかによって金額を変える
-      const settlement: SettlementType[] = [];
+      const settlement: SettlementListTypes[] = [];
       const newItems = checkedItems.filter((n) => {
         return n === true;
       });
@@ -68,10 +68,10 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
           return;
         } else {
           settlement.push({
-            id: id,
-            money: `${Math.ceil(moneyvalue / newItems.length)}`,
-            payer: member,
             projectId: props.project.projectId,
+            id: id,
+            money: Math.ceil(moneyvalue / newItems.length),
+            payer: member,
             what: value,
           });
         }

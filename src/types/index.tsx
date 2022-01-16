@@ -12,19 +12,11 @@ export type ListTypes = {
 };
 
 export type SettlementListTypes = {
-  projectId: string;
+  projectId: number;
   money: number;
-  payer: number;
+  payer: number | null;
   what: string;
   id: number;
 };
 
 export type PaymentListTypes = { what: string; money: number; id: number };
-
-export type SettlementType = {
-  id: number;
-  money: string;
-  payer: number | null;
-  projectId: number;
-  what: string;
-};

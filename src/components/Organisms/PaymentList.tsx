@@ -102,7 +102,7 @@ export const PaymentList = (props: Props) => {
                             <tr key={li.id} className="text-red-500">
                               <td className="w-80">
                                 <span className="inline-block px-2">→</span>
-                                {props.nameArr[li.payer]}
+                                {li.payer ? props.nameArr[li.payer] : null}
                               </td>
                               <td className="w-80">{li.what}代</td>
                               <td className="pr-4 text-right">{li.money}円</td>
