@@ -25,8 +25,7 @@ export const PaymentList = (props: Props) => {
         .from("SettlementList")
         .select("*")
         .eq("projectId", props.project.projectId)
-        .eq("id", props.id)
-        .neq("payer", props.id);
+        .eq("id", props.id);
       if (settlementerror) {
         throw settlementerror;
       } else {
@@ -52,8 +51,7 @@ export const PaymentList = (props: Props) => {
         .from("SettlementList")
         .select("*")
         .eq("projectId", props.project.projectId)
-        .eq("payer", props.id)
-        .neq("id", props.id);
+        .eq("payer", props.id);
       if (giveMeError) {
         throw giveMeError;
       } else {

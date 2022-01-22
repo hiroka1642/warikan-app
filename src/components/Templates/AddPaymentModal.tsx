@@ -64,7 +64,8 @@ export const AddPaymentModal: React.VFC<Props> = memo((props) => {
         return n === true;
       });
       checkedItems.map((i, id: number) => {
-        if (i === false) {
+        //自分が自分のために払ったリストは作らない
+        if (i === false || id === member) {
           return;
         } else {
           settlement.push({
