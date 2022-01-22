@@ -17,7 +17,7 @@ export const SelectBox = (props: Props) => {
           <Listbox.Button className="relative w-full py-2 pl-3 pr-10 text-left bg-white rounded-lg ring-1 ring-gray-300 focus:ring-indigo-500 cursor-default  sm:text-sm">
             <span className="block truncate">
               {props.value !== null
-                ? props.items[props.value] || props.value
+                ? props.items[props.value - 1] || props.value
                 : "選択してください"}
             </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -46,7 +46,7 @@ export const SelectBox = (props: Props) => {
                       }
                           cursor-default select-none relative py-2 pl-10 pr-4`;
                     }}
-                    value={idx}
+                    value={idx + 1}
                   >
                     {({ active }) => {
                       return (
