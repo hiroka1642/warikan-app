@@ -17,6 +17,7 @@ export const PaymentResult = (props: Props) => {
           </tr>
         </thead>
         <tbody>
+          {/* 名前ごとに支払い表示 */}
           {props.nameArr.map((name: string, key: number) => {
             return (
               <Result

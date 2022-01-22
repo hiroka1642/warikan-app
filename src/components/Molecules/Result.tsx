@@ -9,6 +9,7 @@ type Props = {
   id: number;
 };
 
+//一人あたりの結果_佐藤→田中_佐藤→鈴木
 export const Result = (props: Props) => {
   const [list, setList] = useState<SettlementListTypes[]>([]);
   const [giveMelist, setGiveMeList] = useState<SettlementListTypes[]>([]);
@@ -22,27 +23,21 @@ export const Result = (props: Props) => {
         .eq("projectId", props.project.projectId)
         .eq("id", props.id)
         .neq("payer", props.id);
-      if (settlementerror) {
-        throw settlementerror;
-      } else {
-        if (settlementdata) {
-          setList(settlementdata);
-        }
-      }
-    } catch (e) {
-      alert(e);
-    }
-    //自分がもらうリストを取得
-    try {
       const { data: giveMeData, error: giveMeError } = await client
         .from("SettlementList")
         .select("*")
         .eq("projectId", props.project.projectId)
         .eq("payer", props.id)
         .neq("id", props.id);
-      if (giveMeError) {
+
+      if (settlementerror) {
+        throw settlementerror;
+      } else if (giveMeError) {
         throw giveMeError;
       } else {
+        if (settlementdata) {
+          setList(settlementdata);
+        }
         if (giveMeData) {
           setGiveMeList(giveMeData);
         }
@@ -60,6 +55,7 @@ export const Result = (props: Props) => {
 
   return (
     <>
+      {/* 相手が同じ場合は足し算する */}
       {props.nameArr.map((li: string, key: number) => {
         const UserList = list.filter((item: SettlementListTypes) => {
           return item.payer === key;
@@ -72,14 +68,21 @@ export const Result = (props: Props) => {
         if (UserList.length === 0 && GiveMeUserList.length === 0) {
           return;
         } else {
-          let sum = 0;
-          UserList?.map((li: SettlementListTypes) => {
-            return (sum += li.money);
-          });
-          let GiveMeSum = 0;
-          GiveMeUserList?.map((li: SettlementListTypes) => {
-            return (GiveMeSum += li.money);
-          });
+          const sum = UserList.reduce(
+            (sum: number, element: SettlementListTypes) => {
+              return sum + element.money;
+            },
+            0
+          );
+          const GiveMeSum = GiveMeUserList.reduce(
+            (sum: number, element: SettlementListTypes) => {
+              return sum + element.money;
+            },
+            0
+          );
+          if (sum - GiveMeSum <= 0) {
+            return;
+          }
 
           if (sum - GiveMeSum > 0) {
             return (

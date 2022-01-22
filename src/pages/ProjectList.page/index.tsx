@@ -12,7 +12,7 @@ const ProjectPage: React.VFC = () => {
   const handleNewProjectPage = useCallback(() => {
     router.push("/NewProject");
   }, [router]);
-  
+
   return (
     <>
       <Header />
@@ -24,7 +24,7 @@ const ProjectPage: React.VFC = () => {
         </ButtonComponent>
       </Layout>
     </>
-  )
+  );
 };
 
 export default ProjectPage;

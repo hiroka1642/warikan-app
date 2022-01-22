@@ -7,6 +7,8 @@ import { client } from "src/libs/supabase";
 import type { ListTypes } from "src/types";
 import { ListButtonComponent } from "../Atom/button";
 
+
+
 export const ProjectList: React.VFC = () => {
   const router = useRouter();
   const [list, setList] = useState<ListTypes[]>();
