@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
+// import type { Dispatch, SetStateAction } from "react";
 import type { ProjectTypes, SettlementListTypes } from "../../types";
 
 type Props = {
@@ -6,9 +6,7 @@ type Props = {
   name: string;
   id: number;
   nameArr: string[];
-  hasAdd: boolean;
   list: SettlementListTypes[];
-  setAdd: Dispatch<SetStateAction<boolean>>;
 };
 
 //1人ずつの支払い

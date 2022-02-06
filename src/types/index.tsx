@@ -5,10 +5,19 @@ export type ProjectTypes = {
   userNameList: string[];
 };
 
+export type ProjectListTypes = {
+  projectName: string;
+  member: number;
+  projectId: string;
+  userName: number[];
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  user_id: string;
+};
+
 export type ListTypes = {
   name: string;
   member: number;
-  id: number;
+  id: string;
 };
 
 export type SettlementListTypes = {

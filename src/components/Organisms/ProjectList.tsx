@@ -4,14 +4,16 @@ import { useEffect } from "react";
 
 import { useCallback } from "react";
 import { client } from "src/libs/supabase";
-import type { ListTypes } from "src/types";
+import type { ListTypes, ProjectListTypes } from "src/types";
 import { ListButtonComponent } from "../Atom/button";
-
-
 
 export const ProjectList: React.VFC = () => {
   const router = useRouter();
   const [list, setList] = useState<ListTypes[]>();
+
+  const isProjectTypes = (data: any[]): data is ProjectListTypes[] => {
+    return "userName" in data[0];
+  };
 
   //リストを取得する
   const GetProjectList = useCallback(async () => {
@@ -19,16 +21,20 @@ export const ProjectList: React.VFC = () => {
       const { data: Projects, error } = await client
         .from("Projects")
         .select("*");
+
       if (Projects) {
-        const items: ListTypes[] = [];
-        for (let i = 0; i < Projects.length; i++) {
-          items.push({
-            name: Projects[i].projectName,
-            member: Projects[i].member,
-            id: Projects[i].projectId,
-          });
+        if (isProjectTypes(Projects)) {
+          const items: ListTypes[] = [];
+
+          for (let i = 0; i < Projects.length; i++) {
+            items.push({
+              name: Projects[i].projectName,
+              member: Projects[i].member,
+              id: Projects[i].projectId,
+            });
+          }
+          setList([...items]);
         }
-        setList([...items]);
       }
       if (error) {
         throw error;
@@ -42,7 +48,7 @@ export const ProjectList: React.VFC = () => {
     GetProjectList();
   }, [GetProjectList]);
 
-  const handleClick = async (id: number) => {
+  const handleClick = async (id: string) => {
     router.push(`/Project.page/${id}`);
   };
 

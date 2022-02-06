@@ -8,9 +8,14 @@ type Props = {
   nameArr: string[];
 };
 export const PaymentDetail = (props: Props) => {
-  const [hasAdd, setAdd] = useState(false);
   const [Sum, setSum] = useState(0);
   const [list, setList] = useState<SettlementListTypes[]>([]);
+
+  const isSettlementListTypes = (
+    data: any[]
+  ): data is SettlementListTypes[] => {
+    return "payer" in data[0];
+  };
 
   //自分が払うリストを取得
   const SettlementList = useCallback(async () => {
@@ -19,20 +24,22 @@ export const PaymentDetail = (props: Props) => {
         .from("SettlementList")
         .select("*")
         .eq("projectId", props.project.projectId);
+
       if (settlementerror) {
         throw settlementerror;
       } else {
         if (settlementdata) {
-          setList(settlementdata);
-
-          const sumArray = (array: SettlementListTypes[]) => {
-            let sum = 0;
-            for (let i = 0; i < settlementdata?.length; i++) {
-              sum += array[i].money;
-            }
-            return sum;
-          };
-          setSum(sumArray(settlementdata));
+          if (isSettlementListTypes(settlementdata)) {
+            setList(settlementdata);
+            const sumArray = (array: SettlementListTypes[]) => {
+              let sum = 0;
+              for (let i = 0; i < settlementdata?.length; i++) {
+                sum += array[i].money;
+              }
+              return sum;
+            };
+            setSum(sumArray(settlementdata));
+          }
         }
       }
     } catch (e) {
@@ -44,7 +51,7 @@ export const PaymentDetail = (props: Props) => {
     if (props.project) {
       SettlementList();
     }
-  }, [props, Sum, hasAdd, SettlementList]);
+  }, [props, Sum, SettlementList]);
 
   return (
     <>
@@ -57,8 +64,6 @@ export const PaymentDetail = (props: Props) => {
             key={key}
             list={list}
             nameArr={props.nameArr}
-            hasAdd={hasAdd}
-            setAdd={setAdd}
           />
         );
       })}

@@ -87,7 +87,7 @@ export const Result = (props: Props) => {
           if (sum - GiveMeSum > 0) {
             return (
               <tr key={key}>
-                <td className="min-w-[150px]">{props.nameArr[props.id]}</td>
+                <td className="w-1/3">{props.nameArr[props.id]}</td>
                 <td className="w-1/3">
                   <span className="pr-2">→</span>
                   {li}
